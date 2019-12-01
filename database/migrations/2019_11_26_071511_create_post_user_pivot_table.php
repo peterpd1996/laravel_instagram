@@ -13,10 +13,12 @@ class CreatePostUserPivotTable extends Migration
      */
     public function up()
     {
+        // like
         Schema::create('post_user', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('post_id');
             $table->unsignedBigInteger('user_id');
+            $table->tinyInteger('status')->default('0'); // 0 unread 1 read
             $table->timestamps();
         });
     }

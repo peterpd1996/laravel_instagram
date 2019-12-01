@@ -24,8 +24,10 @@ Route::get('p/{post}/edit','PostsController@edit');
 Route::post('/comment','CommentController@store');
 // fetch comment
 Route::post('/fetch','CommentController@fetch');
-//search
 
+//notification
+Route::post('/notification','NotificationsController@show');
+//search
 Route::post('/search','SearchController@searchUser');
 // follow 
 Route::post('follow/{user}','FollowsController@store');

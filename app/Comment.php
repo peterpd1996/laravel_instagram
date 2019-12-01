@@ -14,4 +14,10 @@ class Comment extends Model
     {
         return $this->belongsTo(User::Class);
     }
+    public function subComment($comment)
+    {
+        $cmt = strlen($comment) > 24 ? substr( $comment, 0, 23) : $comment;
+        return " \"".$cmt."..\" ";
+    }
+    
 }

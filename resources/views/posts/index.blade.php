@@ -28,7 +28,9 @@
                             </div>
                         {{-- show like --}}
                         <b><div class="like pl-2" id="many_like_{{$post->id}}"> 
+                            
                                     @php
+                                    
                                     $like = $post->liked->count();
                                     if( $like == 0) {
                                         $like ='' ;

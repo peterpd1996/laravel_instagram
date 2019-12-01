@@ -1,11 +1,11 @@
  @extends('layouts.app')
  @section('content')
     <div class="container">
-    <div class="row  offset-md-2" >
-        <div class="col-sm-8 p-0">
+    <div class="row  offset-md-2"  style="height: 622px">
+        <div class="col-sm-8 p-0 ">
             <img src="/uploads/{{$post->image}}" alt="" class="w-100">
         </div>
-        <div class="p-0 border_ col-sm-4" style="background: #fff;">
+        <div class="p-0 border_ col-sm-4  h-100 " style="background: #fff;position: relative">
             <div class="name d-flex p-3 align-items-center border_b">
                 <div>
                     <img src="/profiles/{{$post->user->profile->profileImage()}}" width="40px" height="40px" alt="" class="rounded-circle mr-2">
@@ -37,31 +37,33 @@
                     </ul>
                 </div>
             </div>
-            <div class="icon p-3 border_b border_t w-100" style="margin-top: 109px">
-                <i data-like_post="{{$post->id}}" id="like" class=" pr-2 fa fa-heart like_heart @if(auth()->user()->like->contains($post->id)) liked @endif"  aria-hidden="true"></i>
-                <a href=""><i class="fa fa-comment-o" aria-hidden="true"></i></a>
-                <b>
-                    <div class="like pl-1" id="many_like" style="cursor: pointer"> 
-                        @php
-                        $like = $post->liked->count();
-                        if( $like == 0) {
-                        $like ='' ;
-                        }   
-                        else if($like  == 1){
-                        $like .=' like';
-                        }     
-                        else {
-                        $like .= ' likes';
-                        }
-                        echo $like;
-                        @endphp
-                    </div>
-                </b>
-            </div>
-            <div class=" p-2 d-flex w-100">
-                <input id="comment"   type="text" class="w-100" style="border: none" placeholder="Add a comment.." height="30px" autofocus
-                    >
-                <div id="postComment"   style="color:#3897f0;font-weight: bold;cursor: pointer" data-post={{$post->id}} >Post</div>
+            <div style="position: absolute;width: 100%;top: 200px">
+                    <div class="icon p-3 border_b border_t w-100" style="margin-top: 260px">
+                            <i data-like_post="{{$post->id}}" id="like" class=" pr-2 fa fa-heart like_heart @if(auth()->user()->like->contains($post->id)) liked @endif"  aria-hidden="true"></i>
+                            <a href=""><i class="fa fa-comment-o" aria-hidden="true"></i></a>
+                            <b>
+                                <div class="like pl-1" id="many_like" style="cursor: pointer"> 
+                                    @php
+                                    $like = $post->liked->count();
+                                    if( $like == 0) {
+                                    $like ='' ;
+                                    }   
+                                    else if($like  == 1){
+                                    $like .=' like';
+                                    }     
+                                    else {
+                                    $like .= ' likes';
+                                    }
+                                    echo $like;
+                                    @endphp
+                                </div>
+                            </b>
+                        </div>
+                        <div class=" p-2 d-flex w-100">
+                            <input id="comment"   type="text" class="w-100" style="border: none" placeholder="Add a comment.." height="30px" autofocus
+                                >
+                            <div id="postComment"   style="color:#3897f0;font-weight: bold;cursor: pointer" data-post={{$post->id}} >Post</div>
+                        </div>
             </div>
         </div>
     </div>

@@ -13,7 +13,8 @@ class CreateProfileUserPivotTable extends Migration
      */
     public function up()
     {
-        Schema::create('profile_user', function (Blueprint $table) {
+        // follow
+            Schema::create('profile_user', function (Blueprint $table) {
             $table->bigIncrements('id');
             // following profile từ đó => được user 
             $table->unsignedBigInteger('profile_id');
