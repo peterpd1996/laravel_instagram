@@ -76,31 +76,6 @@
                                         <div id="count"></div> 
                                         {{-- // count notification --}}
                                         <ul class="notifi disable" id="notifShow" style="position: absolute">
-                                                {{-- <li class='border_b'> --}}
-                                                        <a href='' class='text-dark'>
-                                                            <div class='d-flex fix align-items-center'>
-                                                                <img src='/profiles/abv.jpg'  class='rounded'>
-                                                                <b class="pl-2">tung</b>
-                                                                <div class="pl-1">liked your photo</div>
-                                                                <div style="padding-left: 184px">
-                                                                    <img src='/profiles/Capture.PNG' class='w-img'>
-                                                                </div>
-                                                                
-                                                            </div>
-                                                        </a>
-                                                 </li>
-                                                 <li class='border_b'>
-                                                        <a href='' class='text-dark'>
-                                                            <div class='d-flex fix'>
-                                                                <img src='/profiles/abv.jpg'  class='rounded'>
-                                                                <b class='pl-2 pt-2'>huong</b>
-                                                                <div style='padding: 6px'>commented on your photo:"cũng được đấy chứ nhỉ haha" </div>
-                                                                <img class='mr-1 w-img' src='/profiles/Capture.PNG'>
-                                                                
-                                                            </div>
-                                                            
-                                                        </a>
-                                                 </li>
                                         </ul>
 
                                 </div>
