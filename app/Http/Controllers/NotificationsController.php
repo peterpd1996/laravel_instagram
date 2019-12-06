@@ -34,7 +34,7 @@ class NotificationsController extends Controller
                     $post = Post::find($cmt->post_id);
                     $notif .="   
                            <li class='border_b'>
-                                <a href='/p/{$cmt->post_id}' class='text-dark'>
+                                <a href='/p/{$post->id}' class='text-dark'>
                                     <div class='d-flex fix'>
                                         <img src='/profiles/{$cmt->user->profile->profileImage()}'  class='rounded'>
                                         <span class='ml-2 userLikeOrCmt'><b>{$cmt->user->username} </b>commented on your
@@ -56,11 +56,13 @@ class NotificationsController extends Controller
             {
                 foreach($likes as $like)
                 {
+                  
                     $user = User::find($like->user_id);
                     $post = Post::find($like->post_id);
+                   
                     $notif .="
                   <li class='border_b'>
-                                <a href='/p/{$post->post_id}' class='text-dark'>
+                                <a href='/p/{$post->id}' class='text-dark'>
                                     <div class='d-flex fix align-items-center'>
                                         <img src='/profiles/{$user->profile->profileImage()}' class='rounded'>
                                         <span class='ml-2 userLikeOrCmt'><b>{$user->username} </b>liked

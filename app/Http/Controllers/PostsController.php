@@ -35,12 +35,12 @@ class PostsController extends Controller
     }
     public function store()
     {
-        
+
         $data =  request()->validate([
             'caption' => 'required',
             'image' => ['required','image'],
         ]);
-       
+      
         $file = request()->file('image');
         $image = $file->getClientOriginalName();
         $file->move('uploads',$image);
@@ -48,10 +48,15 @@ class PostsController extends Controller
         $imageResize->save();
        
         // để lây cả user_id thông qua thằng user này có thể thông qua thằng post này để tạo
-        auth()->user()->posts()->create([
-            'caption' => $data['caption'],
-            'image' => $image
-        ]);
+    //    $test =  auth()->user()->posts()->create([
+    //         'caption' => $data['caption'],
+    //         'image' => $image
+    //     ]);
+        $post = new Post;
+        $post->user_id = auth()->user()->id;
+        $post->caption = $data['caption'];
+        $post->image = $image;
+        $post->save();
         return redirect("/");   
     }
     public function show(\App\Post $post) 
