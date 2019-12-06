@@ -11227,16 +11227,17 @@ a:hover {
 
 #countNofi {
   position: absolute;
-  left: 17px;
-  width: 20px;
-  height: 20px;
-  padding: 2px;
+  left: 11px;
+  width: 16px;
+  height: 16px;
+  padding: 0px;
   background: #f11111;
   text-align: center;
   border-radius: 50%;
   line-height: 20px;
   color: white;
   top: -9px;
+  font-size: 13px;
 }
 
 .w-img {
@@ -11303,5 +11304,36 @@ a:hover {
 
 .none {
   display: none;
+}
+
+.userLikeOrCmt {
+  width: 317px;
+  text-align: left;
+}
+
+.arrowDown {
+  border-color: transparent transparent #fff;
+  border-style: solid;
+  border-width: 0 10px 10px;
+  height: 0;
+  top: 6px;
+  left: 2px;
+  width: 0;
+  z-index: 12;
+  position: absolute;
+  box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.0975);
+}
+
+.arrowUp {
+  background: #fff;
+  border: 1px solid #e6e6e6;
+  box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.0975);
+  height: 14px;
+  left: 6px;
+  top: 8px;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  width: 14px;
+  z-index: 1;
 }
 

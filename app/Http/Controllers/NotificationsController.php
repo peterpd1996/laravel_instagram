@@ -26,30 +26,25 @@ class NotificationsController extends Controller
                  DB::table('post_user')->whereIn('post_id',$post_id)->update(['status'=>'1']);
 
             }
-           
 
-           
-        
-          
-            
-            
             $notif = "";
             if($commentUnRead->count() > 0)
             {
                 foreach ($commentUnRead as $cmt) {
                     $post = Post::find($cmt->post_id);
                     $notif .="   
-                        <li class='border_b'>
-                            <a  href='/p/{$cmt->post_id}' class='text-dark'>
-                                <div class='d-flex fix'>
-                                <img src='/profiles/{$cmt->user->profile->profileImage()}'  class='rounded'>
-                                    <b class='pl-2 pt-2'>{$cmt->user->username}</b>
-                                    <div class='notificmt'>commented on your photo:{$cmt->subComment($cmt->comment)}</div>
-                                    <img class='mr-2 w-img' src='/uploads/{$post->image}'>
-                                    
-                                </div>  
-                            </a>
-                        </li>        
+                           <li class='border_b'>
+                                <a href='/p/{$cmt->post_id}' class='text-dark'>
+                                    <div class='d-flex fix'>
+                                        <img src='/profiles/{$cmt->user->profile->profileImage()}'  class='rounded'>
+                                        <span class='ml-2 userLikeOrCmt'><b>{$cmt->user->username} </b>commented on your
+                                            photo:{$cmt->subComment($cmt->comment)}</span>
+
+                                        <img class='mr-2 w-img' src='/uploads/{$post->image}'>
+
+                                    </div>
+                                </a>
+                            </li>     
                 ";
                 }
             }
@@ -64,19 +59,18 @@ class NotificationsController extends Controller
                     $user = User::find($like->user_id);
                     $post = Post::find($like->post_id);
                     $notif .="
-                    <li class='border_b'>
-                        <a href='/p/{$cmt->post_id}' class='text-dark'>
-                        <div class='d-flex fix align-items-center'>
-                            <img src='/profiles/{$user->profile->profileImage()}'  class='rounded'>
-                            <b class='pl-2'>{$user->username}</b>
-                            <div class='pl-1'>liked your photo</div>
-                            <div style='margin-left: 168px'>
-                                <img src='/uploads/{$post->image}' class='w-img'>
-                            </div>
-                            
-                        </div>
-                    </a>
-                 </li>
+                  <li class='border_b'>
+                                <a href='/p/{$post->post_id}' class='text-dark'>
+                                    <div class='d-flex fix align-items-center'>
+                                        <img src='/profiles/{$user->profile->profileImage()}' class='rounded'>
+                                        <span class='ml-2 userLikeOrCmt'><b>{$user->username} </b>liked
+                                            your photo</span>
+                                        <div class='imageLikeOrCmt'>
+                                            <img src='/uploads/{$post->image}' class='w-img'>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
                     " ;
                   
                 }

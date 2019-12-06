@@ -2,7 +2,9 @@
 
 @section('content')
 <div class="container">
+       
     <div class="row ml-4" >
+        
         <div class="col-md-3 p-5">
             <img style="width: 180px;height: 180px" class="rounded-circle" src="/profiles/{{$user->profile->profileImage() ?? 'st.jpg'}}" alt="">
         </div>

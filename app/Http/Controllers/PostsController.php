@@ -35,22 +35,24 @@ class PostsController extends Controller
     }
     public function store()
     {
+        
         $data =  request()->validate([
             'caption' => 'required',
             'image' => ['required','image'],
         ]);
+       
         $file = request()->file('image');
         $image = $file->getClientOriginalName();
         $file->move('uploads',$image);
         $imageResize = Image::make("uploads/{$image}")->fit(800,800);
         $imageResize->save();
-
+       
         // để lây cả user_id thông qua thằng user này có thể thông qua thằng post này để tạo
         auth()->user()->posts()->create([
             'caption' => $data['caption'],
             'image' => $image
         ]);
-        return redirect('/');   
+        return redirect("/");   
     }
     public function show(\App\Post $post) 
     /* hoặc mình có thể truyền tham số trực tiếp kiểu 
