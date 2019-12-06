@@ -62,18 +62,12 @@ body{
 .main{
     background-color: rgba(var(--b3f,250,250,250),1);position: relative;top: 80px
 }
-.search{
-    
-    border-bottom: solid 1px #efefef;
-    flex-shrink: 0;
-    height: 50px;
-    padding: 8px 14px;
-}
+
 .result{
    
     list-style: none;
     background: #fff;
-    border: solid 1px #e6e6e6;
+    
     border-radius: 3px;
     box-shadow: 0 0 5px rgba(0,0,0,.0975);
     display: block;
@@ -107,7 +101,7 @@ body{
     position: absolute;
 }
 .padding{
-    padding: 20px 0px;
+    padding: 15px 0px;
 }
 .notifi{
     list-style: none;
@@ -144,6 +138,36 @@ body{
     padding: 6px;
     width: 271px;
 }
+
+.logo{
+    width: 20%;
+}
+.search{
+    width: 70%;
+    flex-shrink: 0;
+    height: 50px;
+    padding: 13px 14px;
+    text-align: center;
+    
+}
+.notification{
+    width: 40%;
+    text-align: right;
+}
+.actionLoginLogout{
+    width: 40%;
+    
+}
+.username > .logout{
+    position: absolute;
+    top: 24px;
+    padding: 7px;
+    border: 1px solid #e6e6e6;
+    background: #fff;
+    border-radius: 6px;
+    left: -44px;
+}
+
 #uploadNewPost{
     position: absolute;
     top: 1px;
@@ -162,4 +186,7 @@ body{
     text-align: center;
     border-radius: 46px;
     cursor: pointer;
+}
+.none{
+    display: none;
 }

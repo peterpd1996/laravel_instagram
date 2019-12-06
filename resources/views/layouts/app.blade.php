@@ -5,9 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>Tung Duong</title>
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-        <link rel="icon" type="image/png" sizes="96x96" href="/images/ins.jpg">
+        <link rel="icon" type="image/png" sizes="96x96" href="/images/paper-plane.png">
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
         <script src="{{ asset('js/jquery.js') }}" ></script>
@@ -19,79 +19,81 @@
         <!-- Styles -->
     </head>
     <body>
-        <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light shadow-sm navigation padding">
-            <div class="container">
-                <a class="navbar-brand d-flex" style="padding-right: 174px" href="{{ url('/') }}">
-                    <div ><i class="fa fa-instagram pr-3" style="border-right: 1px solid black"></i></div>
-                    <div class="pl-3">Instagram</div>
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav " style="padding-right: 250px">
-                        @if (Auth::check())
-                        <div class=""  >
-                            <input type="text" id="searchText" class="border_" placeholder="             Search" size="23">
-                            <div class="contais">
-                                <ul class="result " id="resultSearch">
-                                </ul>
-                            </div>
-                        </div>
-                        @endif
-                    </ul>
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav">
-                        <!-- Authentication Links -->
-                        @guest
-                        <div style="position: relative;left: 200px" class="d-flex">
-                            <li class="nav-item mr-3">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                            </li>
-                         </div>
-                        @endif
-                        @else
-                        {{-- icon notification, user --}}
-                        <div class="icon-notification d-flex pt-2" style>
-                            <div id="" style="cursor: pointer;position: relative;width: 20px;margin-right: 17px">
-                                <i class="fa fa-bell-o " aria-hidden="true" id="notify"></i>
-                                <div id="count"></div>
-                                {{-- // count notification --}}
-                                <ul class="notifi disable" id="notifShow" style="position: absolute">
-                                </ul>
-                            </div>
-                            <div class=" pr-2"><a href="/profile/{{ Auth::user()->id}}">
-                                <i class="fa fa-user-o text-dark" aria-hidden="true"></i>
-                                </a>
-                            </div>
-                        </div>
-                        {{-- end icon notification, user --}}
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->username }} <span class="caret"></span>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                    onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
-                                </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
-                            </div>
-                        </li>
-                        @endguest
-                    </ul>
+        <div id="app">   
+        <nav class="padding navigation shadow-sm" >
+            <div class="container d-flex align-items-center">
+                <div class="logo">
+                    <a class="navbar-brand d-flex text-dark"  href="{{ url('/') }}">
+                        <div ><i class="fa fa-instagram pr-3" style="border-right: 1px solid black"></i></div>
+                       
+                    </a>
                 </div>
+                @if (Auth::check())
+                <div class="search d-flex justify-content-center">         
+                        
+                                
+                            
+                                <div class="contais">
+                                    <input   type="text" id="searchText" class="border_" placeholder="             Search" size="23">
+                                    <ul class="result " id="resultSearch" style="text-align: left">
+                                    </ul>
+                                </div>
+                         
+                           
+                            
+                        
+                       
+                </div>
+                @endif
+                
+                <div class="notification d-flex  mt-2">
+                        @auth
+                        
+                                <div class="mr-2" style="cursor: pointer;" >
+                                    <i class="fa fa-bell-o " aria-hidden="true" id="notify"></i>
+                                    <div id="count"></div>
+                                    {{-- // count notification --}}
+                                    <ul class="notifi disable" id="notifShow" style="position: absolute">
+                                    </ul>
+                                </div>
+                                <div class=" pr-2"><a href="/profile/{{ Auth::user()->id ?? ''}}">
+                                    <i class="fa fa-user-o text-dark" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                                <div class="username" style="position: relative">
+                                        <i style="cursor: pointer; " class="fa fa-caret-down" aria-hidden="true" style="position: absolute"></i>
+                                        <div class="logout none">
+                                                <a href="{{ route('logout') }}"
+                                                onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();" class="text-dark">
+                                                    Logout
+                                                </a>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                @csrf
+                                            </form>
+                                        </div>
+                                </div>
+                        
+                        @endauth
+                </div>
+               
+                    @guest
+                        <div class="actionLoginLogout d-flex pt-1 justify-content-end" style="font-size: 17px">
+                            <div class="login mr-3">
+                                    <a class="text-dark" href="{{ route('login') }}">Login</a>
+                            </div>
+                           <div class="register" style="padding-right: 10px">
+                                <a class="text-dark" href="{{ route('register') }}">Register</a>
+                           </div>
+                           
+                        </div>
+                    @endguest
+                
+                
+                
             </div>
         </nav>
+       
 
         <main class="py-4 main">
         @yield('content')
@@ -158,6 +160,9 @@
                 }
             })
         }
+        $('.fa-caret-down').click(function(){
+           $('.logout').toggleClass('none');
+        });
     
     })
     
