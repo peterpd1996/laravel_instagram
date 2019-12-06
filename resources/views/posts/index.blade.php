@@ -1,8 +1,47 @@
 @extends('layouts.app')
 @section('content')
   <div class="container">
+      {{-- post --}}
+        <div class="row post" >
+                <div class="col-md-7  border_ mb-5" style="background: #fff">
+                    <form action="/p" enctype="multipart/form-data" method="POST">
+                            @csrf
+                        <div class="form-group d-flex pt-2">
+                                <label for="caption" class=" col-form-label text-md-right"><img src="/profiles/{{Auth::user()->profile->profileImage()}}" alt="" class="rounded"></label>
+                                <div class="col-md-10">
+                                    <textarea class="form-control w-100" rows="3" id="caption"  class="form-control @error('caption') is-invalid @enderror" name="caption" value="{{ old('caption') }}"  autocomplete="caption" autofocus placeholder="What's on your mind ???">
+                                    </textarea>
+                                    @error('caption')
+                                    <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                        </div>
+                        <div class="form-group d-flex ">
+                                
+                                <div style="position: relative" class="ml-5">
+                                    <div id="iconUpload"> <i class="fa fa-picture-o" aria-hidden="true"></i> Photo</div>
+                                   
+                                    <input id="uploadNewPost" type="file"  name="image" id="image" class=" @error('image') is-invalid @enderror" autocomplete="image" autofocus>
+                                    @error('image')
+                                    <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                                <input type="submit" class="ml-2 btn btn-default" value="Post">
+                        </div>
+                            <div class="col-md-8 ml-5">
+                                <img id="img_output" src="" alt="" width="100px" height="100px">
+                            </div>
+                        </form>
+                </div>
+        </div>
+        {{-- end post --}}
     @foreach($posts as $post)
       <div class="row ">
+                
                 <div class="col-md-7 mb-5 p-0 border_">
                         <div>
                                 <div class="name d-flex align-items-center pt-2 pb-2 "  style="background-color: #fff">
@@ -130,6 +169,23 @@
                     
                 })
             });
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                console.log(input.files[0]);
+                console.log(input.files);
+                var reader = new FileReader();
+                
+                reader.onload = function(e) {
+                $('#img_output').attr('src', e.target.result);
+                }
+                
+                reader.readAsDataURL(input.files[0]);
+            }
+    }
+       
+     $(document).on('change','#uploadNewPost',function(){
+            readURL(this);
+        })
     
       
 </script>

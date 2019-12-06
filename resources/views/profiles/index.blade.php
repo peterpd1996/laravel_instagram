@@ -32,10 +32,7 @@
 
                 </div>
                    
-              @can('update',$user->profile)
-                {{-- nếu đúng profile của mình thì nó mới hiển thị --}}
-                     <a title="Add new post"  href="/p/create" class="btn btn-primary">Add new post</a>
-              @endcan
+          
                
             </div>
             <div class="d-flex pb-4">

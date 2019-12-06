@@ -50,7 +50,7 @@ class PostsController extends Controller
             'caption' => $data['caption'],
             'image' => $image
         ]);
-        return redirect('/profile/' . auth()->user()->id);   
+        return redirect('/');   
     }
     public function show(\App\Post $post) 
     /* hoặc mình có thể truyền tham số trực tiếp kiểu 
