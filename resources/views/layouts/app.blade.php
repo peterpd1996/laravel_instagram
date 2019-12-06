@@ -22,7 +22,7 @@
         <div id="app">
         <nav class="navbar navbar-expand-md navbar-light shadow-sm navigation padding">
             <div class="container">
-                <a class="navbar-brand d-flex" style="padding-right: 247px" href="{{ url('/') }}">
+                <a class="navbar-brand d-flex" style="padding-right: 174px" href="{{ url('/') }}">
                     <div ><i class="fa fa-instagram pr-3" style="border-right: 1px solid black"></i></div>
                     <div class="pl-3">Instagram</div>
                 </a>
