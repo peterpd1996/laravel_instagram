@@ -8,6 +8,7 @@
 @import '~bootstrap/scss/bootstrap';
 
 body {
+    overflow-x: hidden;
     .icon {
         a {
             color: rgb(105, 102, 102) !important;

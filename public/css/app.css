@@ -11100,6 +11100,10 @@ a.text-dark:focus {
   }
 }
 
+body {
+  overflow-x: hidden;
+}
+
 body .icon a {
   color: #696666 !important;
 }
