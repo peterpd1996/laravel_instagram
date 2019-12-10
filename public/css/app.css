@@ -11100,7 +11100,7 @@ a.text-dark:focus {
   }
 }
 
-body {
+body #app {
   overflow-x: hidden;
 }
 
