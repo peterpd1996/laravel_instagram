@@ -36,7 +36,6 @@ body {
 }
 
 .like_heart {
-    transition: 0.3s;
     color: #8f8a83ba;
     cursor: pointer;
 
@@ -71,6 +70,8 @@ body {
     width: 100%;
     z-index: 10;
     transition: 0.3s;
+    -webkit-backface-visibility: hidden;
+    
 }
 
 .main {
@@ -172,7 +173,7 @@ a:hover {
 }
 
 .search {
-    width: 70%;
+    width: 64%;
     flex-shrink: 0;
     height: 50px;
     padding: 13px 14px;
@@ -255,4 +256,36 @@ a:hover {
     transform: rotate(45deg);
     width: 14px;
     z-index: 1;
+}
+#userComment{
+     max-height: 436px;
+      overflow-y: auto;
+}
+
+@media only screen and (max-width: 576px) {
+  #commentHeight {
+   height:  300px;
+  }
+  #userComment{
+      max-height: 188px;
+      overflow-y: auto;
+
+  }
+  #notifShow{
+      width: 370px
+  }
+}
+#brand{
+    font-family: cursive;
+    font-style: italic;
+}
+@media only screen and (max-width: 441px) {
+  #brand{
+      display: none;
+  }
+}
+@media only screen and (min-width: 955px) {
+  .search {
+      width:82%;
+  }
 }

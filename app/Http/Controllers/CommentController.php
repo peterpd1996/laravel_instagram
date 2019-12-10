@@ -18,7 +18,14 @@ class CommentController extends Controller
             'post_id' => $post_id,
             'comment' => $comment,
         ]);
-       echo " <li><b><a href='' class='text-dark'>".auth()->user()->username."</a></b> ".$comment."</li>";
+        $cmt = '';  
+         $comments = Post::find($post_id)->comment;
+        foreach($comments as $comment)
+        {
+            $cmt.=" <li><b><a href='/profile/{$comment->user->id}' class='text-dark'>{$comment->user->username}</a></b> {$comment->comment}</li>";
+        }
+        echo $cmt;
+      // echo " <li><b><a href='/profile/{$user_id}' class='text-dark'>".auth()->user()->username."</a></b> ".$comment."</li>";
 
     }
     public function fetch(Request $request)

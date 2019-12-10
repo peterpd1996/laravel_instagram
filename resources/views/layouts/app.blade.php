@@ -22,11 +22,14 @@
 
 <body>
     <div id="app">
-        <nav class="padding navigation shadow-sm">
+        <header class="padding navigation shadow-sm">
             <div class="container d-flex align-items-center">
                 <div class="logo">
                     <a class="navbar-brand d-flex text-dark" href="{{ url('/') }}">
-                        <div><i class="fa fa-instagram pr-3" style="border-right: 1px solid black"></i></div>
+                        <div>
+                            <i class="fa fa-instagram pr-3" style="border-right: 1px solid black"></i>
+                            <span id="brand">D'Look</span>
+                        </div>
                     </a>
                 </div>
                 @if (Auth::check())
@@ -47,7 +50,7 @@
                         {{-- notification --}}
 
 
-                        <ul class="notifi disable" id="notifShow" style="position: absolute;left: -350px">
+                        <ul class="notifi disable" id="notifShow" style="position: absolute;left: -312px">
 
                             {{-- <li class='border_b'>
                                 <a href='/p/{$post->post_id}' class='text-dark'>
@@ -110,7 +113,7 @@
                 </div>
                 @endguest
             </div>
-        </nav>
+        </header>
         <main class="py-4 main">
             @yield('content')
         </main>

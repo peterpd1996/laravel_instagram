@@ -16,7 +16,7 @@ class NotificationsController extends Controller
         
 
     
-
+        // láy tất cả các comment bài mình đăng và không lấy những cmt của mình
         $commentUnRead = Comment::whereIn('post_id',$post_id)->where('user_id','!=',$user_id)->orderBy('id','DESC')->get();   // lấy comment những bài mình đăng chưa xem và k phải mình bình luận chính bài của mình
             if($request->input('stt') != '')
             {
@@ -35,7 +35,7 @@ class NotificationsController extends Controller
                     $notif .="   
                            <li class='border_b'>
                                 <a href='/p/{$post->id}' class='text-dark'>
-                                    <div class='d-flex fix'>
+                                    <div class='d-flex fix align-items-center'>
                                         <img src='/profiles/{$cmt->user->profile->profileImage()}'  class='rounded'>
                                         <span class='ml-2 userLikeOrCmt'><b>{$cmt->user->username} </b>commented on your
                                             photo:{$cmt->subComment($cmt->comment)}</span>
@@ -50,7 +50,7 @@ class NotificationsController extends Controller
             }
         
            
-
+ // láy tất cả các like bài mình đăng và không lấy những like của mình
             $likes = DB::table('post_user')->whereIn('post_id',$post_id)->where('user_id','!=',$user_id)->orderBy('id','DESC')->get();
             if($likes->count() > 0)
             {

@@ -37,14 +37,14 @@ class PostsController extends Controller
     {
 
         $data =  request()->validate([
-            'caption' => 'required',
+            'caption' => '',
             'image' => ['required','image'],
         ]);
       
         $file = request()->file('image');
         $image = $file->getClientOriginalName();
         $file->move('uploads',$image);
-        $imageResize = Image::make("uploads/{$image}")->fit(800,800);
+        $imageResize = Image::make("uploads/{$image}")->resize(600,600);
         $imageResize->save();
        
         // để lây cả user_id thông qua thằng user này có thể thông qua thằng post này để tạo
@@ -54,7 +54,7 @@ class PostsController extends Controller
     //     ]);
         $post = new Post;
         $post->user_id = auth()->user()->id;
-        $post->caption = $data['caption'];
+        $post->caption = $data['caption'] ?? '';
         $post->image = $image;
         $post->save();
         return redirect("/");   

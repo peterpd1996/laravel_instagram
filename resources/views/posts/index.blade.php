@@ -3,7 +3,7 @@
 <div class="container">
     {{-- post --}}
     <div class="row post">
-        <div class="col-md-7  border_ mb-5" style="background: #fff">
+        <div class="col-md-6 offset-md-3  border_ mb-5" style="background: #fff">
             <form action="/p" enctype="multipart/form-data" method="POST">
                 @csrf
                 <div class="form-group d-flex pt-2">
@@ -47,8 +47,7 @@
     {{-- end post --}}
     @foreach($posts as $post)
     <div class="row ">
-
-        <div class="col-md-7 mb-5 p-0 border_">
+        <div class="col-md-6 mb-5 p-0 border_ offset-md-3">
             <div>
                 <div class="name d-flex align-items-center pt-2 pb-2 " style="background-color: #fff">
                     <div>
@@ -102,23 +101,24 @@
                     {{$post->caption}}
                 </span>
                 <div class="comment pl-2">
-                    <ul style="list-style: none">
+                    <ul style="list-style: none" id="comment{{$post->id}}">
 
                         @php
                         $comments = $post->comment;
                         @endphp
 
                         @foreach($comments as $comment)
-                        <li><b><a href="" class="text-dark">{{$comment->user->username}}</a></b> {{$comment->comment}}
+                        <li><b><a href='/profile/{{$comment->user->id}}'
+                                    class="text-dark">{{$comment->user->username}}</a></b> {{$comment->comment}}
                         </li>
                         @endforeach
 
 
-                        <div id="comment{{$post->id}}"></div>
+
                     </ul>
                 </div>
                 <div class=" p-2 d-flex" id="comment">
-                    <input id="comment_{{$post->id}}" type="text" class="w-100 postCmt" style="border: none"
+                    <input id="comment_{{$post->id}}" type="text" class="postCmt w-100" style="border: none;"
                         placeholder="Add a comment.." height="30px">
                     <a style="color:#3897f0;font-weight: bold;cursor: pointer" data-post={{$post->id}} class='comment'
                         id="post_{{$post->id}}">Post</a>
@@ -148,7 +148,7 @@
                 },
                 success: function (data) {
                     $("#comment_" + post_id).val('');
-                    $("#comment" + post_id).before(data);
+                    $("#comment" + post_id).html(data);
                 }
             })
         }
