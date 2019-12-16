@@ -39,7 +39,7 @@
 
                 </div>
                 <div class="col-md-8 ml-5">
-                    <img id="img_output" src="" alt="" width="100px" height="100px">
+                    <img id="img_output" src="" alt="" width="100px" height="100px" class="none">
                 </div>
             </form>
         </div>
@@ -193,6 +193,7 @@
     }
 
     $(document).on('change', '#uploadNewPost', function () {
+        $("#img_output").toggleClass("none");
         readURL(this);
     })
 
