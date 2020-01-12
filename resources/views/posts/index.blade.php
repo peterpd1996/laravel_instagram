@@ -101,26 +101,23 @@
                     {{$post->caption}}
                 </span>
                 <div class="comment pl-2">
-                    <ul style="list-style: none" id="comment{{$post->id}}">
+                    <ul style="list-style: none">
 
                         @php
                         $comments = $post->comment;
                         @endphp
-
                         @foreach($comments as $comment)
                         <li><b><a href='/profile/{{$comment->user->id}}'
                                     class="text-dark">{{$comment->user->username}}</a></b> {{$comment->comment}}
                         </li>
                         @endforeach
-
-
-
+                        <div id="comment{{$post->id}}"></div>
                     </ul>
                 </div>
                 <div class=" p-2 d-flex" id="comment">
-                    <input id="comment_{{$post->id}}" type="text" class="postCmt w-100" style="border: none;"
-                        placeholder="Add a comment.." height="30px">
-                    <a style="color:#3897f0;font-weight: bold;cursor: pointer" data-post={{$post->id}} class='comment'
+                    <input id="comment_{{$post->id}}" type="text" class="postCmt w-100 comment" style="border: none;"
+                        placeholder="Add a comment.." height="30px" data-id="{{$post->id}}">
+                    <a style="color:#3897f0;font-weight: bold;cursor: pointer" data-post={{$post->id}} class='post_comment'
                         id="post_{{$post->id}}">Post</a>
                 </div>
             </div>
@@ -130,72 +127,4 @@
     @endforeach
 </div>
 
-@endsection
-@section('js')
-
-<script>
-    $(document).on('click', '.comment', function () {
-        var post_id = $(this).data('post');
-        var comment = $("#comment_" + post_id).val();
-        if (comment.length > 0) {
-            $.ajax({
-                url: "/comment",
-                method: "POST",
-                data: {
-                    "_token": "{{ csrf_token() }}",
-                    post_id: post_id,
-                    comment: comment
-                },
-                success: function (data) {
-                    $("#comment_" + post_id).val('');
-                    $("#comment" + post_id).html(data);
-                }
-            })
-        }
-    });
-
-    $(document).on('click', '.like_heart', function () {
-        var post_id = $(this).data('like_post');
-        $('#like_' + post_id).toggleClass("liked");
-        $.ajax({
-            url: "/like",
-            method: "POST",
-            data: {
-                "_token": "{{ csrf_token() }}",
-                post_id: post_id,
-            },
-            success: function (data) {
-                if (data == 0) {
-                    data = '';
-                } else if (data == 1) {
-                    data += ' like'
-                } else {
-                    data += ' likes'
-                }
-                $('#many_like_' + post_id).text(data);
-            }
-
-        })
-    });
-
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            console.log(input.files[0]);
-            console.log(input.files);
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-                $('#img_output').attr('src', e.target.result);
-            }
-
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-
-    $(document).on('change', '#uploadNewPost', function () {
-        $("#img_output").toggleClass("none");
-        readURL(this);
-    })
-
-</script>
 @endsection

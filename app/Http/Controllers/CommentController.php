@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Comment;
 use App\Post;
+use App\Events\NewComment;
 class CommentController extends Controller
 {
     //
@@ -18,15 +19,16 @@ class CommentController extends Controller
             'post_id' => $post_id,
             'comment' => $comment,
         ]);
-        $cmt = '';  
-         $comments = Post::find($post_id)->comment;
-        foreach($comments as $comment)
-        {
-            $cmt.=" <li><b><a href='/profile/{$comment->user->id}' class='text-dark'>{$comment->user->username}</a></b> {$comment->comment}</li>";
-        }
-        echo $cmt;
-      // echo " <li><b><a href='/profile/{$user_id}' class='text-dark'>".auth()->user()->username."</a></b> ".$comment."</li>";
-
+        // $cmt = '';  
+        //  $comments = Post::find($post_id)->comment;
+        // foreach($comments as $comment)
+        // {
+        //     $cmt.=" <li><b><a href='/profile/{$comment->user->id}' class='text-dark'>{$comment->user->username}</a></b> {$comment->comment}</li>";
+        // }
+        // echo $cmt;
+        $comment = " <li><b><a href='/profile/{$user_id}' class='text-dark'>".auth()->user()->username."</a></b> ".$comment."</li>";
+        event(new NewComment($comment,$post_id));
+        echo $comment;   
     }
     public function fetch(Request $request)
     {

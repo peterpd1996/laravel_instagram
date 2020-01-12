@@ -10,9 +10,9 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="icon" type="image/png" sizes="96x96" href="/images/paper-plane.png">
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    {{-- <script src="https://js.pusher.com/5.0/pusher.min.js"></script> --}}
     <script src="{{ asset('js/jquery.js') }}"></script>
-    <script src="{{ asset('js/js.js') }}" defer></script>
+    <script src="{{ asset('js/instagram.js') }}" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -121,7 +121,9 @@
 </body>
 
 </html>
+<script src="{{ asset('js/app.js') }}" ></script>
 <script>
+    
     $(document).ready(function () {
         notification()
         $(document).on('keyup', '#searchText', function () {

@@ -27,7 +27,7 @@
                     {{$post->caption}}
                 </p>
                 <div class="comment pl-3" id="commentHeight">
-                    <ul style="list-style: none" id="userComment">
+                    <ul style="list-style: none">
                         @php
                         $comments = $post->comment;
                         @endphp
@@ -36,18 +36,20 @@
                                     class="text-dark">{{$comment->user->username}}</a></b> {{$comment->comment}}
                         </li>
                         @endforeach
-
+                        <div id="comment{{$post->id}}"></div>
                     </ul>
                 </div>
             </div>
             <div style="position: absolute;bottom: 0px" class="w-100">
                 <div class="icon p-3 border_b border_t">
-                    <i data-like_post="{{$post->id}}" id="like"
-                        class=" pr-2 fa fa-heart like_heart @if(auth()->user()->like->contains($post->id)) liked @endif"
-                        aria-hidden="true"></i>
-                    <a href=""><i class="fa fa-comment-o" aria-hidden="true"></i></a>
+                    <div class="icon pl-2">
+                        <i data-like_post="{{$post->id}}" id="like_{{$post->id}}"
+                            class="fa fa-heart like_heart @if(auth()->user()->like->contains($post->id)) liked @endif"
+                            aria-hidden="true"></i>
+                        <a href=""><i class="fa fa-comment-o" aria-hidden="true"></i></a>
+                    </div>
                     <b>
-                        <div class="like pl-1" id="many_like" style="cursor: pointer">
+                        <div class="like pl-1"  id="many_like_{{$post->id}}" style="cursor: pointer">
                             @php
                             $like = $post->liked->count();
                             if( $like == 0) {
@@ -65,122 +67,13 @@
                     </b>
                 </div>
                 <div class=" p-2 d-flex w-100">
-                    <input id="comment" type="text" class="w-100" style="border: none" placeholder="Add a comment.."
-                        height="30px" autofocus>
-                    <div id="postComment" style="color:#3897f0;font-weight: bold;cursor: pointer"
-                        data-post={{$post->id}}>Post</div>
+                    <input id="comment_{{$post->id}}" type="text" class="w-100 comment" style="border: none" placeholder="Add a comment.."
+                        height="30px" autofocus data-id="{{$post->id}}">
+                        <a style="color:#3897f0;font-weight: bold;cursor: pointer" data-post={{$post->id}}
+                            id="post_{{$post->id}}" class='post_comment'>Post</a>
                 </div>
             </div>
         </div>
     </div>
     @endsection
-    @section('js')
-    <script>
-        $(document).ready(function(){
-            $("#postComment").click(function(){
-                var post_id =  $(this).data('post');
-                        var comment = $("#comment").val();
-                        if(comment.length > 0)
-                        {
-                            $.ajax({
-                            url:"/comment",
-                            method:"POST",
-                            data:{
-                                "_token": "{{ csrf_token() }}",
-                                post_id:post_id,comment:comment
-                            },
-                            success:function(data){
-                                $("#comment").val('');
-                                $("#userComment").html(data);
-                            }
-                        })
-                        }
-                });
-        
-                    // $(document).on('click','#postComment',function(){
-                    //     var post_id =  $(this).data('post');
-                    //     var comment = $("#comment").val();
-                    //     if(comment.length > 0)
-                    //     {
-                    //         $.ajax({
-                    //         url:"/comment",
-                    //         method:"POST",
-                    //         data:{
-                    //             "_token": "{{ csrf_token() }}",
-                    //             post_id:post_id,comment:comment
-                    //         },
-                    //         success:function(data){
-                    //             $("#comment").val('');
-                    //             $("#comment_before").before(data);
-                    //         }
-                    //     })
-                    //     }
-                    // // });
-                
-        
-                    $(document).on('click','.like_heart',function(){
-                        var post_id  = $(this).data('like_post'); 
-                        $('#like').toggleClass("liked");
-                        $.ajax({
-                            url:"/like",
-                            method:"POST",
-                            data:{
-                                "_token": "{{ csrf_token() }}",
-                                post_id:post_id,
-                            },
-                            success:function(data){
-                                if(data == 0)
-                                {
-                                    data = '';
-                                }
-                                else if(data == 1)
-                                {
-                                    data+= ' like'
-                                }
-                                else
-                                {
-                                    data += ' likes'
-                                }
-                                $('#many_like').text(data);
-                            }
-                        
-                        })
-                });
-            $(document).on('keypress', '#comment ', function(e){
-                var key = e.which;
-                if(key == 13)  // the enter key code
-                {
-                    
-                    var empty =  $('#comment').val();
-                    if (empty.trim() != '') {
-                    $('#postComment').click();
-                    return false;
-                    }
-                    
-                }
-                }); 
-        
-                
-            // function fetch_comment()
-            //     {
-            //         var post_id = {{$post->id}} 
-            //         $.ajax({
-        
-            //                     url:"/fetch",
-            //                     method:"POST",
-            //                     data:{
-            //                         "_token": "{{ csrf_token() }}",
-            //                         post_id:post_id,
-            //                     },
-            //                     success:function(data){
-            //                         $('#userComment').html(data)
-            //                     }
-                            
-            //                 })
-            //     }
-            // setInterval(function(){
-            //     fetch_comment();
-            //     },3000)
-        });
-    </script>
-    @endsection
+   
