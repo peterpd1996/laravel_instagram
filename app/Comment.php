@@ -19,5 +19,12 @@ class Comment extends Model
         $cmt = strlen($comment) > 24 ? substr( $comment, 0, 23) : $comment;
         return " \"".$cmt."..\" ";
     }
+    public function getTowLatestComment()
+    {
+        if(Comment::count() > 2)
+            return $this->comment::orderBy('id', 'desc')->take(2)->get();
+        return 0;    
+    }
+
     
 }

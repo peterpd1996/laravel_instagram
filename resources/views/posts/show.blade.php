@@ -3,13 +3,13 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-7 p-0 ">
-            <img src="/uploads/{{$post->image}}" alt="" class="w-100">
+            <img src="/uploads/{{$post->image}}" alt="" class="w-100 border-img">
         </div>
         <div class="p-0 border_ col-sm-4 " style="background: #fff;position: relative">
             <div class="name d-flex p-3 align-items-center border_b">
                 <div>
                     <img src="/profiles/{{$post->user->profile->profileImage()}}" width="40px" height="40px" alt=""
-                        class="rounded-circle mr-2">
+                        class="rounded-circle mr-2 ">
                 </div>
                 <div class="font-weight-bold">
                     <a href="/profile/{{$post->user->id}}" class="text-dark text-decoration-none">
@@ -24,7 +24,8 @@
                             {{$post->user->username}}
                         </a>
                     </span>
-                    {{$post->caption}}
+                    <span>{{$post->caption}}</span>
+                    <span class="text-color" style="display: block;">{{ getTimeDistance($post->created_at) }}</span>
                 </p>
                 <div class="comment pl-3" id="commentHeight">
                     <ul style="list-style: none">
@@ -32,8 +33,14 @@
                         $comments = $post->comment;
                         @endphp
                         @foreach($comments as $comment)
-                        <li><b><a href="/profile/{{$comment->user->id}}"
-                                    class="text-dark">{{$comment->user->username}}</a></b> {{$comment->comment}}
+                        <li>   
+                            <b>
+                                <a href="/profile/{{$comment->user->id}}"
+                                    class="text-dark">{{$comment->user->username}}
+                                </a>
+                            </b> 
+                            <span>{{$comment->comment}}</span>
+                            <div class="text-color">{{ getTimeDistance($comment->created_at) }}</div>
                         </li>
                         @endforeach
                         <div id="comment{{$post->id}}"></div>
@@ -42,7 +49,7 @@
             </div>
             <div style="position: absolute;bottom: 0px" class="w-100">
                 <div class="icon p-3 border_b border_t">
-                    <div class="icon pl-2">
+                    <div class="icon">
                         <i data-like_post="{{$post->id}}" id="like_{{$post->id}}"
                             class="fa fa-heart like_heart @if(auth()->user()->like->contains($post->id)) liked @endif"
                             aria-hidden="true"></i>

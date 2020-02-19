@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Traits\Images;
 use Intervention\Image\Facades\Image;
 use App\Post;
 
-class PostsController extends Controller
+class PostController extends Controller
 {
+    use Images;
     public function __construct()
     {
         $this->middleware('auth');
@@ -33,25 +35,21 @@ class PostsController extends Controller
     {
         return view('posts.create');
     }
+    public function edit(Post $post)
+    {
+        return response()->json([
+            'id' => $post->id,
+            'image' => $post->image,
+            'caption' =>  $post->caption,
+        ]);
+    }
     public function store()
     {
-
         $data =  request()->validate([
             'caption' => '',
             'image' => ['required','image'],
         ]);
-      
-        $file = request()->file('image');
-        $image = $file->getClientOriginalName();
-        $file->move('uploads',$image);
-        $imageResize = Image::make("uploads/{$image}")->resize(600,600);
-        $imageResize->save();
-       
-        // để lây cả user_id thông qua thằng user này có thể thông qua thằng post này để tạo
-    //    $test =  auth()->user()->posts()->create([
-    //         'caption' => $data['caption'],
-    //         'image' => $image
-    //     ]);
+        $image = $this->uploadImage(request()->file('image'));       
         $post = new Post;
         $post->user_id = auth()->user()->id;
         $post->caption = $data['caption'] ?? '';
@@ -59,15 +57,29 @@ class PostsController extends Controller
         $post->save();
         return redirect("/");   
     }
-    public function show(\App\Post $post) 
-    /* hoặc mình có thể truyền tham số trực tiếp kiểu 
-    show(\App\Post $post) nếu không có né cũng trả về page not found
-    thì không cần phải fileOrFaild nữa lúc này thằng post nó là một dối tượng luôn 
-    không cần phải find nữa
-    */
-    {
-        // nếu ở trên truyền như kia thì mình k cần find nữa
-        //$post =  Post::findOrFail($post);
+    public function show(Post $post) 
+    {  
         return view('posts.show',compact('post'));
+    }
+    public function update(Request $request)
+    {
+        $dataPost = $request->only('caption');
+        $isChangeImage = 0;
+        $post = Post::findOrFail($request->post_id);
+        if ($request->hasFile('image')) {
+            $isChangeImage = 1;
+            $this->deleteImage($post->image);
+            $imgName = $this->uploadImage($request->file('image'));
+            $dataPost['image'] = $imgName;
+        }
+        $post->update($dataPost);
+        $dataPost['id'] = $request->post_id;
+        $dataPost['isChangeImage'] = $isChangeImage;
+        return response()->json($dataPost);
+    }
+    public function delete(Request $request)
+    {
+       $post = Post::findOrFail($request->post_id);
+       $post->delete();
     }
 }

@@ -35,7 +35,7 @@
                 @if (Auth::check())
                 <div class="search d-flex justify-content-center">
                     <div class="contais">
-                        <input type="text" id="searchText" class="border_" placeholder="             Search" size="23">
+                        <input type="text" id="searchText" class="border_" placeholder="&#xF002; Search" size="23" style="font-family:Arial, FontAwesome;text-align: center;">
                         <ul class="result " id="resultSearch" style="text-align: left">
                         </ul>
                     </div>

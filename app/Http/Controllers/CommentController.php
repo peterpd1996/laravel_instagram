@@ -19,14 +19,12 @@ class CommentController extends Controller
             'post_id' => $post_id,
             'comment' => $comment,
         ]);
-        // $cmt = '';  
-        //  $comments = Post::find($post_id)->comment;
-        // foreach($comments as $comment)
-        // {
-        //     $cmt.=" <li><b><a href='/profile/{$comment->user->id}' class='text-dark'>{$comment->user->username}</a></b> {$comment->comment}</li>";
-        // }
-        // echo $cmt;
-        $comment = " <li><b><a href='/profile/{$user_id}' class='text-dark'>".auth()->user()->username."</a></b> ".$comment."</li>";
+        $comment = "<li>
+                        <b>
+                            <a href='/profile/{$user_id}' class='text-dark'>".auth()->user()->username."</a>
+                        </b> ".$comment.
+                        "<div class='text-color'>".getTimeDistance(date("Y-m-d H:i:s"))."</div>".
+                    "</li>";
         event(new NewComment($comment,$post_id));
         echo $comment;   
     }

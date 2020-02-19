@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 use App\User;
-class ProfilesController extends Controller
+class ProfileController extends Controller
 {
     //
     public function index($user)

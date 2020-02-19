@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 
-class FollowsController extends Controller
+class FollowController extends Controller
 {
    public function  __construct()
    {

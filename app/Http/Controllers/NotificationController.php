@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
 use App\Comment;
 use App\Post;
 use App\User;
-class NotificationsController extends Controller
+class NotificationController extends Controller
 {
     public function show(Request $request)
     {
@@ -74,7 +74,6 @@ class NotificationsController extends Controller
                                 </a>
                             </li>
                     " ;
-                  
                 }
             }
             // đếm những bài post của mình bao nhiêu like
@@ -90,13 +89,6 @@ class NotificationsController extends Controller
             $data = ['notification' => $notif,
                      'unseen_total' => $countLikesUnSeen + $countCommentUnRead
             ];
-            echo json_encode($data);
-
-            
-            
-      
-       
-      
-        
+            echo json_encode($data); 
     }
 }

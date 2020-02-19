@@ -1,15 +1,11 @@
 @extends('layouts.app')
-
 @section('content')
 <div class="container">
-
     <div class="row ml-4">
-
         <div class="col-md-3 p-5">
             <img style="width: 180px;height: 180px" class="rounded-circle"
                 src="/profiles/{{$user->profile->profileImage() ?? 'st.jpg'}}" alt="">
         </div>
-
         <div class="col-md-9  p-5">
             <div class=" d-flex justify-content-between">
                 <div class="pr-3 d-flex align-items-center" style="font-size: 30px;font-weight: 100">
@@ -17,14 +13,9 @@
                     <div class="h4 mr-3 pt-2"> {{ $user->username }} </div>
                     <div id='app' class="pb-2">
                         @cannot('update',$user->profile)
-
                         <follow-button userid={{$user->id}} follows={{$follow}}></follow-button>
-
                         @endcannot
                     </div>
-
-
-
                     {{-- xem ở thằng policies/ProfilePolicy --}}
                     @can('update',$user->profile)
                     <a title="Edit profile" href="/profile/{{$user->id}}/edit"
@@ -32,12 +23,7 @@
                         <i class="fa fa-cog" aria-hidden="true"></i>
                     </a>
                     @endcan
-
-
                 </div>
-
-
-
             </div>
             <div class="d-flex pb-4">
                 <div class="pr-5"><strong>{{ $user->posts->count() }}</strong> posts</div>
@@ -62,7 +48,6 @@
                 <img src="/uploads/{{ $post->image }}" alt="" class="w-100">
             </a>
         </div>
-
         @endforeach
     </div>
 </div>
