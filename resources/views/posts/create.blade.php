@@ -8,11 +8,13 @@
                 <div class="form-group row pb-1">
                     <label for="caption" class="col-md-4 col-form-label text-md-right">Post Caption</label>
                     <div class="col-md-8">
-                        <textarea class="form-control" rows="5" id="caption"  class="form-control @error('caption') is-invalid @enderror" name="caption" value="{{ old('caption') }}"  autocomplete="caption" autofocus>
+                        <textarea class="form-control" rows="5" id="caption"
+                            class="form-control @error('caption') is-invalid @enderror" name="caption"
+                            value="{{ old('caption') }}" autocomplete="caption" autofocus>
                         </textarea>
                         @error('caption')
                         <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
+                            <strong>{{ $message }}</strong>
                         </span>
                         @enderror
                     </div>
@@ -21,10 +23,11 @@
                     <label for="image" class="col-md-4 col-form-label text-md-right ">Post Image</label>
                     <div class="col-md-8" style="position: relative">
                         <div id="iconUpload"> <i class="fa fa-picture-o" aria-hidden="true"></i> Photo</div>
-                        <input id="uploadNewPost" type="file"  name="image" id="image" class=" @error('image') is-invalid @enderror" autocomplete="image" autofocus>
+                        <input id="uploadNewPost" type="file" name="image" id="image"
+                            class=" @error('image') is-invalid @enderror" autocomplete="image" autofocus>
                         @error('image')
                         <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
+                            <strong>{{ $message }}</strong>
                         </span>
                         @enderror
                     </div>

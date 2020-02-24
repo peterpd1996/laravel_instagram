@@ -1,4 +1,4 @@
-// Fonts
+
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
 // Variables
@@ -6,82 +6,127 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
-body{
+
+body {
+   
     .icon {
-        a{
+        a {
             color: rgb(105, 102, 102) !important;
         }
     }
-    i{
+
+    i {
         font-size: 20px !important;
     }
-    input{
-        font-size:16px;
-    }
-    input[type=text]:focus{
-        outline:none;     /* oranges! yey */
-      }
 
-    
+    input {
+        font-size: 16px;
+    }
+
+    input[type=text]:focus {
+        outline: none;
+        /* oranges! yey */
+    }
+
+
 }
-*{
+
+* {
     padding: 0px;
     margin: 0px;
 }
-.like_heart{
-    transition:0.3s; 
+.invalid-error{
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: 80%;
+    color: #e3342f;
+    font-style: italic;
+}
+
+.like_heart {
     color: #8f8a83ba;
     cursor: pointer;
-    
+
 }
-.liked{
-    color: red!important;
+
+.liked {
+    color: red !important;
 }
-*{
-    padding: 0;
-    margin: 0;
+
+.border-img{
+    border-bottom: 1px solid rgb(230, 230, 230);
+    border-top: 1px solid rgb(230, 230, 230);
+    border-left: 1px solid rgb(230, 230, 230);
+
 }
-.border_{
-    border-radius: 3px; 
+.action_{
+    position: absolute;
+    right: 4px;
+    font-size: 17px;
+    width: 127px;
+    background: white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.35);
+    max-height: 77px;
+    top: 4px;
+    border-radius: 3px;
+}
+.action_>ul>li{
+    border-bottom: 1px solid rgb(230, 230, 230);
+    padding:6.5px;   
+}
+.action_>ul>li:hover{
+    cursor: pointer;
+    background: #e6e7e5c9;
+}
+.border_ {
+    border-radius: 3px;
     border: 1px solid rgb(230, 230, 230);
-    
+
 }
-.border_b{
+.text-color{
+    color: rgba(var(--f52,153,153,153),1);
+    letter-spacing: .2px;
+}
+.text-color:hover{
+    color: rgba(var(--f52,153,153,153),1) !important;
+}
+.border_b {
     border-bottom: 1px solid rgb(230, 230, 230);
 }
-.border_t{
+
+.border_t {
     border-top: 1px solid rgb(230, 230, 230);
 }
-.navigation{
+
+.navigation {
     background: #fff;
     position: fixed;
     width: 100%;
     z-index: 10;
     transition: 0.3s;
-}
-.main{
-    background-color: rgba(var(--b3f,250,250,250),1);position: relative;top: 80px
-}
-.search{
+    -webkit-backface-visibility: hidden;
     
-    border-bottom: solid 1px #efefef;
-    flex-shrink: 0;
-    height: 50px;
-    padding: 8px 14px;
 }
-.result{
-   
+
+.main {
+    background-color: rgba(var(--b3f, 250, 250, 250), 1);
+    position: relative;
+    top: 80px
+}
+
+.result {
+
     list-style: none;
     background: #fff;
-    border: solid 1px #e6e6e6;
     border-radius: 3px;
-    box-shadow: 0 0 5px rgba(0,0,0,.0975);
+    box-shadow: 0 0 5px rgba(0, 0, 0, .0975);
     display: block;
-    width: 205px;
+    width: 240px;
     z-index: 9;
 
 }
-.fix{
+
+.fix {
     margin-top: 7px;
     /* text-align: center; */
     margin-left: 20px;
@@ -89,62 +134,107 @@ body{
     /* padding-bottom: 10px; */
     margin-bottom: 10px;
 }
-.rounded{
+
+.rounded {
     width: 40px;
     height: 40px;
     border-radius: 50% !important;
 }
- a:hover {
+
+a:hover {
     text-decoration: none !important;
 }
-.result>li:hover{
+
+.result>li:hover {
     background: rgba(var(--b3f, 250, 250, 250), 1);
 }
-.contais{
+
+.contais {
     position: absolute;
     max-height: 300px;
     overflow-y: auto;
     position: absolute;
 }
-.padding{
-    padding: 20px 0px;
+
+.padding {
+    padding: 15px 0px;
 }
-.notifi{
+
+.notifi {
     list-style: none;
-    
+
     background: #fff;
     border: solid 1px #e6e6e6;
     border-radius: 3px;
-    box-shadow: 0 0 5px rgba(0,0,0,.0975);
+    box-shadow: 0 0 5px rgba(0, 0, 0, .0975);
     display: block;
     width: 435px;
     z-index: 9;
 }
-.disable{
+
+.disable {
     display: none;
 }
-#countNofi{
+
+#countNofi {
     position: absolute;
-    left: 17px;
-    width: 20px;
-    height: 20px;
-    padding: 2px;
+    left: 11px;
+    width: 16px;
+    height: 16px;
+    padding: 0px;
     background: #f11111;
     text-align: center;
     border-radius: 50%;
     line-height: 20px;
     color: white;
     top: -9px;
+    font-size: 13px;
 }
-.w-img{
+
+.w-img {
     width: 40px;
     height: 40px;
 }
-.notificmt{
+
+.notificmt {
     padding: 6px;
     width: 271px;
 }
-#uploadNewPost{
+
+.logo {
+    width: 20%;
+}
+
+.search {
+    width: 64%;
+    flex-shrink: 0;
+    height: 50px;
+    padding: 13px 14px;
+    text-align: center;
+
+}
+
+.notification {
+    width: 40%;
+    text-align: right;
+}
+
+.actionLoginLogout {
+    width: 40%;
+
+}
+
+.username>.logout {
+    position: absolute;
+    top: 24px;
+    padding: 7px;
+    border: 1px solid #e6e6e6;
+    background: #fff;
+    border-radius: 6px;
+    left: -44px;
+}
+
+.uploadNewPost {
     position: absolute;
     top: 1px;
     left: 15px;
@@ -155,11 +245,91 @@ body{
     height: 39px;
     font-size: 0px;
 }
-#iconUpload{
-    width: 107px;
+
+.iconUpload {
+    width: 144px;
     padding: 10px;
     background: #9d9d9840;
     text-align: center;
     border-radius: 46px;
     cursor: pointer;
+}
+
+.none {
+    display: none;
+}
+
+.userLikeOrCmt {
+    width: 317px;
+    text-align: left;
+}
+
+.arrowDown {
+    border-color: transparent transparent #fff;
+    border-style: solid;
+    border-width: 0 10px 10px;
+    height: 0;
+    top: 6px;
+    left: 2px;
+    width: 0;
+    z-index: 12;
+    position: absolute;
+    box-shadow: 0 0 5px 1px rgba(0, 0, 0, .0975);
+}
+
+.arrowUp {
+    background: #fff;
+    border: 1px solid #e6e6e6;
+    -webkit-box-shadow: 0 0 5px 1px rgba(0, 0, 0, .0975);
+    box-shadow: 0 0 5px 1px rgba(0, 0, 0, .0975);
+    height: 14px;
+    left: 6px;
+    top: 8px;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    width: 14px;
+    z-index: 1;
+}
+.modal{
+    position: fixed;
+    top: 70px;
+    left: 0;
+    z-index: 1050;
+    display: none;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    outline: 0;
+}
+#userComment{
+     max-height: 436px;
+      overflow-y: auto;
+}
+
+@media only screen and (max-width: 576px) {
+  #commentHeight {
+   height:  300px;
+  }
+  #userComment{
+      max-height: 188px;
+      overflow-y: auto;
+
+  }
+  #notifShow{
+      width: 370px
+  }
+}
+#brand{
+    font-family: cursive;
+    font-style: italic;
+}
+@media only screen and (max-width: 441px) {
+  #brand{
+      display: none;
+  }
+}
+@media only screen and (min-width: 955px) {
+  .search {
+      width:82%;
+  }
 }

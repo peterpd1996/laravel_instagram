@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Comment;
 use App\Post;
+use App\Events\NewComment;
 class CommentController extends Controller
 {
     //
@@ -18,8 +19,14 @@ class CommentController extends Controller
             'post_id' => $post_id,
             'comment' => $comment,
         ]);
-       echo " <li><b><a href='' class='text-dark'>".auth()->user()->username."</a></b> ".$comment."</li>";
-
+        $comment = "<li>
+                        <b>
+                            <a href='/profile/{$user_id}' class='text-dark'>".auth()->user()->username."</a>
+                        </b> ".$comment.
+                        "<div class='text-color'>".getTimeDistance(date("Y-m-d H:i:s"))."</div>".
+                    "</li>";
+        event(new NewComment($comment,$post_id));
+        echo $comment;   
     }
     public function fetch(Request $request)
     {

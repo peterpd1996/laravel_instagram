@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\Comment;
 class Post extends Model
 {
     protected $guarded = [];// everything is ok in the fild databases
@@ -22,6 +22,12 @@ class Post extends Model
     {
         return $this->belongsToMany(User::class);
     }
+     public function getTowLatestComment()
+    {
+        return $this->comment()->latest()->take(2)->get();
+        
+    }
+
   
 
    
