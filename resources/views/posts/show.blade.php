@@ -3,7 +3,16 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-7 p-0 ">
-            <img src="/uploads/{{$post->image}}" alt="" class="w-100 border-img">
+            <!-- image post -->
+               @if(pathinfo($post->image, PATHINFO_EXTENSION) != 'mp4')
+                <img src="/uploads/{{$post->image}}" class="img-fluid w-100 border-img" id="image-post-{{$post->id}}">
+                @else
+                <video width="100%" height="600" controls style="background: #f0f0f1">
+                  <source src="/videos/{{$post->image}}" type="video/mp4">
+                Your browser does not support the video tag.
+                </video>
+                @endif
+                <!-- end image or video post -->
         </div>
         <div class="p-0 border_ col-sm-4 " style="background: #fff;position: relative">
             <div class="name d-flex p-3 align-items-center border_b">
@@ -17,7 +26,7 @@
                     </a>
                 </div>
             </div>
-            <div class="cmt">
+            <div class="cmt" style="height: 500px;overflow:auto"> 
                 <p class="p-3 m-0">
                     <span class="font-weight-bold">
                         <a class="text-dark text-decoration-none" href="/profile/{{$post->user->id}}">
@@ -47,7 +56,7 @@
                     </ul>
                 </div>
             </div>
-            <div style="position: absolute;bottom: 0px" class="w-100">
+            <div class="w-100" style="position: absolute;bottom: 0px;background: white;position: absolute;bottom: 0px">
                 <div class="icon p-3 border_b border_t">
                     <div class="icon">
                         <i data-like_post="{{$post->id}}" id="like_{{$post->id}}"
@@ -73,7 +82,7 @@
                         </div>
                     </b>
                 </div>
-                <div class=" p-2 d-flex w-100">
+                <div class=" p-2 d-flex w-100" >
                     <input id="comment_{{$post->id}}" type="text" class="w-100 comment" style="border: none" placeholder="Add a comment.."
                         height="30px" autofocus data-id="{{$post->id}}">
                         <a style="color:#3897f0;font-weight: bold;cursor: pointer" data-post={{$post->id}}

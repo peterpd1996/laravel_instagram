@@ -43,16 +43,19 @@ class PostController extends Controller
             'caption' =>  $post->caption,
         ]);
     }
-    public function store()
+    public function store(Request $request)
     {
         $data =  request()->validate([
+            'image' => 'required|mimes:jpeg,png,bmp,gif,svg,mp4,qt|max:15000',
             'caption' => '',
-            'image' => ['required','image'],
+        ],
+        [
+            'image.max' => 'The image or video may not be greater than 15 MB.'
         ]);
         $image = $this->uploadImage(request()->file('image'));       
         $post = new Post;
         $post->user_id = auth()->user()->id;
-        $post->caption = $data['caption'] ?? '';
+        $post->caption = $data['caption'] ?? '.';
         $post->image = $image;
         $post->save();
         return redirect("/");   
@@ -80,6 +83,7 @@ class PostController extends Controller
     public function delete(Request $request)
     {
        $post = Post::findOrFail($request->post_id);
+       $this->deleteImage($post->image);
        $post->delete();
     }
 }

@@ -19,13 +19,15 @@
                 </div>
                 <div class="form-group d-flex ">
                     <div style="position: relative" class="ml-5">
-                        <div class="iconUpload"> <i class="fa fa-picture-o" aria-hidden="true"></i> Photo</div>
+                        <div class="iconUpload"> <i class="fa fa-picture-o" aria-hidden="true"></i> Photo/Video</div>
                         <input id="updatePost" type="file" name="image" id="image"
                             class="uploadNewPost"> 
                     </div>
                 </div>
                 <div class="col-md-8 ml-5">
-                   <img id="oldImage" src="" alt="" width="100px" height="100px" class="border_" style="margin-bottom: 9px;">
+                   <img id="oldImage" src="" alt="" width="100px" height="100px" class="border_ none" style="margin-bottom: 9px;">
+                    <video controls class="none" id="edit-video" width="100%">
+                    </video>
                 </div>
         </div>
       <div class="modal-footer">

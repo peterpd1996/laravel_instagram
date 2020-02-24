@@ -35,6 +35,13 @@ body {
     padding: 0px;
     margin: 0px;
 }
+.invalid-error{
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: 80%;
+    color: #e3342f;
+    font-style: italic;
+}
 
 .like_heart {
     color: #8f8a83ba;
@@ -240,7 +247,7 @@ a:hover {
 }
 
 .iconUpload {
-    width: 107px;
+    width: 144px;
     padding: 10px;
     background: #9d9d9840;
     text-align: center;

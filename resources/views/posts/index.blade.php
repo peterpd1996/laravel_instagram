@@ -32,21 +32,16 @@
                             class="form-control @error('caption') is-invalid @enderror" name="caption"
                             value="{{ old('caption') }}" autocomplete="caption" autofocus
                             placeholder="What's on your mind ???">
-                                    </textarea>
-                        @error('caption')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
+                        </textarea>
                     </div>
                 </div>
                 <div class="form-group d-flex ">
                     <div style="position: relative" class="ml-5">
-                        <div id="iconUpload" class="iconUpload"> <i class="fa fa-picture-o" aria-hidden="true"></i> Photo</div>
+                        <div id="iconUpload" class="iconUpload"> <i class="fa fa-picture-o" aria-hidden="true"></i> Photo/Video</div>
                         <input id="uploadNewPost"  type="file" name="image" id="image"
                             class="uploadNewPost @error('image') is-invalid @enderror" autocomplete="image" autofocus>
                         @error('image')
-                        <span class="invalid-feedback" role="alert">
+                        <span class="invalid-error" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                         @enderror
@@ -55,6 +50,7 @@
                 </div>
                 <div class="col-md-8 ml-5">
                     <img id="img_output"  src="" alt="" width="100px" height="100px" class="none border_" style="margin-bottom: 9px;">
+                    <video id="video_output" controls class="none"></video>
                 </div>
             </form>
         </div>
@@ -78,7 +74,7 @@
                         @if(Auth::user()->id == $post->user->id)
                         <i class="fa fa-ellipsis-h post-action" style="padding: 6px;color: #00000082;cursor: pointer;position: absolute;right: 0px;top: -17px;" aria-hidden="true" id="action-post-{{$post->id}}"></i>
                         @endif
-                        <div class="action_ none">
+                        <div class="action_ none" style="z-index: 100">
                             <ul style="list-style: none;text-align: left;font-size: 15px;">
                                 <li>
                                     <span class="icon" style="padding: 0px 5px;"><i class="fa fa-pencil" aria-hidden="true"></i></span>
@@ -93,7 +89,17 @@
                     </div>
                 </div>
             </div>
-            <a href="/p/{{$post->id}}"><img src="/uploads/{{$post->image}}" class="img-fluid" id="image-post-{{$post->id}}"></a>
+            <!-- image or video -->
+            <a href="/p/{{$post->id}}">
+                @if(pathinfo($post->image, PATHINFO_EXTENSION) != 'mp4')
+                <img src="/uploads/{{$post->image}}" class="img-fluid" id="image-post-{{$post->id}}">
+                @else
+                <video width="100%" height="600" controls>
+                  <source src="/videos/{{$post->image}}" type="video/mp4">
+                </video>
+                @endif
+            </a>
+            <!-- end image or video -->
             {{--  like --}}
             <div class="pt-3" style="background-color: #fff" style="overflow: auto">
                 <div class="icon pl-2">

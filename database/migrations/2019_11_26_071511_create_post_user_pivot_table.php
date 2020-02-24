@@ -18,6 +18,7 @@ class CreatePostUserPivotTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('post_id');
             $table->unsignedBigInteger('user_id');
+            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
             $table->tinyInteger('status')->default('0'); // 0 unread 1 read
             $table->timestamps();
         });
