@@ -50,7 +50,7 @@
                 </div>
                 <div class="col-md-8 ml-5">
                     <img id="img_output"  src="" alt="" width="100px" height="100px" class="none border_" style="margin-bottom: 9px;">
-                    <video id="video_output" controls class="none"></video>
+                    <video id="video_output" controls class="none" width="100%"></video>
                 </div>
             </form>
         </div>
@@ -90,11 +90,11 @@
                 </div>
             </div>
             <!-- image or video -->
-            <a href="/p/{{$post->id}}">
+        <a href="/p/{{$post->id}}" id="post-{{$post->id}}">
                 @if(pathinfo($post->image, PATHINFO_EXTENSION) != 'mp4')
                 <img src="/uploads/{{$post->image}}" class="img-fluid" id="image-post-{{$post->id}}">
                 @else
-                <video width="100%" height="600" controls>
+                <video width="100%" height="600" controls style="background: black">
                   <source src="/videos/{{$post->image}}" type="video/mp4">
                 </video>
                 @endif

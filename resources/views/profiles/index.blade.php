@@ -45,7 +45,13 @@
 
         <div class="col-4 mb-4">
             <a href="/p/{{$post->id}}">
-                <img src="/uploads/{{ $post->image }}" alt="" class="w-100">
+                @if(pathinfo($post->image, PATHINFO_EXTENSION) != 'mp4')
+                <img src="/uploads/{{$post->image}}" class="img-fluid" id="image-post-{{$post->id}}">
+                @else
+                <video width="100%" height="350px" controls style="background: black">
+                  <source src="/videos/{{$post->image}}" type="video/mp4">
+                </video>
+                @endif
             </a>
         </div>
         @endforeach

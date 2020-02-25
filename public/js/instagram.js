@@ -162,10 +162,13 @@ $(document).ready(function(){
                 $('#editPost').modal('hide');
                 if(data.isChangeImage === 1){
                     if(data.image.split('.').pop() != 'mp4'){
-                        $('#image-post-'+data.id).attr("src", "/uploads/"+data.image);
+                        let img = "<img src='/uploads/"+data.image+"' class='img-fluid' id='image-post-"+data.id+"'>";
+                        $('#post-'+data.id).html(img);
                         $('#caption-post-'+data.id).html(data.caption);
                     }else{
-                        
+                        let video = "<video width='100%' height='600' controls> <source src='/videos/"+data.image+"' type='video/mp4'> </video>";
+                        $('#post-'+data.id).html(video);
+                        $('#caption-post-'+data.id).html(data.caption);
                     }
                     
                 } else{
