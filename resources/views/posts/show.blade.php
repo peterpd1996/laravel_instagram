@@ -7,7 +7,7 @@
                @if(pathinfo($post->image, PATHINFO_EXTENSION) != 'mp4')
                 <img src="/uploads/{{$post->image}}" class="img-fluid w-100 border-img" id="image-post-{{$post->id}}">
                 @else
-                <video width="100%" height="600" controls style="background: #f0f0f1">
+                <video width="100%" height="600" controls style="background:black">
                   <source src="/videos/{{$post->image}}" type="video/mp4">
                 Your browser does not support the video tag.
                 </video>

@@ -12,10 +12,10 @@ class SearchController extends Controller
         $user = $request->input('user');
         $users = User::where('username','like','%'.$user.'%')
                      ->orWhere('name','like','%'.$user.'%')->get();
-        $text = "";
+        $result = "Không tìm thấy user nào";
         foreach($users as $user)
         {
-            $text.="  
+            $result.="  
               <li class='border_b'>
                 <a href='/profile/{$user->id}' class='text-dark'>
                     <div class='d-flex fix'>
@@ -28,6 +28,6 @@ class SearchController extends Controller
                 </a>
              </li> ";
         }
-        echo $text;
+        echo $result;
     }
 }
