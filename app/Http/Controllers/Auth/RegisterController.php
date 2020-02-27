@@ -85,8 +85,8 @@ class RegisterController extends Controller
     // ghi đề phương thước
     public function redirectTo()
     {
-        $user_id = Auth::user()->id;
-        return "/profile/{$user_id}";
+       
+        return "/follow";
     }
     
 }

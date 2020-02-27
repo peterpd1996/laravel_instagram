@@ -11,8 +11,7 @@ class ProfileController extends Controller
     {
        $user  =  User::findOrFail($user);
        $follow = (auth()->user()) ? auth()->user()->following->contains($user->id) : false;
-      // $user  =  User::findOrFail($user); nếu không tìm thấy nó sẽ trả về trang 404
-        return view('profiles.index',compact('user','follow'));
+       return view('profiles.index',compact('user','follow'));
     }
     public function edit(User $user)
     {

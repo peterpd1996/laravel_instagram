@@ -39,6 +39,11 @@ function getTimeDistance($timePost){
       }
     return $result;
 }
+ function getImage($filename)
+    {
+        if(pathinfo($filename, PATHINFO_EXTENSION) != 'mp4')
+        return "<img class='mr-2 w-img' src='/uploads/{$filename}'>";
+    }
 // $timePost = '2019-08-16 17:19:29';
 // echo getTimeDistance($timePost);
 ?>

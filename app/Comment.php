@@ -19,6 +19,13 @@ class Comment extends Model
         $cmt = strlen($comment) > 24 ? substr( $comment, 0, 23) : $comment;
         return " \"".$cmt."..\" ";
     }
+
+     public function getImage($filename)
+    {
+        if(pathinfo($filename, PATHINFO_EXTENSION) != 'mp4')
+        return "<img class='mr-2 w-img' src='/uploads/{$filename}'>";
+    }
+   
     public function getTowLatestComment()
     {
         if(Comment::count() > 2)
