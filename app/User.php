@@ -47,7 +47,11 @@ class User extends Authenticatable
     }
     public function following()
     {
-            return $this->belongsToMany(Profile::class);  
+        return $this->belongsToMany(Profile::class);  
+    }
+    public function isFollow($user_id)
+    {
+        return (auth()->user()) ? auth()->user()->following->contains($user_id) : false;
     }
     public function like()
     {

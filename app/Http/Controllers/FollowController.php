@@ -11,6 +11,11 @@ class FollowController extends Controller
        $this->middleware('auth');
    }
     //
+    public function index()
+    {
+       $users  =  User::where('id','!=',auth()->user()->id)->get();
+       return view('follows.index',compact('users'));
+    }
     public function store(User $user)
     {
         auth()->user()->following()->toggle($user->profile->id);

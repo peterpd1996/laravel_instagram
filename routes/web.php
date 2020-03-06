@@ -27,11 +27,12 @@ Route::post('/comment','CommentController@store');
 // fetch comment
 Route::post('/fetch','CommentController@fetch');
 
-//89o
+//notification
 Route::post('/notification','NotificationController@show');
 //search
 Route::post('/search','SearchController@searchUser');
 // follow 
+Route::get('/follow','FollowController@index')->name('follow');
 Route::post('follow/{user}','FollowController@store');
 //like
 Route::post('/like','LikeController@store');

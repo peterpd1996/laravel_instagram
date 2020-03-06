@@ -16,7 +16,6 @@
     </div>
   </div>
 </div>
-<div class="alert" role="alert" id="result"></div>
 <!-- end confirm delete -->
 <div class="container">
     {{-- post --}}
