@@ -84,7 +84,7 @@
                 @endguest
             </div>
         </header>
-        <main class="py-4 main">
+        <main class="main">
             @yield('content')
         </main>
     </div>

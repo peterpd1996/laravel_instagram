@@ -7,6 +7,7 @@ use App\Traits\Images;
 use Intervention\Image\Facades\Image;
 use App\Post;
 use App\User;
+use Carbon\Carbon;
 
 class PostController extends Controller
 {
@@ -17,7 +18,7 @@ class PostController extends Controller
     }
     public function index()
     {
-        $user = User::find(1);
+
         // lấy những user mà user đăng nhập hiện tại đang following
         $users_id = auth()->user()->following()->pluck('profiles.user_id')->toArray();
         array_push($users_id,auth()->user()->id);
