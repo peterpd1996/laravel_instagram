@@ -18,7 +18,7 @@
 											<div class="input-group-prepend">
 												<i class="fa fa-search" aria-hidden="true"></i>
 											</div>
-											<input type="text" class="form-control" placeholder="Tìm kiếm">
+											<input type="text" class="form-control" placeholder="Tìm kiếm" style="background:rgba(210, 210, 210, 0.51) !important">
 										</div>
 									</form>
 									<div class="chat-users-list">

@@ -44,6 +44,11 @@
                 @endif
                 <div class="notification d-flex  mt-2">
                     @auth
+                    <div class="messenger pr-2">
+                           <a href="{{route('messages.show') }}" class="text-dark">
+                            <i class="fa fa-comment-o" aria-hidden="true"></i>
+                            </a>
+                    </div>
                     <div class="mr-2" style="cursor: pointer;position: relative">
                         <i class="fa fa-bell-o " aria-hidden="true" id="notify"></i>
                         <div id="count"></div>
@@ -53,7 +58,8 @@
                         </ul>
                         {{-- endnotification --}}
                     </div>
-                    <div class=" pr-2"><a href="/profile/{{ Auth::user()->id ?? ''}}">
+                    <div class=" pr-2">
+                        <a href="/profile/{{ Auth::user()->id ?? ''}}">
                             <i class="fa fa-user-o text-dark" aria-hidden="true"></i>
                         </a>
                     </div>
