@@ -1,12 +1,98 @@
-@extends('layouts.app')
-@section('content')
-<div class="chat-page">
-			<div class="main-wrapper">
-			<!-- Page Content -->
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+		<meta charset="utf-8">
+		<title>Doccure</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+		<!-- Favicons -->
+		 <meta name="csrf-token" content="{{ csrf_token() }}">
+	    <title>Tung Duong</title>
+	    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+	     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+	    <link rel="icon" type="image/png" sizes="96x96" href="/images/paper-plane.png">
+	    <!-- Scripts -->
+	    {{-- <script src="https://js.pusher.com/5.0/pusher.min.js"></script> --}}
+
+	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	    <!-- Fonts -->
+	    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+	    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+</head>
+	<body class="chat-page">
+		<!-- Main Wrapper -->
+		<div class="main-wrapper">
+			<!-- Header -->
+	    <header class="padding  shadow-sm" style="background: white">
+            <div class="container d-flex align-items-center">
+                <div class="logo">
+                    <a class="navbar-brand d-flex text-dark" href="{{ url('/') }}">
+                        <div>
+                            <i class="fa fa-instagram pr-3" style="border-right: 1px solid black"></i>
+                            <span id="brand">D'Look</span>
+                        </div>
+                    </a>
+                </div>
+                @if (Auth::check())
+                <div class="search d-flex justify-content-center">
+                    <div class="contais">
+                        <input type="text" id="searchText" class="border_" placeholder="&#xF002; Search" size="23" style="font-family:Arial, FontAwesome;text-align: center;">
+                        <ul class="result " id="resultSearch" style="text-align: left">
+                        </ul>
+                    </div>
+                </div>
+                @endif
+                <div class="notification d-flex  mt-2">
+                    @auth
+                    <div class="messenger pr-2">
+                           <a href="{{route('messages.show') }}" class="text-dark">
+                            <i class="fa fa-comment-o" aria-hidden="true"></i>
+                            </a>
+                    </div>
+                    <div class="mr-2" style="cursor: pointer;position: relative">
+                        <i class="fa fa-bell-o " aria-hidden="true" id="notify"></i>
+                        <div id="count"></div>
+                        {{-- // count notification --}}
+                        {{-- notification --}}
+                        <ul class="notifi disable" id="notifShow" style="position: absolute;left: -312px">
+                        </ul>
+                        {{-- endnotification --}}
+                    </div>
+                    <div class=" pr-2">
+                        <a href="/profile/{{ Auth::user()->id ?? ''}}">
+                            <i class="fa fa-user-o text-dark" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                    <div class="username" style="position: relative">
+                        <i style="cursor: pointer; " class="fa fa-caret-down" aria-hidden="true"
+                            style="position: absolute"></i>
+                        <div class="logout none">
+                            <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();" class="text-dark">
+                                Logout
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </div>
+                    </div>
+                    @endauth
+                </div>
+                @guest
+                <div class="actionLoginLogout d-flex pt-1 justify-content-end" style="font-size: 17px">
+                    <div class="login mr-3">
+                        <a class="text-dark" href="{{ route('login') }}">Login</a>
+                    </div>
+                    <div class="register" style="padding-right: 10px">
+                        <a class="text-dark" href="{{ route('register') }}">Register</a>
+                    </div>
+                </div>
+                @endguest
+            </div>
+        </header>
 			<div class="content">
 				<div class="container-fluid">
 					<div class="row">
-						<div class="col-xl-12">
+						<div class="col-xl-12" style="padding: 0 !important">
 							<div class="chat-window">
 								<!-- Chat Left -->
 								<div class="chat-cont-left">
@@ -414,21 +500,14 @@
 										</div>
 									</div>
 								</div>
-								<!-- /Chat Right -->
-								
+								<!-- /Chat Right -->								
 							</div>
 						</div>
 					</div>
 					<!-- /Row -->
-
 				</div>
-
 			</div>		
-			<!-- /Page Content -->
 		</div>
-		<!-- /Main Wrapper -->
-		
-		<!-- Voice Call Modal -->
 		<div class="modal fade call-modal" id="voice_call">
 			<div class="modal-dialog modal-dialog-centered" role="document">
 				<div class="modal-content">
@@ -450,19 +529,16 @@
 							</div>
 						</div>
 						<!-- Outgoing Call -->
-
 					</div>
 				</div>
 			</div>
 		</div>
 		<!-- /Voice Call Modal -->
-		
 		<!-- Video Call Modal -->
 		<div class="modal fade call-modal" id="video_call">
 			<div class="modal-dialog modal-dialog-centered" role="document">
 				<div class="modal-content">
 					<div class="modal-body">
-					
 						<!-- Incoming Call -->
 						<div class="call-box incoming-box">
 							<div class="call-wrapper">
@@ -480,14 +556,22 @@
 							</div>
 						</div>
 						<!-- /Incoming Call -->
-						
 					</div>
 				</div>
 			</div>
 		</div>
-</div>
-@endsection
-@section('js')
-<script src="{{asset('js/popper.min.js')}}"></script>
-<script src="{{asset('js/script.js')}}"></script>
-@endsection
+	  
+		
+	</body>
+<!-- doccure/chat.html  30 Nov 2019 04:12:18 GMT -->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="{{ asset('js/script.js') }}" defer=""></script>	
+  <script src="{{ asset('js/header.js') }}" defer=""></script>
+</html>
+
+
+
+
+
+
+
