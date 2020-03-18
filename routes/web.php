@@ -40,3 +40,6 @@ Route::post('/like','LikeController@store');
 Route::get('/profile/{user}', 'ProfileController@index')->name('profile.show');
 Route::get('/profile/{user}/edit', 'ProfileController@edit')->name('profile.show');
 Route::patch('/profile/{user}', 'ProfileController@update')->name('profile.update');
+
+// message
+Route::get('/messages', 'MessengerController@index')->name('messages.show');
