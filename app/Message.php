@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Message extends Model
 {
+	protected $guarded = [];
+	const UN_READ = 0;
+	const READ = 1;
     public function user()
     {
         return $this->belongsTo(User::Class);
