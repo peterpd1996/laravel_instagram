@@ -25,8 +25,7 @@ class CommentController extends Controller
                         </b> ".$comment.
                         "<div class='text-color'>".getTimeDistance(date("Y-m-d H:i:s"))."</div>".
                     "</li>";
-        event(new NewComment($comment,$post_id));
-        echo $comment;   
+        event(new NewComment($comment,$post_id)); 
     }
     public function fetch(Request $request)
     {

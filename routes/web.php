@@ -6,7 +6,8 @@
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
+| routes are loaded by the RouteSer
+viceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
 */
@@ -15,6 +16,7 @@
 
 // posts
 Auth::routes();
+
 Route::get('/','PostController@index');
 Route::get('/p/create','PostController@create');
 Route::post('/p','PostController@store');
@@ -43,3 +45,9 @@ Route::patch('/profile/{user}', 'ProfileController@update')->name('profile.updat
 
 // message
 Route::get('/messages', 'MessengerController@index')->name('messages.show');
+Route::post('/load-message', 'MessengerController@loadMessage')->name('messages.load');
+Route::post('/send-message', 'MessengerController@storeMessage')->name('messages.store');
+
+
+    //
+

@@ -44,6 +44,9 @@ function getTimeDistance($timePost){
         if(pathinfo($filename, PATHINFO_EXTENSION) != 'mp4')
         return "<img class='mr-2 w-img' src='/uploads/{$filename}'>";
     }
+function getTimeFormat($date){
+  return date_format($date,"H:i: d-m-Y");
+}
 // $timePost = '2019-08-16 17:19:29';
 // echo getTimeDistance($timePost);
 ?>

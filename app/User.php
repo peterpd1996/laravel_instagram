@@ -62,5 +62,9 @@ class User extends Authenticatable
         
         return auth()->user()->like->contains($id);
     }
+      public function message()
+    {
+        return $this->hasMany(Message::Class);
+    }
     
 }

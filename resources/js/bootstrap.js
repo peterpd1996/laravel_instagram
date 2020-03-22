@@ -37,9 +37,44 @@ window.Echo = new Echo({
     cluster: 'ap1',
     forceTLS: true
   });
-var channel = window.Echo.channel('posts');
-channel.listen('.newcomment', (comment) =>{
+var channelComment = window.Echo.channel('posts');
+channelComment.listen('.newcomment', (comment) =>{
   $("#comment" + comment.post_id).before(comment.comment);
+});
+
+var channelMessage = window.Echo.channel('messages');
+	channelMessage.listen('.newmessage',function(data){
+    var today = new Date();
+    var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
+    var time = today.getHours() + ":" + today.getMinutes();
+    var current =  time+' '+date;
+    let id = $('#mes').attr('data-message');
+    var message ='';
+    if(id == data.fromUser){
+    	 message = `<li class = "media sent" >`;
+       //23:28: 22-03-2020
+    }else if(id == data.toUser){
+    	 message = `<li class = "media received">`;
+    }
+    let content = `<div class = "media-body">
+                            <div class="msg-box">
+                                <div>
+                                        <p>${data.message}</p>
+                                        <ul class="chat-msg-info">
+                                            <li>
+                                               <div class="chat-time">
+                                                    <span>${current}</span>
+                                               </div>
+                                            </li>
+                                        </ul>
+                                </div>
+                            </div>
+                     </div>
+                 </li>`;
+    message+=content;
+
+     $('#xinchaocacban').before(message);
+
 });
 
 
