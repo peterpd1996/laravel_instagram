@@ -8,6 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Tung Duong</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="icon" type="image/png" sizes="96x96" href="/images/paper-plane.png">
     <!-- Scripts -->
     {{-- <script src="https://js.pusher.com/5.0/pusher.min.js"></script> --}}
@@ -43,47 +44,22 @@
                 @endif
                 <div class="notification d-flex  mt-2">
                     @auth
+                    <div class="messenger pr-2">
+                           <a href="{{route('messages.show') }}" class="text-dark">
+                            <i class="fa fa-comment-o" aria-hidden="true"></i>
+                            </a>
+                    </div>
                     <div class="mr-2" style="cursor: pointer;position: relative">
                         <i class="fa fa-bell-o " aria-hidden="true" id="notify"></i>
                         <div id="count"></div>
                         {{-- // count notification --}}
                         {{-- notification --}}
-
-
                         <ul class="notifi disable" id="notifShow" style="position: absolute;left: -312px">
-
-                            {{-- <li class='border_b'>
-                                <a href='/p/{$post->post_id}' class='text-dark'>
-                                    <div class='d-flex fix align-items-center'>
-
-                                        <img src='/profiles/abv.jpg' class='rounded'>
-                                        <span class='ml-2 userLikeOrCmt'><b>tung duong xin chao
-                                            </b>liked
-                                            your photo</span>
-                                        <div class="imageLikeOrCmt">
-                                            <img src='/uploads/{$post->image}' class='w-img'>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class='border_b'>
-                                <a href='/p/{$cmt->post_id}' class='text-dark'>
-                                    <div class='d-flex fix'>
-                                        <img src='/profiles/abv.jpg' class='rounded'>
-                                        <span class='ml-2 userLikeOrCmt'><b>tung
-                                                duong
-                                                haha </b>commented on your
-                                            photo:"xin qua day ong oi haha"</span>
-
-                                        <img class='mr-2 w-img' src='/uploads/{$post->image}'>
-
-                                    </div>
-                                </a>
-                            </li> --}}
                         </ul>
                         {{-- endnotification --}}
                     </div>
-                    <div class=" pr-2"><a href="/profile/{{ Auth::user()->id ?? ''}}">
+                    <div class=" pr-2">
+                        <a href="/profile/{{ Auth::user()->id ?? ''}}">
                             <i class="fa fa-user-o text-dark" aria-hidden="true"></i>
                         </a>
                     </div>
@@ -114,7 +90,7 @@
                 @endguest
             </div>
         </header>
-        <main class="py-4 main">
+        <main class="main">
             @yield('content')
         </main>
     </div>
@@ -122,66 +98,5 @@
 
 </html>
 <script src="{{ asset('js/app.js') }}" ></script>
-<script>
-    
-    $(document).ready(function () {
-        notification()
-        $(document).on('keyup', '#searchText', function () {
-            var user = $("#searchText").val();
-            if (user.trim() != '') {
-                $.ajax({
-                    url: "/search",
-                    method: "POST",
-                    data: {
-                        "_token": "{{ csrf_token() }}",
-                        user: user,
-                    },
-                    success: function (data) {
-                        $('#resultSearch').html(data)
-                    }
-
-                })
-            } else {
-                $('#resultSearch').html('')
-            }
-        });
-
-        $("#notify").click(function () {
-            $("#notifShow").toggleClass("disable");
-            $("#count").html('');
-            notification('seen');
-        });
-
-        function notification(status = '') {
-            $.ajax({
-                url: "/notification",
-                method: "POST",
-                data: {
-                    "_token": "{{ csrf_token() }}",
-                    stt: status,
-                },
-                dataType: "json",
-                success: function (data) {
-                    if (data.notification != '') {
-                        $("#notifShow").html(data.notification);
-                    } else {
-                        $("#notifShow").html(
-                            "<span class='p-3' style='display:block'> you have not receiving notifications !!</span>"
-                        );
-                    }
-
-                    if (data.unseen_total > 0) {
-                        $("#count").html("<span id='countNofi'>" + data.unseen_total + "<span>");
-                    }
-
-                }
-            })
-        }
-        $('.fa-caret-down').click(function () {
-            $('.logout').toggleClass('none');
-        });
-
-    })
-
-</script>
+<script src="{{ asset('js/header.js') }}"></script>
 @yield('js')

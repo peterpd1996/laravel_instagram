@@ -16,9 +16,8 @@
     </div>
   </div>
 </div>
-<div class="alert" role="alert" id="result"></div>
 <!-- end confirm delete -->
-<div class="container">
+<div class="container pt-4">
     {{-- post --}}
     <div class="row post">
         <div class="col-md-6 offset-md-3  border_ mb-5" style="background: #fff">

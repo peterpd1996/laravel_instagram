@@ -6,16 +6,15 @@ use Illuminate\Http\Request;
 use App\Traits\Images;
 use Intervention\Image\Facades\Image;
 use App\Post;
+use App\User;
+use Carbon\Carbon;
 
 class PostController extends Controller
 {
     use Images;
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     public function index()
     {
+
         // lấy những user mà user đăng nhập hiện tại đang following
         $users_id = auth()->user()->following()->pluck('profiles.user_id')->toArray();
         array_push($users_id,auth()->user()->id);
@@ -27,8 +26,6 @@ class PostController extends Controller
         // where profile_user.user_id = 1    auth()->user()->id
         $posts = Post::WhereIn('user_id',$users_id)->latest()->get();
         // orderBy('created_at','DESC') = latest()
-        
-
         return view('posts.index',compact('posts'));
     }
     public function create()

@@ -47050,7 +47050,6 @@ var render = function() {
   return _c("div", [
     _c("button", {
       staticClass: "btn btn-primary",
-      attrs: { id: "fllow" },
       domProps: { textContent: _vm._s(_vm.buttonText) },
       on: { click: _vm.followUser }
     })
@@ -59224,7 +59223,8 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('follow-button', __webpack_require__(/*! ./components/FollowButton.vue */ "./resources/js/components/FollowButton.vue")["default"]);
+Vue.component('follow-button', __webpack_require__(/*! ./components/FollowButton.vue */ "./resources/js/components/FollowButton.vue")["default"]); // đăng ký một cái vue ở đây 
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -59284,9 +59284,28 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   cluster: 'ap1',
   forceTLS: true
 });
-var channel = window.Echo.channel('posts');
-channel.listen('.newcomment', function (comment) {
+var channelComment = window.Echo.channel('posts');
+channelComment.listen('.newcomment', function (comment) {
   $("#comment" + comment.post_id).before(comment.comment);
+});
+var channelMessage = window.Echo.channel('messages');
+channelMessage.listen('.newmessage', function (data) {
+  var today = new Date();
+  var date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear();
+  var time = today.getHours() + ":" + today.getMinutes();
+  var current = time + ' ' + date;
+  var id = $('#mes').attr('data-message');
+  var message = '';
+
+  if (id == data.fromUser) {
+    message = "<li class = \"media sent\" >"; //23:28: 22-03-2020
+  } else if (id == data.toUser) {
+    message = "<li class = \"media received\">";
+  }
+
+  var content = "<div class = \"media-body\">\n                            <div class=\"msg-box\">\n                                <div>\n                                        <p>".concat(data.message, "</p>\n                                        <ul class=\"chat-msg-info\">\n                                            <li>\n                                               <div class=\"chat-time\">\n                                                    <span>").concat(current, "</span>\n                                               </div>\n                                            </li>\n                                        </ul>\n                                </div>\n                            </div>\n                     </div>\n                 </li>");
+  message += content;
+  $('#xinchaocacban').before(message);
 });
 
 /***/ }),

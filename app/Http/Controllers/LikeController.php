@@ -14,6 +14,6 @@ class LikeController extends Controller
         auth()->user()->like()->toggle($post_id);
         $post = Post::find($post_id);
         $likes = $post->liked()->count();
-        echo $likes;
+        return $likes;
  	}
 }
