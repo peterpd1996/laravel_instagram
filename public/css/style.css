@@ -86,10 +86,20 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus {
     -webkit-box-shadow: 0 0 0px 1000px white inset !important;
 }
+.chat-page,.container-fluid,.row,.col-xl-12,.chat-window{
+	height:100%;
+}
+.content{
+	height:90%;
+}
 .input-group-prepend input[type="text"], textarea {
 
   background-color : #d1d1d1; 
 
+}
+.chat-scroll-left{
+	max-height: calc(100vh - 255px);
+    overflow-y: auto;
 }
 .d-look{
 	font-size: 51px;
@@ -1979,6 +1989,7 @@ html.menu-opened body {
 
 .main-wrapper {
 	width: 100%;
+	height: 100%;
 }
 .page-wrapper {
 	margin-left: 240px;
@@ -2801,7 +2812,6 @@ table.table-inbox tbody tr.checked {
     display: flex;
     flex-wrap: wrap;
     position: relative;
-    margin-bottom: 1.875rem;
 }
 .chat-window .chat-cont-left {
     border-right: 1px solid #e0e3e4;
@@ -2810,6 +2820,7 @@ table.table-inbox tbody tr.checked {
     max-width: 35%;
     position: relative;
     z-index: 4;
+    height: 100%;
 }
 .chat-window .chat-cont-left .chat-header {
     align-items: center;
@@ -2817,9 +2828,9 @@ table.table-inbox tbody tr.checked {
     border-bottom: 1px solid #e0e3e4;
     color: #324148;
     display: flex;
-    height: 72px;
     justify-content: space-between;
     padding: 0 15px;
+    height: 9%;
 }
 .chat-window .chat-cont-left .chat-header span {
     font-size: 20px;
@@ -2860,7 +2871,7 @@ table.table-inbox tbody tr.checked {
     z-index: 4;
 }
 .chat-window .chat-scroll {
-    max-height: calc(100vh - 255px);
+    max-height: calc(106vh - 255px);
     overflow-y: auto;
 }
 .chat-window .chat-cont-left .chat-users-list {
@@ -2935,7 +2946,7 @@ table.table-inbox tbody tr.checked {
     background-color: #fff;
     border-bottom: 1px solid #e0e3e4;
     display: flex;
-    height: 72px;
+    height: 9%;
     justify-content: space-between;
     padding: 0 15px;
 }
@@ -2990,6 +3001,7 @@ table.table-inbox tbody tr.checked {
 }
 .chat-window .chat-cont-right .chat-body {
     background-color: #f5f5f6;
+    height: 83%;
 }
 .chat-window .chat-cont-right .chat-body ul.list-unstyled {
     margin: 0 auto;
@@ -4361,6 +4373,7 @@ table.table-inbox tbody tr.checked {
 	}
 	.chat-window.chat-slide .chat-cont-right {
 		right: 0;
+		height: 100%;
 	}
 	.sidebar-overlay.opened {
 		display: block;
