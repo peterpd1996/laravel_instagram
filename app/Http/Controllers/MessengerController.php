@@ -11,12 +11,15 @@ class MessengerController extends Controller
 {
     public function index()
     {
-        $id = auth()->user()->id;
+       $id = auth()->user()->id;
     	$users_id = auth()->user()->following()->pluck('profiles.user_id')->toArray();
         $lastText = Message::where('from',$id)->latest()->take(1)->first(); // lay tin nhan cuoi cung cua mk gui cho ai
-        $users_id = array_diff($users_id,[$lastText->to]); // get user mk nhan tin cuoi cung
-        $userText = User::find($lastText->to);
-        $users = User::WhereIn('id',$users_id)->get();
+        if($lastText){
+            $users_id = array_diff($users_id,[$lastText->to]);
+            $userText = User::find($lastText->to); // get user mk nhan tin cuoi cung
+        }
+
+      $users = User::WhereIn('id',$users_id)->get();
     	$messages = Message::getMesssage($id,$lastText->to);
     	return view('messages.index',compact('users','userText','messages'));
     }

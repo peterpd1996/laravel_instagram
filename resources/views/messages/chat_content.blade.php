@@ -7,7 +7,6 @@
 											@if(isset($userText))
 											<div class="media-img-wrap">
 												<div class="avatar avatar-online">
-
 													<img src="/profiles/{{ $userText->profile->profileImage() }}" alt="User Image" class="avatar-img rounded-circle">
 												</div>
 											</div>
