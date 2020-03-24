@@ -97,7 +97,8 @@
 								<!-- Chat Left -->
 								<div class="chat-cont-left">
 									<div class="chat-header">
-										<span id="mes" data-message={{ Auth::user()->id}}>Tin nhắn</span>
+										<img src="/profiles/{{Auth::user()->profile->profileImage()}}" alt="" width="50px" height="50px" class="rounded-circle">
+										<span id="mes" data-message="{{ Auth::user()->id}}" class="pl-2">Chat</span>
 									</div>
 									<form class="chat-search">
 										<div class="input-group">
@@ -109,24 +110,42 @@
 									</form>
 									<div class="chat-users-list">
 										<div class="chat-scroll-left">
+												<a href="javascript:void(0);" class="media active" data-user={{$userText->id}}>
+													<div class="media-img-wrap">
+														<div class="avatar avatar-online">
+															<img src="/profiles/{{$userText->profile->profileImage()}}" alt="User Image" class="avatar-img rounded-circle">
+														</div>
+													</div>
+													<div class="media-body">
+														<div>
+															<div class="user-name">{{ $userText->username }}</div>
+															<div class="user-last-chat">Hihi anh khỏe không ạ?</div>
+														</div>
+														<div>
+															<div class="last-chat-time block">2 min</div>
+															<div class="badge badge-success badge-pill">3</div>
+														</div>
+													</div>
+												</a>
+
 											@foreach($users as $user)
-											<a href="javascript:void(0);" class="media" data-user={{$user->id}}>
-												<div class="media-img-wrap">
-													<div class="avatar avatar-online">
-														<img src="/profiles/{{$user->profile->profileImage()}}" alt="User Image" class="avatar-img rounded-circle">
+												<a href="javascript:void(0);" class="media" data-user={{$user->id}}>
+													<div class="media-img-wrap">
+														<div class="avatar avatar-online">
+															<img src="/profiles/{{$user->profile->profileImage()}}" alt="User Image" class="avatar-img rounded-circle">
+														</div>
 													</div>
-												</div>
-												<div class="media-body">
-													<div>
-														<div class="user-name">{{ $user->username }}</div>
-														<div class="user-last-chat">Hihi anh khỏe không ạ?</div>
+													<div class="media-body">
+														<div>
+															<div class="user-name">{{ $user->username }}</div>
+															<div class="user-last-chat">Hihi anh khỏe không ạ?</div>
+														</div>
+														<div>
+															<div class="last-chat-time block">2 min</div>
+															<div class="badge badge-success badge-pill">3</div>
+														</div>
 													</div>
-													<div>
-														<div class="last-chat-time block">2 min</div>
-														<div class="badge badge-success badge-pill">3</div>
-													</div>
-												</div>
-											</a>
+												</a>
 											@endforeach
 										</div>
 									</div>
@@ -206,7 +225,7 @@
   <script src="{{ asset('js/app.js') }}" ></script>
   <script type="text/javascript">
   	$(function(){
-  		var toUser = null;
+  		var toUser = $('.active').attr('data-user');
   		 $.ajaxSetup({
 	        headers: {
 	            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
