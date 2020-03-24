@@ -17,10 +17,9 @@ class MessengerController extends Controller
         if($lastText){
             $users_id = array_diff($users_id,[$lastText->to]);
             $userText = User::find($lastText->to); // get user mk nhan tin cuoi cung
+            $messages = Message::getMesssage($id,$lastText->to);
         }
-
-      $users = User::WhereIn('id',$users_id)->get();
-    	$messages = Message::getMesssage($id,$lastText->to);
+        $users = User::WhereIn('id',$users_id)->get();
     	return view('messages.index',compact('users','userText','messages'));
     }
     public function loadMessage(Request $request)
