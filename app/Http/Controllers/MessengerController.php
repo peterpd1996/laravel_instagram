@@ -11,17 +11,21 @@ class MessengerController extends Controller
 {
     public function index()
     {
+        $id = auth()->user()->id;
     	$users_id = auth()->user()->following()->pluck('profiles.user_id')->toArray();
-    	$users = User::WhereIn('id',$users_id)->get();
-    	$messages = Message::getMesssage(auth()->user()->id,1);
-    	return view('messages.index',compact('users','messages'));
+        $lastText = Message::where('from',$id)->latest()->take(1)->first(); // lay tin nhan cuoi cung cua mk gui cho ai
+        $users_id = array_diff($users_id,[$lastText->to]); // get user mk nhan tin cuoi cung
+        $userText = User::find($lastText->to);
+        $users = User::WhereIn('id',$users_id)->get();
+    	$messages = Message::getMesssage($id,$lastText->to);
+    	return view('messages.index',compact('users','userText','messages'));
     }
     public function loadMessage(Request $request)
     {
     	$toUser = $request->toUser;
-        $user = User::find($toUser);
+        $userText = User::find($toUser);
     	$messages = Message::getMesssage(auth()->user()->id,$toUser);
-    	return view('messages.chat_content',compact('messages','user'));
+    	return view('messages.chat_content',compact('messages','userText'));
     	
     }
     public function storeMessage(Request $request)
