@@ -2828,7 +2828,6 @@ table.table-inbox tbody tr.checked {
     border-bottom: 1px solid #e0e3e4;
     color: #324148;
     display: flex;
-    justify-content: space-between;
     padding: 0 15px;
     height: 9%;
 }
