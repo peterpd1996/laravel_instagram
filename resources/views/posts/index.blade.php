@@ -77,11 +77,11 @@
                             <ul style="list-style: none;text-align: left;font-size: 15px;">
                                 <li>
                                     <span class="icon" style="padding: 0px 5px;"><i class="fa fa-pencil" aria-hidden="true"></i></span>
-                                    <span class="edit-post" data-toggle="modal" data-target="#editPost" data-postId="{{$post->id}}">Edit post</button>
+                                    <span class="edit-post" data-toggle="modal" data-target="#editPost" data-postId="{{$post->id}}">Edit post </span>
                                 </li>
                                 <li>
                                     <span class="icon" style="padding: 0px 5px;"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
-                                    <span class="delete-post" data-post-delete="{{$post->id}}">Delete post</spann>
+                                    <span class="delete-post" data-post-delete="{{$post->id}}">Delete post</span>
                                 </li>
                             </ul>
                         </div>

@@ -71,8 +71,7 @@ var channelMessage = window.Echo.channel('messages');
                             </div>
                      </div>
                  </li>`;
-    message+=content;
-
+     message+=content;
      $('#xinchaocacban').before(message);
 
 });

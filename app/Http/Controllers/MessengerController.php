@@ -11,7 +11,9 @@ class MessengerController extends Controller
 {
     public function index()
     {
-       $id = auth()->user()->id;
+        $userText = null;
+        $messages = [];
+        $id = auth()->user()->id;
     	$users_id = auth()->user()->following()->pluck('profiles.user_id')->toArray();
         $lastText = Message::where('from',$id)->latest()->take(1)->first(); // lay tin nhan cuoi cung cua mk gui cho ai
         if($lastText){
@@ -28,7 +30,7 @@ class MessengerController extends Controller
         $userText = User::find($toUser);
     	$messages = Message::getMesssage(auth()->user()->id,$toUser);
     	return view('messages.chat_content',compact('messages','userText'));
-    	
+
     }
     public function storeMessage(Request $request)
     {
@@ -39,7 +41,7 @@ class MessengerController extends Controller
             'from' => $fromUser,
             'to' => $toUser,
             'message' => $message,
-            'is_read' => Message::UN_READ, 
+            'is_read' => Message::UN_READ,
         ]);
         event(new NewMessage($fromUser,$toUser,$message));
     }
