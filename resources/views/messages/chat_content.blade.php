@@ -46,7 +46,7 @@
 													</div>
 												</li>
 												@endforeach
-												<div id="xinchaocacban"></div>
+												<div id="text_mess"></div>
 											</ul>
 										</div>
 									</div>

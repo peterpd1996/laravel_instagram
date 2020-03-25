@@ -11243,7 +11243,7 @@ a:hover {
   max-height: 300px;
   overflow-y: auto;
   position: absolute;
-  z-index: 20;
+  z-index: 10;
 }
 
 .padding {

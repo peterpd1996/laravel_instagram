@@ -11,8 +11,10 @@ class MessengerController extends Controller
 {
     public function index()
     {
-       $id = auth()->user()->id;
-    	$users_id = auth()->user()->following()->pluck('profiles.user_id')->toArray();
+        $userText = null;
+        $messages = [];
+        $id = auth()->user()->id;
+        $users_id = auth()->user()->following()->pluck('profiles.user_id')->toArray();
         $lastText = Message::where('from',$id)->latest()->take(1)->first(); // lay tin nhan cuoi cung cua mk gui cho ai
         if($lastText){
             $users_id = array_diff($users_id,[$lastText->to]);
@@ -20,7 +22,7 @@ class MessengerController extends Controller
             $messages = Message::getMesssage($id,$lastText->to);
         }
         $users = User::WhereIn('id',$users_id)->get();
-    	return view('messages.index',compact('users','userText','messages'));
+        return view('messages.index',compact('users','userText','messages'));
     }
     public function loadMessage(Request $request)
     {
