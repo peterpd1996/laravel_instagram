@@ -4,15 +4,17 @@
 											<i class="fa fa-chevron-left" aria-hidden="true"></i>
 										</a>
 										<div class="media">
+											@if(isset($userText))
 											<div class="media-img-wrap">
 												<div class="avatar avatar-online">
-													<img src="/profiles/{{ $user->profile->profileImage() }}" alt="User Image" class="avatar-img rounded-circle">
+													<img src="/profiles/{{ $userText->profile->profileImage() }}" alt="User Image" class="avatar-img rounded-circle">
 												</div>
 											</div>
 											<div class="media-body">
-												<div class="user-name">{{ $user->username }}</div>
+												<div class="user-name">{{ $userText->username}}</div>
 												<div class="user-status">online</div>
 											</div>
+											@endif
 										</div>
 										<div class="chat-options">
 											<a href="javascript:void(0)" data-toggle="modal" data-target="#voice_call">
@@ -44,7 +46,7 @@
 													</div>
 												</li>
 												@endforeach
-												<div id="xinchaocacban"></div>
+												<div id="text_mess"></div>
 											</ul>
 										</div>
 									</div>

@@ -59305,7 +59305,7 @@ channelMessage.listen('.newmessage', function (data) {
 
   var content = "<div class = \"media-body\">\n                            <div class=\"msg-box\">\n                                <div>\n                                        <p>".concat(data.message, "</p>\n                                        <ul class=\"chat-msg-info\">\n                                            <li>\n                                               <div class=\"chat-time\">\n                                                    <span>").concat(current, "</span>\n                                               </div>\n                                            </li>\n                                        </ul>\n                                </div>\n                            </div>\n                     </div>\n                 </li>");
   message += content;
-  $('#xinchaocacban').before(message);
+  $('#text_mess').before(message);
 });
 
 /***/ }),
