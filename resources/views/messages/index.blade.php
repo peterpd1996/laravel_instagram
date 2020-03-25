@@ -225,8 +225,6 @@
         </div>
     </div>
 </div>
-
-
 </body>
 <!-- doccure/chat.html  30 Nov 2019 04:12:18 GMT -->
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -291,7 +289,9 @@
             if (e.keyCode == 13) {
                 sentMessage();
             }
+
         })
     })
 </script>
 </html>
+

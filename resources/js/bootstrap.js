@@ -73,7 +73,6 @@ var channelMessage = window.Echo.channel('messages');
                  </li>`;
     message+=content;
     $('#text_mess').before(message);
-
 });
 
 
