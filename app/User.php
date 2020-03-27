@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Message;
 
 class User extends Authenticatable
 {
@@ -33,7 +34,7 @@ class User extends Authenticatable
      *
      * @var array
      */
- 
+
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
@@ -47,7 +48,7 @@ class User extends Authenticatable
     }
     public function following()
     {
-        return $this->belongsToMany(Profile::class);  
+        return $this->belongsToMany(Profile::class);
     }
     public function isFollow($user_id)
     {
@@ -55,16 +56,25 @@ class User extends Authenticatable
     }
     public function like()
     {
-           return $this->belongsToMany(Post::class);  
+           return $this->belongsToMany(Post::class);
     }
     public function checkLiked($id)
     {
-        
+
         return auth()->user()->like->contains($id);
     }
-      public function message()
+    public function message()
     {
         return $this->hasMany(Message::Class);
     }
-    
+    public function countMessageUnread($fromUser, $toUser)
+    {
+       $count =  Message::where([
+            ['from', $fromUser],
+            ['to', $toUser],
+            ['is_read', Message::UN_READ]
+        ])->count();
+       return $count > 0 ? $count : null;
+    }
+
 }

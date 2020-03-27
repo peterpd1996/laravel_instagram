@@ -26,6 +26,9 @@ class MessengerController extends Controller
     }
     public function loadMessage(Request $request)
     {
+        if($request->unread !== null){
+            Message::updateMessageUnread($request->toUser, auth()->user()->id);
+        }
     	$toUser = $request->toUser;
         $userText = User::find($toUser);
     	$messages = Message::getMesssage(auth()->user()->id,$toUser);
@@ -45,4 +48,6 @@ class MessengerController extends Controller
         ]);
         event(new NewMessage($fromUser,$toUser,$message));
     }
+
+
 }

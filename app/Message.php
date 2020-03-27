@@ -15,6 +15,15 @@ class Message extends Model
     }
     public static function getMesssage($fromUser,$toUser){
         return Message::where([['from','=',$fromUser],['to','=', $toUser]])
-    						->orWhere([['to','=',$fromUser],['from','=', $toUser]])->get();
+            ->orWhere([['to','=',$fromUser],['from','=', $toUser]])->get();
+    }
+    public static function updateMessageUnread($fromUser,$toUser)
+    {
+        Message::where([
+            ['from','=',$fromUser],
+            ['to','=', $toUser],
+            ['is_read','=',Message::UN_READ]
+        ])->update(['is_read'=>Message::READ]);
+
     }
 }

@@ -14,14 +14,13 @@ class PostController extends Controller
     use Images;
     public function index()
     {
-
         // lấy những user mà user đăng nhập hiện tại đang following
         $users_id = auth()->user()->following()->pluck('profiles.user_id')->toArray();
         array_push($users_id,auth()->user()->id);
-     
+
         // pluck là phương thức mình lấy ra một cột nào đó
         //vd $name = DB::table('users')->where('name', 'John')->pluck('name'); chỉ lấy ra cột name
-        // select profiles.user_id 
+        // select profiles.user_id
         // from profiles inner join profile_user on profiles.id = profile_user.profile_id
         // where profile_user.user_id = 1    auth()->user()->id
         $posts = Post::WhereIn('user_id',$users_id)->latest()->get();
@@ -49,16 +48,16 @@ class PostController extends Controller
         [
             'image.max' => 'The image or video may not be greater than 15 MB.'
         ]);
-        $image = $this->uploadImage(request()->file('image'));       
+        $image = $this->uploadImage(request()->file('image'));
         $post = new Post;
         $post->user_id = auth()->user()->id;
         $post->caption = $data['caption'] ?? '.';
         $post->image = $image;
         $post->save();
-        return redirect("/");   
+        return redirect("/");
     }
-    public function show(Post $post) 
-    {  
+    public function show(Post $post)
+    {
         return view('posts.show',compact('post'));
     }
     public function update(Request $request)

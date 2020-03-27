@@ -128,7 +128,8 @@
                                                 </div>
                                                 <div>
                                                     <div class="last-chat-time block">2 min</div>
-                                                    <div class="badge badge-success badge-pill">3</div>
+                                                    <div
+                                                        class="unread badge badge-success badge-pill ">{{ $userText->countMessageUnread($userText->id,auth()->user()->id) }}</div>
                                                 </div>
                                             </div>
                                         </a>
@@ -148,7 +149,7 @@
                                                 </div>
                                                 <div>
                                                     <div class="last-chat-time block">2 min</div>
-                                                    <div class="badge badge-success badge-pill">3</div>
+                                                    <div class="unread badge badge-success badge-pill">{{ $user->countMessageUnread($user->id,auth()->user()->id) }}</div>
                                                 </div>
                                             </div>
                                         </a>
@@ -243,13 +244,13 @@
         });
         $('#input-message').click(function () {
             scrollToBottom();
-        })
+        });
 
-        function loadMessageFromUser(id) {
+        function loadMessageFromUser(id,unReadFromUser) {
             return $.ajax({
                 url: '/load-message',
                 method: 'post',
-                data: {toUser: id}
+                data: {toUser: id, unread:unReadFromUser}
             });
         }
 
@@ -283,22 +284,31 @@
             sentMessage();
         });
         $('.media').click(function () {
+            let unReadMessage = $(this).find('.unread');
             $('.media').removeClass('active');
             $(this).addClass('active');
             toUser = $(this).attr('data-user');
-            loadMessageFromUser(toUser)
+            let unReadFromUser = unReadMessage.text();
+            if(unReadFromUser !== null){
+                unReadMessage.text(null);
+            }
+            loadMessageFromUser(toUser,unReadFromUser)
                 .done(response => {
                     $('#chat-right').html(response);
                     scrollToBottom();
                 });
-
         });
         $(document).on('keyup', '#input_message', function (e) {
             if (e.keyCode == 13) {
                 sentMessage();
             }
+        });
+        $(".chat-scroll").on('scroll', function () {
+            if ($(this).scrollTop() === 0) {
+                alert("ok");
+            }
+        });
 
-        })
     })
 </script>
 </html>
