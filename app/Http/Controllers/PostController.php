@@ -12,10 +12,18 @@ use Carbon\Carbon;
 class PostController extends Controller
 {
     use Images;
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         // lấy những user mà user đăng nhập hiện tại đang following
         $users_id = auth()->user()->following()->pluck('profiles.user_id')->toArray();
+        if($users_id == null)
+        {
+            return redirect()->route('follow');
+        }
         array_push($users_id,auth()->user()->id);
 
         // pluck là phương thức mình lấy ra một cột nào đó

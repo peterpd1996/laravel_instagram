@@ -86,7 +86,7 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus {
     -webkit-box-shadow: 0 0 0px 1000px white inset !important;
 }
-.chat-page,.container-fluid,.row,.col-xl-12,.chat-window{
+.chat-page,.container-fluid,.container-fluid >.row,.col-xl-12,.chat-window{
 	height:100%;
 }
 .content{
@@ -100,6 +100,10 @@ input:-webkit-autofill:focus {
 .chat-scroll-left{
 	max-height: calc(100vh - 255px);
     overflow-y: auto;
+}
+.bold-unread{
+	font-weight: bold;
+	color: black;
 }
 .d-look{
 	font-size: 51px;

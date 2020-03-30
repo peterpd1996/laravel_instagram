@@ -26,4 +26,5 @@ class Message extends Model
         ])->update(['is_read'=>Message::READ]);
 
     }
+
 }

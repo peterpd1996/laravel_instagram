@@ -76,5 +76,16 @@ class User extends Authenticatable
         ])->count();
        return $count > 0 ? $count : null;
     }
+    public static function getLastMessageWithUser($fromUser, $toUser)
+    {
+       $lastMessage =  Message::where([
+        ['from','=',$fromUser],
+        ['to','=', $toUser]])
+        ->orWhere([
+            ['to','=',$fromUser],
+            ['from','=', $toUser]
+        ])->latest()->limit(1)->get(); 
+       return $lastMessage[0]->message ?? 'Let say hi with your friend !!';
+    }
 
 }

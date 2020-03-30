@@ -35,8 +35,7 @@
             @if (Auth::check())
                 <div class="search d-flex justify-content-center">
                     <div class="contais">
-                        <input type="text" id="searchText" class="border_" placeholder="&#xF002; Search" size="23"
-                               style="font-family:Arial, FontAwesome;text-align: center;">
+                        <input type="text" id="searchText" class="border_" placeholder=" Search" size="23" style="font-family:Arial, FontAwesome !important;text-align: center;padding: 3px 3px 2px 3px;border-radius: 20px;">
                         <ul class="result " id="resultSearch" style="text-align: left">
                         </ul>
                     </div>
@@ -124,10 +123,10 @@
                                             <div class="media-body">
                                                 <div>
                                                     <div class="user-name">{{ $userText->username }}</div>
-                                                    <div class="user-last-chat">Hihi anh khỏe không ạ?</div>
+                                                    <div class="user-last-chat">{{ $userText->getLastMessageWithUser(auth()->user()->id,$userText->id) }}</div>
                                                 </div>
                                                 <div>
-                                                    <div class="last-chat-time block">2 min</div>
+                                                    {{-- <div class="last-chat-time block">2 min</div> --}}
                                                     <div
                                                         class="unread badge badge-success badge-pill ">{{ $userText->countMessageUnread($userText->id,auth()->user()->id) }}</div>
                                                 </div>
@@ -145,10 +144,10 @@
                                             <div class="media-body">
                                                 <div>
                                                     <div class="user-name">{{ $user->username }}</div>
-                                                    <div class="user-last-chat">Hihi anh khỏe không ạ?</div>
+                                                    <div class="user-last-chat">{{ $user->getLastMessageWithUser(auth()->user()->id,$user->id) }}</div>
                                                 </div>
                                                 <div>
-                                                    <div class="last-chat-time block">2 min</div>
+                                                    {{-- <div class="last-chat-time block">2 min</div> --}}
                                                     <div class="unread badge badge-success badge-pill">{{ $user->countMessageUnread($user->id,auth()->user()->id) }}</div>
                                                 </div>
                                             </div>
@@ -287,6 +286,7 @@
             let unReadMessage = $(this).find('.unread');
             $('.media').removeClass('active');
             $(this).addClass('active');
+            $(this).find('.bold-unread').removeClass('bold-unread');
             toUser = $(this).attr('data-user');
             let unReadFromUser = unReadMessage.text();
             if(unReadFromUser !== null){
