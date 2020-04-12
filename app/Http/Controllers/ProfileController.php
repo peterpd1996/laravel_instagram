@@ -6,10 +6,7 @@ use Intervention\Image\Facades\Image;
 use App\User;
 class ProfileController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+
     public function index($user)
     {
        $user  =  User::findOrFail($user);

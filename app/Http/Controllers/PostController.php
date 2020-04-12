@@ -12,10 +12,6 @@ use Carbon\Carbon;
 class PostController extends Controller
 {
     use Images;
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     public function index()
     {
         // lấy những user mà user đăng nhập hiện tại đang following
