@@ -11139,6 +11139,10 @@ body input[type=text]:focus {
   color: red !important;
 }
 
+.saved {
+    color: #312f2feb !important;
+}
+
 .border-img {
   border-bottom: 1px solid #e6e6e6;
   border-top: 1px solid #e6e6e6;

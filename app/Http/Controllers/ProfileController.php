@@ -11,7 +11,14 @@ class ProfileController extends Controller
     {
        $user  =  User::findOrFail($user);
        $follow = (auth()->user()) ? auth()->user()->following->contains($user->id) : false;
-       return view('profiles.index',compact('user','follow'));
+       $saved=auth()->user()->favorite->toArray();
+        $data=[
+            'user'=>$user,
+            'follow'=>$follow,
+            'saved'=>$saved,
+
+        ];
+       return view('profiles.index',$data);
     }
     public function edit(User $user)
     {
@@ -47,7 +54,7 @@ class ProfileController extends Controller
          associative arrays(mảng kết hợp) thì nó sẽ xem chỉ số nếu trùng nhau thì nó sẽ lấy cái mản
          g đằng sau
         */
-        // user không chọn ảnh 
+        // user không chọn ảnh
         if($image=='')
         {
             auth()->user()->profile->update($data);
@@ -58,7 +65,7 @@ class ProfileController extends Controller
                 $data,['profileImage'=>$image]
             ));
         }
-       
+
         return redirect("/profile/{$user->id}");
     }
 

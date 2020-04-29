@@ -18,7 +18,7 @@
             <div class="name d-flex p-3 align-items-center border_b">
                 <div>
                     <img src="/profiles/{{$post->user->profile->profileImage()}}" width="40px" height="40px" alt=""
-                        class="rounded-circle mr-2 ">
+                        class="rounded-circle mr-2 img-thumbnail ">
                 </div>
                 <div class="font-weight-bold">
                     <a href="/profile/{{$post->user->id}}" class="text-dark text-decoration-none">
@@ -26,7 +26,7 @@
                     </a>
                 </div>
             </div>
-            <div class="cmt" style="height: 500px;overflow:auto"> 
+            <div class="cmt" style="height: 500px;overflow:auto">
                 <p class="p-3 m-0">
                     <span class="font-weight-bold">
                         <a class="text-dark text-decoration-none" href="/profile/{{$post->user->id}}">
@@ -42,12 +42,12 @@
                         $comments = $post->comment;
                         @endphp
                         @foreach($comments as $comment)
-                        <li>   
+                        <li>
                             <b>
                                 <a href="/profile/{{$comment->user->id}}"
                                     class="text-dark">{{$comment->user->username}}
                                 </a>
-                            </b> 
+                            </b>
                             <span>{{$comment->comment}}</span>
                             <div class="text-color">{{ getTimeDistance($comment->created_at) }}</div>
                         </li>
@@ -92,4 +92,3 @@
         </div>
     </div>
     @endsection
-   

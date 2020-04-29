@@ -18,6 +18,7 @@ viceProvider within a group which
 Auth::routes();
 
 Route::get('/','PostController@index');
+
 Route::get('/p/create','PostController@create');
 Route::post('/p','PostController@store');
 Route::get('/p/{post}','PostController@show');
@@ -33,7 +34,7 @@ Route::post('/fetch','CommentController@fetch');
 Route::post('/notification','NotificationController@show');
 //search
 Route::post('/search','SearchController@searchUser');
-// follow 
+// follow
 Route::get('/follow','FollowController@index')->name('follow');
 Route::post('follow/{user}','FollowController@store');
 //like
@@ -48,6 +49,18 @@ Route::get('/messages', 'MessengerController@index')->name('messages.show');
 Route::post('/load-message', 'MessengerController@loadMessage')->name('messages.load');
 Route::post('/send-message', 'MessengerController@storeMessage')->name('messages.store');
 
+// favorite post
+Route::post('/favorite', 'PostFavouriteController@store')->name('favorite.store');
 
-    //
+//admin
+Route::group(['prefix'=>"admin"],function (){
+    Route::get('/',function (){
+        return view('admin.dashboard');
+    });
+    Route::get('/list-post','Admin\PostAdminController@index')->name('list-post');
+    Route::delete('/delete/{id}','Admin\PostAdminController@destroy');
+
+    Route::get('/list-account','Admin\AccountAdminController@index')->name('list-account');
+});
+
 
