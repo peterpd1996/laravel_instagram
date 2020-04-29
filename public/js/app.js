@@ -59294,13 +59294,31 @@ channelMessage.listen('.newmessage', function (data) {
   var date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear();
   var time = today.getHours() + ":" + today.getMinutes();
   var current = time + ' ' + date;
-  var id = $('#mes').attr('data-message');
+  var id = $('#mes').attr('data-message'); // id cua minh 
+
   var message = '';
 
   if (id == data.fromUser) {
     message = "<li class = \"media sent\" >"; //23:28: 22-03-2020
   } else if (id == data.toUser) {
-    message = "<li class = \"media received\">";
+    // minh la nguoi nhan 
+    var fromUser = $('.active').attr('data-user'); // nguoi mk dang chat 
+
+    console.log('from user active' + fromUser);
+    console.log('from user lay ' + data.fromUser);
+
+    if (fromUser != data.fromUser) {
+      // mình đang không nhắn tin với họ
+      var user = $(".chat-scroll-left").find("[data-user='" + data.fromUser + "']");
+      var unread = user.find('.unread').html();
+      var pending = parseInt($('#' + data.from).find('.pending').html());
+      var pending = parseInt(unread) ? parseInt(unread) + 1 : '1';
+      user.find('.unread').text(pending);
+      user.find('.user-last-chat').html("<span class='bold-unread'>" + data.message + '</span>');
+      return;
+    } else {
+      message = "<li class = \"media received\">";
+    }
   }
 
   var content = "<div class = \"media-body\">\n                            <div class=\"msg-box\">\n                                <div>\n                                        <p>".concat(data.message, "</p>\n                                        <ul class=\"chat-msg-info\">\n                                            <li>\n                                               <div class=\"chat-time\">\n                                                    <span>").concat(current, "</span>\n                                               </div>\n                                            </li>\n                                        </ul>\n                                </div>\n                            </div>\n                     </div>\n                 </li>");

@@ -7,7 +7,7 @@ use App\Post;
 
 class LikeController extends Controller
 {
-    //
+    
     public function store(Request $request)
     {
         $post_id = $request->input('post_id');
