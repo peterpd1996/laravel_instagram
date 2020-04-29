@@ -111,10 +111,10 @@ $(document).ready(function(){
         if(extension !='mp4'){
             preview_image(this,"#oldImage");
             $('#oldImage').removeClass('none');
-            $('#edit-video').addClass('none'); 
+            $('#edit-video').addClass('none');
         }else{
              preview_video(this,"#edit-video");
-             $('#edit-video').removeClass('none'); 
+             $('#edit-video').removeClass('none');
              $('#oldImage').addClass('none');
         }
     })
@@ -132,7 +132,7 @@ $(document).ready(function(){
                     $('#edit-post-id').val(data.id);
                     $('#oldCaption').val(data.caption);
                     let filename = data.image;
-                    let extension =  filename.split('.').pop(); 
+                    let extension =  filename.split('.').pop();
                     if(extension != 'mp4'){
                         $('#oldImage').attr("src", "/uploads/"+filename);
                         $('#oldImage').removeClass('none');
@@ -170,7 +170,7 @@ $(document).ready(function(){
                         $('#post-'+data.id).html(video);
                         $('#caption-post-'+data.id).html(data.caption);
                     }
-                    
+
                 } else{
                      $('#caption-post-'+data.id).html(data.caption);
                 }
@@ -181,7 +181,7 @@ $(document).ready(function(){
     var post;
     var post_id;
     let modalConfirm = function(callback){
-      
+
       $(".delete-post").on("click", function(){
         post = $(this).parents()[6];
         post_id = $(this).attr('data-post-delete');
@@ -193,7 +193,7 @@ $(document).ready(function(){
         callback(true);
         $("#delete-modal").modal('hide');
       });
-      
+
       $("#modal-btn-no").on("click", function(){
         callback(false);
         $("#delete-modal").modal('hide');
@@ -209,4 +209,22 @@ $(document).ready(function(){
             });
       }
     });
+    $(document).on('click', '.favorite', function () {
+        let post_id = $(this).data('favorite-post');
+        $.ajax({
+            url: "/favorite",
+            method: "POST",
+            data: {
+                post_id: post_id,
+            },
+            success: function (response) {
+                if(response.data.attached.length > 0) {
+                    $('#favorite_' + post_id).addClass("saved");
+                } else {
+                    $('#favorite_' + post_id).removeClass("saved");
+                }
+            }
+        })
+    });
+
 });

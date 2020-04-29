@@ -77,11 +77,11 @@
                             <ul style="list-style: none;text-align: left;font-size: 15px;">
                                 <li>
                                     <span class="icon" style="padding: 0px 5px;"><i class="fa fa-pencil" aria-hidden="true"></i></span>
-                                    <span class="edit-post" data-toggle="modal" data-target="#editPost" data-postId="{{$post->id}}">Edit post</button>
+                                    <span class="edit-post" data-toggle="modal" data-target="#editPost" data-postId="{{$post->id}}">Edit post</span>
                                 </li>
                                 <li>
                                     <span class="icon" style="padding: 0px 5px;"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
-                                    <span class="delete-post" data-post-delete="{{$post->id}}">Delete post</spann>
+                                    <span class="delete-post" data-post-delete="{{$post->id}}">Delete post</span>
                                 </li>
                             </ul>
                         </div>
@@ -106,6 +106,9 @@
                         class="fa fa-heart like_heart @if(auth()->user()->like->contains($post->id)) liked @endif"
                         aria-hidden="true"></i>
                     <a href=""><i class="fa fa-comment-o" aria-hidden="true"></i></a>
+                  {{--start favorite--}}
+                    <span class="favorite fa-pull-right" data-favorite-post="{{$post->id}}" style="cursor: pointer"><i id="favorite_{{$post->id}}"  style="color:#949090cf" class="fa fa-bookmark @if(auth()->user()->favorite->contains($post->id)) saved @endif" aria-hidden="true"></i></span>
+                    {{--end favorite--}}
                 </div>
                 {{-- show like --}}
                 <b>
@@ -154,10 +157,9 @@
                 </div>
             </div>
         </div>
-
     </div>
     @endforeach
 </div>
 @endsection
-@section('script')
+@section('js')
 @endsection

@@ -38,23 +38,67 @@
             <div class="title">{{ $user->profile->title ?? ''  }}</div>
             <div class="description">{{ $user->profile->description ?? ''}}</div>
             <div><a href="{{$user->profile->url}}">{{ $user->profile->url ?? 'N/A' }}</a></div>
+            <div class="tab-pane">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"><i class="fa fa-table"></i>Posts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"><i class="fa fa-bookmark"></i>Saved</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab"><i class="fa fa-hashtag"></i>Hashtag</a>
+                    </li>
+                </ul><!-- Tab panes -->
+            </div>
         </div>
-    </div>
-    <div class="row pt-5">
-        @foreach($user->posts as $post)
 
-        <div class="col-4 mb-4">
-            <a href="/p/{{$post->id}}">
-                @if(pathinfo($post->image, PATHINFO_EXTENSION) != 'mp4')
-                <img src="/uploads/{{$post->image}}" class="img-fluid" id="image-post-{{$post->id}}">
-                @else
-                <video width="100%" height="350px" controls style="background: black">
-                  <source src="/videos/{{$post->image}}" type="video/mp4">
-                </video>
-                @endif
-            </a>
-        </div>
-        @endforeach
     </div>
+        <div class="tab-content">
+            <div class=" tab-pane active" id="tabs-1" role="tabpanel">
+                <div class="row">
+                    @foreach($user->posts as $post)
+                        <div class="col-4 mb-4" >
+                            <a href="/p/{{$post->id}}">
+                                @if(pathinfo($post->image, PATHINFO_EXTENSION) != 'mp4')
+                                    <img src="/uploads/{{$post->image}}" class="img-fluid img-thumbnail" id="image-post-{{$post->id}}">
+                                @else
+                                    <video width="100%" height="350px" controls style="background: black">
+                                        <source src="/videos/{{$post->image}}" type="video/mp4">
+                                    </video>
+                                @endif
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+            <div class="tab-pane" id="tabs-2" role="tabpanel">
+
+                <div class="row">
+                    <!--The best if statement of bananas I've ever written :))-->
+                    @if($saved==[])
+                        <p>Save photos and videos that you want to see again. No one is notified, and only you can see what you've saved.</p>
+                    @endif
+                        @foreach($saved as $save)
+                            <div class="col-4 mb-4" >
+                                <a href="/p/{{$save['id']}}">
+                                    @if(pathinfo($save['image'], PATHINFO_EXTENSION) != 'mp4')
+                                        <img src="/uploads/{{$save['image']}}" class="img-fluid img-thumbnail" id="image-post-{{$save['id']}}">
+                                    @else
+                                        <video width="100%" height="350px" controls style="background: black">
+                                            <source src="/videos/{{$save['image']}}" type="video/mp4">
+                                        </video>
+                                    @endif
+                                </a>
+                            </div>
+                        @endforeach
+
+
+                </div>
+            </div>
+            <div class="tab-pane" id="tabs-3" role="tabpanel">
+                <p>Hashtag .....</p>
+            </div>
+        </div>
 </div>
 @endsection
