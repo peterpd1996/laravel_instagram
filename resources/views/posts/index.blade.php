@@ -107,7 +107,7 @@
                         aria-hidden="true"></i>
                     <a href=""><i class="fa fa-comment-o" aria-hidden="true"></i></a>
                   {{--start favorite--}}
-                    <span class="favorite fa-pull-right" data-favorite-post="{{$post->id}}" style="cursor: pointer"><i id="favorite_{{$post->id}}"  style="color:#949090cf" class="fa fa-bookmark @if(auth()->user()->favorite->contains($post->id)) saved @endif" aria-hidden="true"></i></span>
+                    <span class="favorite fa-pull-right" data-favorite-post="{{$post->id}}" style="cursor: pointer;padding-right:6px"><i id="favorite_{{$post->id}}"  style="color:#949090cf" class="fa fa-bookmark @if(auth()->user()->favorite->contains($post->id)) saved @endif" aria-hidden="true"></i></span>
                     {{--end favorite--}}
                 </div>
                 {{-- show like --}}

@@ -134,7 +134,7 @@
                                         </a>
                                     @endif
                                     @foreach($users as $user)
-                                        <a href="javascript:void(0);" class="media" data-user={{$user->id}}>
+                                        <a href="javascript:void(0);" class="media user" data-user={{$user->id}}>
                                             <div class="media-img-wrap">
                                                 <div class="avatar avatar-online">
                                                     <img src="/profiles/{{$user->profile->profileImage()}}"
@@ -282,9 +282,9 @@
         $(document).on('click', '#sent_message', function () {
             sentMessage();
         });
-        $('.media').click(function () {
+        $('.user').click(function () {
             let unReadMessage = $(this).find('.unread');
-            $('.media').removeClass('active');
+            $('.user').removeClass('active');
             $(this).addClass('active');
             $(this).find('.bold-unread').removeClass('bold-unread');
             toUser = $(this).attr('data-user');

@@ -4482,9 +4482,6 @@ input[type=button].btn-block {
   cursor: default;
 }
 
-.nav-tabs {
-  border-bottom: 1px solid #dee2e6;
-}
 
 .nav-tabs .nav-item {
   margin-bottom: -1px;
@@ -4511,7 +4508,7 @@ input[type=button].btn-block {
 .nav-tabs .nav-item.show .nav-link {
   color: #495057;
   background-color: #f8fafc;
-  border-color: #dee2e6 #dee2e6 #f8fafc;
+  border-top: 1px solid #808080ed;
 }
 
 .nav-tabs .dropdown-menu {

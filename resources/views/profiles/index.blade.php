@@ -1,12 +1,12 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-    <div class="row ml-4">
+    <div class="row border_b">
         <div class="col-md-3 p-5">
             <img style="width: 180px;height: 180px" class="rounded-circle"
                 src="/profiles/{{$user->profile->profileImage() ?? 'st.jpg'}}" alt="">
         </div>
-        <div class="col-md-9  p-5">
+        <div class="col-md-9 p-5">
             <div class=" d-flex justify-content-between">
                 <div class="pr-3 d-flex align-items-center" style="font-size: 30px;font-weight: 100">
 
@@ -38,23 +38,27 @@
             <div class="title">{{ $user->profile->title ?? ''  }}</div>
             <div class="description">{{ $user->profile->description ?? ''}}</div>
             <div><a href="{{$user->profile->url}}">{{ $user->profile->url ?? 'N/A' }}</a></div>
-            <div class="tab-pane">
+        </div>
+       
+
+    </div>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4 tab-pane">
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"><i class="fa fa-table"></i>Posts</a>
+                        <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"><i class="fa fa-table pr-2"></i>POSTS</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"><i class="fa fa-bookmark"></i>Saved</a>
+                        <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"><i class="fa fa-bookmark pr-2"></i>SAVED</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab"><i class="fa fa-hashtag"></i>Hashtag</a>
+                        <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab"><i class="fa fa-hashtag pr-2"></i>HASHTAG</a>
                     </li>
                 </ul><!-- Tab panes -->
             </div>
-        </div>
-
     </div>
-        <div class="tab-content">
+       <div class="tab-content">
             <div class=" tab-pane active" id="tabs-1" role="tabpanel">
                 <div class="row">
                     @foreach($user->posts as $post)
@@ -100,5 +104,7 @@
                 <p>Hashtag .....</p>
             </div>
         </div>
+    </div>
+     
 </div>
 @endsection

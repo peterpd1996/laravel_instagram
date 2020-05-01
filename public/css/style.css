@@ -1033,9 +1033,6 @@ button.bg-danger:hover {
 	6. Nav Tabs
 -----------------------*/
 
-.nav-tabs {
-	border-bottom: 1px solid #e6e6e6;
-}
 .card-header-tabs {
     border-bottom: 0;
 }
@@ -1066,8 +1063,9 @@ button.bg-danger:hover {
 	border-radius: 0;
 }
 .nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover {
-    background-color: #eee;
+    /*background-color: #eee;*/
     border-color: transparent;
+    border-top: 1px solid #808080ed;
 	color: #333;
 }
 .nav-tabs.nav-justified > li > a {

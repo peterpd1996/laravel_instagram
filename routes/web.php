@@ -17,8 +17,10 @@ viceProvider within a group which
 // posts
 Auth::routes();
 
+Route::group([
+    'middleware' => ['auth'],
+], function () {
 Route::get('/','PostController@index');
-
 Route::get('/p/create','PostController@create');
 Route::post('/p','PostController@store');
 Route::get('/p/{post}','PostController@show');
@@ -53,14 +55,15 @@ Route::post('/send-message', 'MessengerController@storeMessage')->name('messages
 Route::post('/favorite', 'PostFavouriteController@store')->name('favorite.store');
 
 //admin
-Route::group(['prefix'=>"admin"],function (){
-    Route::get('/',function (){
-        return view('admin.dashboard');
-    });
-    Route::get('/list-post','Admin\PostAdminController@index')->name('list-post');
-    Route::delete('/delete/{id}','Admin\PostAdminController@destroy');
+	Route::group(['prefix'=>"admin"],function (){
+	    Route::get('/',function (){
+	        return view('admin.dashboard');
+	    });
+	    Route::get('/list-post','Admin\PostAdminController@index')->name('list-post');
+	    Route::delete('/delete/{id}','Admin\PostAdminController@destroy');
 
-    Route::get('/list-account','Admin\AccountAdminController@index')->name('list-account');
+	    Route::get('/list-account','Admin\AccountAdminController@index')->name('list-account');
+	});
 });
 
 
