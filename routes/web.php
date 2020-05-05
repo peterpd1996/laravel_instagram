@@ -20,6 +20,10 @@ Auth::routes();
 Route::group([
     'middleware' => ['auth'],
 ], function () {
+    //change password
+    Route::get('/changePassword','HomeController@showChangePasswordForm')->name('changePassword');
+    Route::post('/changePassword','HomeController@changePassword');
+
 Route::get('/','PostController@index');
 Route::get('/p/create','PostController@create');
 Route::post('/p','PostController@store');

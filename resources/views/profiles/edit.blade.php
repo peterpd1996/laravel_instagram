@@ -13,7 +13,7 @@
                         @method('PATCH')
                         <div class="form-group row">
                         <div class="col-md-4 text-md-right"><img class="rounded-circle" src="/profiles/{{$user->profile->profileImage() ?? ''}}" alt=""  width="50px" height="50px"></div>
-                         
+
                         <div class="col-md-6 pt-1" style="font-size: 20px">{{$user->username}}</div>
                         </div>
                         <div class="form-group row">
@@ -45,10 +45,10 @@
                         </div>
                         <div class="form-group row">
                                 <label for="url" class="col-md-4 col-form-label text-md-right">Url</label>
-    
+
                                 <div class="col-md-6">
                                 <input id="url" type="text" class="form-control @error('url') is-invalid @enderror" name="url" value="{{ $user->profile->url ?? ''}}"  >
-    
+
                                     @error('url')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -58,10 +58,10 @@
                             </div>
                             <div class="form-group row">
                                     <label for="profileImage" class="col-md-4 col-form-label text-md-right">Profile Image</label>
-        
+
                                     <div class="col-md-6">
                                     <input id="profileImage" type="file" class="form-control @error('profileImage') is-invalid @enderror" name="profileImage"  >
-        
+
                                         @error('profileImage')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -69,11 +69,6 @@
                                         @enderror
                                     </div>
                                 </div>
-                      
-
-            
-
-                        
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">

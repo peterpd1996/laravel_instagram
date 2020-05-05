@@ -67,6 +67,7 @@
                         <i style="cursor: pointer; " class="fa fa-caret-down" aria-hidden="true"
                             style="position: absolute"></i>
                         <div class="logout none">
+                            <a href="{{route('changePassword')}}">Đổi mật khẩu</a>
                             <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();" class="text-dark">
                                 Logout
