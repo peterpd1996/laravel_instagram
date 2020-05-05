@@ -5,9 +5,13 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="panel-heading">Change password</div>
+                    <div class="card-header">Change password</div>
 
                     <div class="card-body">
+                        <div class="row">
+                             <div class="col-md-4 text-md-right"><img class="rounded-circle" src="/profiles/{{auth()->user()->profile->profileImage() ?? ''}}" alt=""  width="50px" height="50px"></div>
+                        <div class="col-md-6 pt-1" style="font-size: 20px">{{auth()->user()->username}}</div>
+                        </div>
                         @if (session('error'))
                             <div class="alert alert-danger">
                                 {{ session('error') }}
@@ -22,7 +26,7 @@
                             <form class="form-horizontal" method="POST" action="{{ route('changePassword') }}">
                                 {{ csrf_field() }}
 
-                                <div class="form-group row{{ $errors->has('current-password') ? ' has-error' : '' }}">
+                                <div class="pt-3 form-group row{{ $errors->has('current-password') ? ' has-error' : '' }}">
                                     <label for="new-password" class="col-md-4 text-md-right">Current Password</label>
 
                                     <div class="col-md-6">
@@ -59,7 +63,7 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <div class="col-md-6 col-md-offset-4">
+                                    <div class="col-md-6 offset-md-4">
                                         <button type="submit" class="btn btn-primary">
                                             Change Password
                                         </button>

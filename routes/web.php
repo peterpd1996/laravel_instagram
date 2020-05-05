@@ -18,11 +18,13 @@ viceProvider within a group which
 Auth::routes();
 
 Route::group([
-    'middleware' => ['auth'],
+    'middleware' => ['auth','locate'],
 ], function () {
+
+Route::post('/laguage','LanguageController@changeLanguage')->name('changeLang');	
     //change password
-    Route::get('/changePassword','HomeController@showChangePasswordForm')->name('changePassword');
-    Route::post('/changePassword','HomeController@changePassword');
+Route::get('/changePassword','HomeController@showChangePasswordForm')->name('changePassword');
+Route::post('/changePassword','HomeController@changePassword');
 
 Route::get('/','PostController@index');
 Route::get('/p/create','PostController@create');

@@ -58,7 +58,7 @@
 													<input type="file">
 												</div>
 											</div>
-											<input type="text" class="input-msg-send form-control" placeholder="Type something" 
+											<input type="text" class="input-msg-send form-control" placeholder="{{ trans('message.type') }}" 
 											  id="input_message">
 											<div class="input-group-append" >
 												<button type="button" class="btn msg-send-btn" id="sent_message"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>

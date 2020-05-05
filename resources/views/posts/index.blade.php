@@ -6,12 +6,12 @@
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="myModalLabel">Are you sure ?</h4>
+        <h4 class="modal-title" id="myModalLabel">{{ trans('home.post.delete_message') }}</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" id="modal-btn-yes">Yes</button>
-        <button type="button" class="btn btn-default" id="modal-btn-no">No</button>
+        <button type="button" class="btn btn-primary" id="modal-btn-yes">{{ trans('home.post.delete_confirm') }}</button>
+        <button type="button" class="btn btn-default" id="modal-btn-no">{{ trans('home.post.close') }}</button>
       </div>
     </div>
   </div>
@@ -30,13 +30,13 @@
                         <textarea class="form-control w-100" rows="3" id="caption"
                             class="form-control @error('caption') is-invalid @enderror" name="caption"
                             value="{{ old('caption') }}" autocomplete="caption" autofocus
-                            placeholder="What's on your mind ???">
+                            placeholder="{{trans('home.form_post.title')}}">
                         </textarea>
                     </div>
                 </div>
                 <div class="form-group d-flex ">
                     <div style="position: relative" class="ml-5">
-                        <div id="iconUpload" class="iconUpload"> <i class="fa fa-picture-o" aria-hidden="true"></i> Photo/Video</div>
+                        <div id="iconUpload" class="iconUpload"> <i class="fa fa-picture-o" aria-hidden="true"></i>{{trans('home.form_post.photo_video')}}</div>
                         <input id="uploadNewPost"  type="file" name="image" id="image"
                             class="uploadNewPost @error('image') is-invalid @enderror" autocomplete="image" autofocus>
                         @error('image')
@@ -45,7 +45,7 @@
                         </span>
                         @enderror
                     </div>
-                    <button class=" btn btn-default ml-2">Post</button>
+                    <button class=" btn btn-default ml-2 post_">{{trans('home.form_post.post')}}</button>
                 </div>
                 <div class="col-md-8 ml-5">
                     <img id="img_output"  src="" alt="" width="100px" height="100px" class="none border_" style="margin-bottom: 9px;">
@@ -77,11 +77,11 @@
                             <ul style="list-style: none;text-align: left;font-size: 15px;">
                                 <li>
                                     <span class="icon" style="padding: 0px 5px;"><i class="fa fa-pencil" aria-hidden="true"></i></span>
-                                    <span class="edit-post" data-toggle="modal" data-target="#editPost" data-postId="{{$post->id}}">Edit post</span>
+                                    <span class="edit-post" data-toggle="modal" data-target="#editPost" data-postId="{{$post->id}}">{{ trans('home.post.edit') }}</span>
                                 </li>
                                 <li>
                                     <span class="icon" style="padding: 0px 5px;"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
-                                    <span class="delete-post" data-post-delete="{{$post->id}}">Delete post</span>
+                                    <span class="delete-post" data-post-delete="{{$post->id}}">{{ trans('home.post.delete') }}</span>
                                 </li>
                             </ul>
                         </div>
@@ -137,7 +137,7 @@
                 </span>
                 <div class="comment pl-2">
                     @if($post->comment->count() > 2 )
-                        <a href="/p/{{$post->id}}" class="view-all-comment text-color" style="font-size: 14px">View all {{ $post->comment->count() }} comments</a>
+                        <a href="/p/{{$post->id}}" class="view-all-comment text-color" style="font-size: 14px">{{trans('home.post.view_comment',['comment' => $post->comment->count()])}}</a>
                     @endif
                     <ul style="list-style: none">
                         @foreach($post->getTowLatestComment() as $comment)
@@ -151,9 +151,9 @@
                 <div class="time pl-2 text-color" style="font-size: 11.7px;text-transform: uppercase;">{{ getTimeDistance($post->created_at) }}</div>
                 <div class=" p-2 d-flex border_t" id="comment">
                     <input id="comment_{{$post->id}}" type="text" class="postCmt w-100 comment" style="border: none;"
-                        placeholder="Add a comment.." height="30px" data-id="{{$post->id}}">
+                        placeholder="{{trans('home.post.comment')}}" height="30px" data-id="{{$post->id}}">
                     <a style="color:#3897f0;font-weight: bold;cursor: pointer" data-post={{$post->id}} class='post_comment'
-                        id="post_{{$post->id}}">Post</a>
+                        id="post_{{$post->id}}">{{trans('home.post.post_comment')}}</a>
                 </div>
             </div>
         </div>

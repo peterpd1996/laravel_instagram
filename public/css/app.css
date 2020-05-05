@@ -585,6 +585,7 @@ pre code {
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
+  z-index: 10;
 }
 
 @media (min-width: 576px) {
@@ -11244,6 +11245,7 @@ a:hover {
   max-height: 300px;
   overflow-y: auto;
   position: absolute;
+  z-index: 10;
 }
 
 .padding {
@@ -11310,36 +11312,57 @@ a:hover {
 .actionLoginLogout {
   width: 40%;
 }
-
-.username > .logout {
-  position: absolute;
-  top: 24px;
-  padding: 7px;
-  border: 1px solid #e6e6e6;
-  background: #fff;
-  border-radius: 6px;
-  left: -44px;
+.select{
+    background: white;
+    border: none;
 }
 
+.username > .logout {
+    position: absolute;
+    top: 24px;
+    padding: 0px;
+    border: 1px solid #e6e6e6;
+    background: #fff;
+    border-radius: 6px;
+    left: -44px;
+    width: 143px;
+    max-height: 123px;
+    z-index: 10;
+}
+.username > .logout > ul > li {
+  border-bottom: 1px solid #e6e6e6;
+  padding: 8px;
+}
+.username > .logout > ul > li:hover{
+  background: #e6e6e6;
+}
 .uploadNewPost {
   position: absolute;
   top: 1px;
   left: 15px;
   opacity: 0;
   cursor: pointer;
-  padding: 1px;
+  padding: 19px;
   width: 107px;
-  height: 39px;
   font-size: 0px;
 }
 
 .iconUpload {
-  width: 144px;
+  max-width: 150px;
   padding: 10px;
   background: #9d9d9840;
   text-align: center;
   border-radius: 46px;
   cursor: pointer;
+}
+
+.post_{
+    max-width: 108px;
+    padding: 10px;
+    background: #9d9d9840;
+    text-align: center;
+    border-radius: 46px;
+    cursor: pointer;
 }
 
 .none {

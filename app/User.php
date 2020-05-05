@@ -87,7 +87,7 @@ class User extends Authenticatable
             ['to','=',$fromUser],
             ['from','=', $toUser]
         ])->latest()->limit(1)->get(); 
-       return $lastMessage[0]->message ?? 'Let say hi with your friend !!';
+       return $lastMessage[0]->message ?? trans('message.say_hi');
     }
 
 }

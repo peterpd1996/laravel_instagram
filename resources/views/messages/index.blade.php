@@ -35,7 +35,7 @@
             @if (Auth::check())
                 <div class="search d-flex justify-content-center">
                     <div class="contais">
-                        <input type="text" id="searchText" class="border_" placeholder=" Search" size="23" style="font-family:Arial, FontAwesome !important;text-align: center;padding: 3px 3px 2px 3px;border-radius: 20px;">
+                        <input type="text" id="searchText" class="border_" placeholder="{{trans('home.header.search')}}" size="23" style="font-family:Arial, FontAwesome !important;text-align: center;padding: 3px 3px 2px 3px;border-radius: 20px;">
                         <ul class="result " id="resultSearch" style="text-align: left">
                         </ul>
                     </div>
@@ -66,10 +66,25 @@
                         <i style="cursor: pointer; " class="fa fa-caret-down" aria-hidden="true"
                            style="position: absolute"></i>
                         <div class="logout none">
-                            <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                             <ul style="list-style: none;">
+                                <li>    
+                                    <form action="{{ route('changeLang') }}" class="form-lang" method="post">
+                                        <select name="locale" onchange='this.form.submit();' class="select">
+                                            <option
+                                                value="vi" {{ Lang::locale() === 'vi' ? 'selected' : '' }}>{{trans('home.header.lang_vi')}}</option>
+                                            <option
+                                                value="jp" {{ Lang::locale() === 'jp' ? 'selected' : '' }}>{{trans('home.header.lang_en')}}</option>
+                                        </select>
+                                        {{ csrf_field() }}
+                                    </form>
+                                </li>
+                                <li><a  class="text-dark" href="{{route('changePassword')}}">{{trans('home.header.change_pass')}}</a></li>
+                                <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();" class="text-dark">
-                                Logout
-                            </a>
+                                {{trans('home.header.log_out')}}
+                                    </a>
+                                </li>
+                            </ul>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
@@ -99,21 +114,21 @@
                             <div class="chat-header">
                                 <img src="/profiles/{{Auth::user()->profile->profileImage()}}" alt="" width="50px"
                                      height="50px" class="rounded-circle">
-                                <span id="mes" data-message="{{ Auth::user()->id}}" class="pl-2">Chat</span>
+                                <span id="mes" data-message="{{ Auth::user()->id}}" class="pl-2">{{ trans('message.chat') }}</span>
                             </div>
                             <form class="chat-search">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <i class="fa fa-search" aria-hidden="true"></i>
                                     </div>
-                                    <input type="text" class="form-control" placeholder="Tìm kiếm"
+                                    <input type="text" class="form-control" placeholder="{{trans('home.header.search')}}"
                                            style="background:rgba(210, 210, 210, 0.51) !important">
                                 </div>
                             </form>
                             <div class="chat-users-list">
                                 <div class="chat-scroll-left">
                                     @if($userText !== null)
-                                        <a href="javascript:void(0);" class="media active" data-user={{$userText->id}}>
+                                        <a href="javascript:void(0);" class="media user active" data-user={{$userText->id}}>
                                             <div class="media-img-wrap">
                                                 <div class="avatar avatar-online">
                                                     <img src="/profiles/{{$userText->profile->profileImage()}}"
@@ -305,7 +320,7 @@
         });
         $(".chat-scroll").on('scroll', function () {
             if ($(this).scrollTop() === 0) {
-                alert("ok");
+                // code here
             }
         });
 

@@ -12,27 +12,27 @@ function getTimeDistance($timePost){
   $year = $day * 365;
   switch($timeDistance){
         case ($timeDistance < $minute):
-          $result = ($timeDistance == 1 ) ? $timeDistance." second ago" : $timeDistance. " seconds ago";
+          $result = ($timeDistance == 1 ) ?  trans('home.post.second_created',['time' => $timeDistance ]) : trans('home.post.seconds_created',['time' => $timeDistance ]);
           break;
         case($timeDistance >= $minute && $timeDistance < $hour):
           $timeDistance = round($timeDistance/$minute);
-          $result = ($timeDistance == 1 ) ? $timeDistance. " minute ago" : $timeDistance. " minutes ago";
+          $result = ($timeDistance == 1 ) ? trans('home.post.minute_created',['time' => $timeDistance ]) : trans('home.post.minutes_created',['time' => $timeDistance ]);
           break;
         case($timeDistance >= $hour && $timeDistance < $day):
           $timeDistance = round($timeDistance/$hour);
-          $result = ($timeDistance == 1 ) ? $timeDistance. " hour ago" : $timeDistance. " hours ago";
+          $result = ($timeDistance == 1 ) ? trans('home.post.hour_created',['time' => $timeDistance ]) : trans('home.post.hours_created',['time' => $timeDistance ]);
           break;
         case($timeDistance >= $day && $timeDistance < $week):
           $timeDistance = round($timeDistance/$day);
-          $result = ($timeDistance == 1 ) ? $timeDistance. " day ago" : $timeDistance. " days ago";
+          $result = ($timeDistance == 1 ) ? trans('home.post.day_created',['time' => $timeDistance ]) : trans('home.post.days_created',['time' => $timeDistance ]);
           break;
         case($timeDistance >= $week && $timeDistance < $month):
           $timeDistance = round($timeDistance/$week);
-          $result = ($timeDistance == 1 ) ? $timeDistance. " week ago" : $timeDistance. " weeks ago";
+          $result = ($timeDistance == 1 ) ? trans('home.post.week_created',['time' => $timeDistance ]) : trans('home.post.weeks_created',['time' => $timeDistance ]);
           break;
         case($timeDistance >= $month && $timeDistance < $year):
           $timeDistance = round($timeDistance/$month);
-          $result = ($timeDistance == 1 ) ? $timeDistance. " month ago" : $timeDistance. " months ago";
+          $result = ($timeDistance == 1 ) ? trans('home.post.month_created',['time' => $timeDistance ]) : trans('home.post.months_created',['time' => $timeDistance ]);
           break;
         default:
           $result = date('H:i d-m-Y', time()); 

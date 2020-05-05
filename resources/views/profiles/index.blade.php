@@ -49,9 +49,11 @@
                     <li class="nav-item">
                         <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"><i class="fa fa-table pr-2"></i>POSTS</a>
                     </li>
+                    @can('view',$user->profile)
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"><i class="fa fa-bookmark pr-2"></i>SAVED</a>
                     </li>
+                    @endcan
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab"><i class="fa fa-hashtag pr-2"></i>HASHTAG</a>
                     </li>

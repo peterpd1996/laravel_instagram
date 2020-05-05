@@ -36,7 +36,7 @@
                 @if (Auth::check())
                 <div class="search d-flex justify-content-center">
                     <div class="contais">
-                        <input type="text" id="searchText" class="border_" placeholder=" Search" size="23" style="font-family:Arial, FontAwesome !important;text-align: center;padding: 3px 3px 2px 3px;border-radius: 20px;">
+                        <input type="text" id="searchText" class="border_" placeholder="{{trans('home.header.search')}}" size="23" style="font-family:Arial, FontAwesome !important;text-align: center;padding: 3px 3px 2px 3px;border-radius: 20px;">
                         <ul class="result " id="resultSearch" style="text-align: left">
                         </ul>
                     </div>
@@ -46,11 +46,11 @@
                     @auth
                     <div class="messenger pr-2">
                            <a href="{{route('messages.show') }}" class="text-dark">
-                            <i class="fa fa-comment-o" aria-hidden="true"></i>
+                            <i class="fa fa-comment-o" title = "{{trans('home.header.message') }}"  aria-hidden="true"></i>
                             </a>
                     </div>
                     <div class="mr-2" style="cursor: pointer;position: relative">
-                        <i class="fa fa-bell-o " aria-hidden="true" id="notify"></i>
+                        <i class="fa fa-bell-o " aria-hidden="true" title="{{trans('home.header.notification')}}" id="notify"></i>
                         <div id="count"></div>
                         {{-- // count notification --}}
                         {{-- notification --}}
@@ -60,18 +60,32 @@
                     </div>
                     <div class=" pr-2">
                         <a href="/profile/{{ Auth::user()->id ?? ''}}">
-                            <i class="fa fa-user-o text-dark" aria-hidden="true"></i>
+                            <i class="fa fa-user-o text-dark" title="{{trans('home.header.profile')}}" aria-hidden="true"></i>
                         </a>
                     </div>
                     <div class="username" style="position: relative">
                         <i style="cursor: pointer; " class="fa fa-caret-down" aria-hidden="true"
                             style="position: absolute"></i>
                         <div class="logout none">
-                            <a href="{{route('changePassword')}}">Đổi mật khẩu</a>
-                            <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                            <ul style="list-style: none;">
+                                <li>    
+                                    <form action="{{ route('changeLang') }}" class="form-lang" method="post">
+                                        <select name="locale" onchange='this.form.submit();' class="select">
+                                            <option
+                                                value="vi" {{ Lang::locale() === 'vi' ? 'selected' : '' }}>{{trans('home.header.lang_vi')}}</option>
+                                            <option
+                                                value="jp" {{ Lang::locale() === 'jp' ? 'selected' : '' }}>{{trans('home.header.lang_en')}}</option>
+                                        </select>
+                                        {{ csrf_field() }}
+                                    </form>
+                                </li>
+                                <li><a  class="text-dark" href="{{route('changePassword')}}">{{trans('home.header.change_pass')}}</a></li>
+                                <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();" class="text-dark">
-                                Logout
-                            </a>
+                                {{trans('home.header.log_out')}}
+                                    </a>
+                                </li>
+                            </ul>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
