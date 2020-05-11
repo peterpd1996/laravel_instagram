@@ -22,6 +22,8 @@
 	    	'minutes_created' => ':time phút trước',
 	    	'hour_created' => ':time giờ trước',
 	    	'hours_created' => ':time giờ trước',
+	    	'day_created' => ':time ngày trước',
+	    	'days_created' => ':time ngày trước',
 	    	'week_created' => ':time tuần trước',
 	    	'weeks_created' => ':time tuần trước',
 	    	'month_created' => ':time tháng trước',

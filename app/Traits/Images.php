@@ -14,7 +14,8 @@ trait Images
             if($extension != 'mp4')
             {
                 $filename = time() . rand(0, 999999) . $filename;
-                $imageResize = Image::make($file)->resize(600,600)->save(public_path('/uploads/' . $filename));
+                $file->move(public_path('/uploads/'), $filename);
+                //$imageResize = Image::make($file)->resize(600,600)->save(public_path('/uploads/' . $filename));
             }
             else
             {

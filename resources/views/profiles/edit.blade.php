@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Edit profile</div>
+                <div class="card-header">{{trans('profile.edit.header')}}</div>
 
                 <div class="card-body">
                     <form method="POST" action="/profile/{{$user->id}}" enctype="multipart/form-data">
@@ -17,7 +17,7 @@
                         <div class="col-md-6 pt-1" style="font-size: 20px">{{$user->username}}</div>
                         </div>
                         <div class="form-group row">
-                            <label for="title" class="col-md-4 col-form-label text-md-right">Title</label>
+                            <label for="title" class="col-md-4 col-form-label text-md-right">{{trans('profile.edit.title')}}</label>
 
                             <div class="col-md-6">
                             <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{$user->profile->title ?? ''}}"  autocomplete="name" autofocus>
@@ -31,7 +31,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="description" class="col-md-4 col-form-label text-md-right">Description</label>
+                            <label for="description" class="col-md-4 col-form-label text-md-right">{{trans('profile.edit.description')}}</label>
 
                             <div class="col-md-6">
                             <input id="description" type="text" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ $user->profile->description ?? ''}}"  >
@@ -57,7 +57,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                    <label for="profileImage" class="col-md-4 col-form-label text-md-right">Profile Image</label>
+                                    <label for="profileImage" class="col-md-4 col-form-label text-md-right">{{trans('profile.edit.profile_image')}}</label>
 
                                     <div class="col-md-6">
                                     <input id="profileImage" type="file" class="form-control @error('profileImage') is-invalid @enderror" name="profileImage"  >
@@ -73,7 +73,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                   Gửi
+                                   {{trans('profile.edit.button')}}
                                 </button>
                             </div>
                         </div>

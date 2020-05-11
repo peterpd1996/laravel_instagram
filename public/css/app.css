@@ -64,6 +64,7 @@ section {
   display: block;
 }
 
+
 body {
   margin: 0;
   font-family: "Nunito", sans-serif;
@@ -511,7 +512,7 @@ mark,
 }
 
 .img-fluid {
-  max-width: 100%;
+  width: 100%;
   height: auto;
 }
 
@@ -588,6 +589,7 @@ pre code {
   z-index: 10;
 }
 
+
 @media (min-width: 576px) {
   .container {
     max-width: 540px;
@@ -611,6 +613,7 @@ pre code {
     max-width: 1140px;
   }
 }
+
 
 .container-fluid {
   width: 100%;
@@ -4465,6 +4468,7 @@ input[type=button].btn-block {
   padding-left: 0;
   margin-bottom: 0;
   list-style: none;
+  width: 360px;
 }
 
 .nav-link {
@@ -8542,7 +8546,7 @@ button.bg-dark:focus {
 }
 
 .h-100 {
-  height: 100% !important;
+  height: 75% !important;
 }
 
 .h-auto {
@@ -11436,7 +11440,20 @@ a:hover {
   font-family: cursive;
   font-style: italic;
 }
-
+.h-image{
+  height: 600px;
+  object-fit: cover;
+}
+#img_output{
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+.image_profile{
+  width: 400px;
+  height: 400px;
+  object-fit: cover;
+}
 @media only screen and (max-width: 441px) {
   #brand {
     display: none;
@@ -11448,4 +11465,21 @@ a:hover {
     width: 82%;
   }
 }
+
+@media only screen and (min-width: 441px) {
+  .h-image {
+    height:auto;
+  },
+}
+@media only screen and (min-width: 700px) {
+  .h-image {
+    height:700px;
+  },
+}
+@media only screen and (min-width: 700px) {
+  .h-image_profile {
+    height:200px;
+  },
+}
+
 

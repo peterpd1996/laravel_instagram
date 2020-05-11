@@ -22,6 +22,8 @@
 	    	'minutes_created' => ':time minutes ago',
 	    	'hour_created' => ':time hour ago',
 	    	'hours_created' => ':time hours ago',
+	    	'day_created' => ':time day ago',
+	    	'days_created' => ':time days ago',
 	    	'week_created' => ':time week ago',
 	    	'weeks_created' => ':time weeks ago',
 	    	'month_created' => ':time month ago',

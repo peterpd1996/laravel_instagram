@@ -26,10 +26,10 @@
                 </div>
             </div>
             <div class="d-flex pb-4">
-                <div class="pr-5"><strong>{{ $user->posts->count() }}</strong> posts</div>
+                <div class="pr-5"><strong>{{ $user->posts->count() }}</strong>{{trans('profile.post')}}</div>
                 <div class="pr-5"><strong id="followCount">{{$user->profile->followers->count()}}</strong>
-                    followers</div>
-                <div><strong>{{$user->following->count()}}</strong> following</div>
+                    {{trans('profile.follower')}}</div>
+                <div><strong>{{$user->following->count()}}</strong>{{trans('profile.following')}}</div>
 
             </div>
             <div class="name">
@@ -47,11 +47,11 @@
         <div class="col-md-4 tab-pane">
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"><i class="fa fa-table pr-2"></i>POSTS</a>
+                        <a class="nav-link active text-uppercase" data-toggle="tab" href="#tabs-1" role="tab"><i class="fa fa-table pr-2"></i>{{trans('profile.post')}}</a>
                     </li>
                     @can('view',$user->profile)
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"><i class="fa fa-bookmark pr-2"></i>SAVED</a>
+                        <a class="nav-link text-uppercase " data-toggle="tab" href="#tabs-2" role="tab"><i class=" fa fa-bookmark pr-2"></i>{{trans('profile.saved')}}</a>
                     </li>
                     @endcan
                     <li class="nav-item">
@@ -64,10 +64,10 @@
             <div class=" tab-pane active" id="tabs-1" role="tabpanel">
                 <div class="row">
                     @foreach($user->posts as $post)
-                        <div class="col-4 mb-4" >
+                        <div class="col-lg-4 col-sm-6 mb-4" >
                             <a href="/p/{{$post->id}}">
                                 @if(pathinfo($post->image, PATHINFO_EXTENSION) != 'mp4')
-                                    <img src="/uploads/{{$post->image}}" class="img-fluid img-thumbnail" id="image-post-{{$post->id}}">
+                                    <img src="/uploads/{{$post->image}}" class="image_profile img-thumbnail" id="image-post-{{$post->id}}">
                                 @else
                                     <video width="100%" height="350px" controls style="background: black">
                                         <source src="/videos/{{$post->image}}" type="video/mp4">
@@ -83,7 +83,7 @@
                 <div class="row">
                     <!--The best if statement of bananas I've ever written :))-->
                     @if($saved==[])
-                        <p>Save photos and videos that you want to see again. No one is notified, and only you can see what you've saved.</p>
+                        <p>{{trans('profile.message_saved')}}</p>
                     @endif
                         @foreach($saved as $save)
                             <div class="col-4 mb-4" >

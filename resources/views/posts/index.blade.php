@@ -20,7 +20,7 @@
 <div class="container pt-4">
     {{-- post --}}
     <div class="row post">
-        <div class="col-md-6 offset-md-3  border_ mb-5" style="background: #fff">
+        <div class="col-md-7 offset-md-2  border_ mb-5" style="background: #fff">
             <form action="/p" enctype="multipart/form-data" method="POST">
                 @csrf
                 <div class="form-group d-flex pt-2">
@@ -39,16 +39,16 @@
                         <div id="iconUpload" class="iconUpload"> <i class="fa fa-picture-o" aria-hidden="true"></i>{{trans('home.form_post.photo_video')}}</div>
                         <input id="uploadNewPost"  type="file" name="image" id="image"
                             class="uploadNewPost @error('image') is-invalid @enderror" autocomplete="image" autofocus>
-                        @error('image')
-                        <span class="invalid-error" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
                     </div>
                     <button class=" btn btn-default ml-2 post_">{{trans('home.form_post.post')}}</button>
                 </div>
+                @error('image')
+                        <span class="invalid-error" role="alert">
+                            <strong class="ml-5">{{ $message }}</strong>
+                        </span>
+                        @enderror
                 <div class="col-md-8 ml-5">
-                    <img id="img_output"  src="" alt="" width="100px" height="100px" class="none border_" style="margin-bottom: 9px;">
+                    <img id="img_output"  src="" alt="" class="none border_" style="margin-bottom: 9px;">
                     <video id="video_output" controls class="none" width="100%"></video>
                 </div>
             </form>
@@ -57,7 +57,7 @@
     {{-- end post --}}
     @foreach($posts as $post)
     <div class="row ">
-        <div class="col-md-6 mb-5 p-0 border_ offset-md-3">
+        <div class="col-md-7 mb-5 p-0 border_ offset-md-2">
             <div>
                 <div class="name d-flex align-items-center pt-2 pb-2 pl-2 " style="background-color: #fff">
                     <div>

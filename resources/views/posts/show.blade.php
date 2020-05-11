@@ -5,7 +5,7 @@
         <div class="col-sm-7 p-0 ">
             <!-- image post -->
                @if(pathinfo($post->image, PATHINFO_EXTENSION) != 'mp4')
-                <img src="/uploads/{{$post->image}}" class="img-fluid w-100 border-img" id="image-post-{{$post->id}}">
+                <img src="/uploads/{{$post->image}}" class="img-fluid border-img h-image" id="image-post-{{$post->id}}">
                 @else
                 <video width="100%" height="600" controls style="background:black">
                   <source src="/videos/{{$post->image}}" type="video/mp4">
