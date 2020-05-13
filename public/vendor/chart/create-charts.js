@@ -1,6 +1,5 @@
 ( function ( $ ) {
-console.log(432432)
-	var charts = {
+	let charts = {
 		init: function () {
 			// -- Set new default font family and font color to mimic Bootstrap's default styling
 			Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
@@ -11,15 +10,13 @@ console.log(432432)
 		},
 
 		ajaxGetPostMonthlyData: function () {
-			// var urlPath =  'http://' + window.location.hostname + '/admin/get-post-chart-data';
-			var urlPath =  'http://localhost:8888/admin/get-post-chart-data';
-			var request = $.ajax( {
+			let urlPath =  '/admin/get-post-chart-data';
+			let request = $.ajax( {
 				method: 'GET',
 				url: urlPath
 		} );
 
 			request.done( function ( response ) {
-				console.log( response );
 				charts.createCompletedJobsChart( response );
 			});
 		},
@@ -29,8 +26,8 @@ console.log(432432)
 		 */
 		createCompletedJobsChart: function ( response ) {
 
-			var ctx = document.getElementById("myAreaChart");
-			var myLineChart = new Chart(ctx, {
+			let ctx = document.getElementById("myAreaChart");
+			let myLineChart = new Chart(ctx, {
 				type: 'line',
 				data: {
 					labels: response.months, // The response got from the ajax request containing all month names in the database
