@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name','username', 'email', 'password',
+        'name','username', 'email', 'password','google_id','facebook_id'
     ];
 
     /**
@@ -86,7 +86,7 @@ class User extends Authenticatable
         ->orWhere([
             ['to','=',$fromUser],
             ['from','=', $toUser]
-        ])->latest()->limit(1)->get(); 
+        ])->latest()->limit(1)->get();
        return $lastMessage[0]->message ?? trans('message.say_hi');
     }
 
