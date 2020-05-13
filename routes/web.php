@@ -16,12 +16,16 @@ viceProvider within a group which
 
 // posts
 Auth::routes();
+Route::get('/login-google','LoginSocialiteController@LoginGoogle')->name('login.google');
+Route::get('/google-callback', 'LoginSocialiteController@loginGoogleCallback')->name('google.callback');
+Route::get('/login-facebook','LoginSocialiteController@LoginFacebook')->name('login.facebook');
+Route::get('/facebook-callback', 'LoginSocialiteController@loginFacebookCallback')->name('facebook.callback');
 
 Route::group([
     'middleware' => ['auth','locate'],
 ], function () {
 
-Route::post('/laguage','LanguageController@changeLanguage')->name('changeLang');	
+Route::post('/laguage','LanguageController@changeLanguage')->name('changeLang');
     //change password
 Route::get('/changePassword','HomeController@showChangePasswordForm')->name('changePassword');
 Route::post('/changePassword','HomeController@changePassword');

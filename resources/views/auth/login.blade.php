@@ -6,7 +6,7 @@
                     <div class="loginbox">
                         <div class="login-left">
                             <div class="d-look">
-                                <i class="fa fa-camera fa-3x" aria-hidden="true"></i>                           
+                                <i class="fa fa-camera fa-3x" aria-hidden="true"></i>
                                 <span>D'Look</span>
                             </div>
                         </div>
@@ -36,20 +36,21 @@
                                     </div>
                                 </form>
                                 <!-- /Form -->
-                                
+
                                 <div class="text-center forgotpass"><a href="{{ route('password.request') }}">Forgot Password?</a></div>
                                 <div class="login-or">
                                     <span class="or-line"></span>
                                     <span class="span-or">or</span>
                                 </div>
-                                  
+
                                 <!-- Social Login -->
                                 <div class="social-login">
                                     <span>Login with</span>
-                                    <a href="#" class="facebook"><i class="fa fa-facebook"></i></a><a href="#" class="google"><i class="fa fa-google"></i></a>
+                                    <a href="{{route('login.facebook')}}" class="facebook"><i class="fa fa-facebook"></i></a>
+                                    <a href="{{route('login.google')}}" class="google"><i class="fa fa-google"></i></a>
                                 </div>
                                 <!-- /Social Login -->
-                                
+
                                 <div class="text-center dont-have">Don’t have an account? <a href="{{ route('register') }}">Register</a></div>
                             </div>
                         </div>
