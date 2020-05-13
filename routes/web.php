@@ -65,14 +65,14 @@ Route::post('/send-message', 'MessengerController@storeMessage')->name('messages
 Route::post('/favorite', 'PostFavouriteController@store')->name('favorite.store');
 
 //admin
-	Route::group(['prefix'=>"admin"],function (){
-	    Route::get('/',function (){
-	        return view('admin.dashboard');
-	    });
-	    Route::get('/list-post','Admin\PostAdminController@index')->name('list-post');
-	    Route::delete('/delete/{id}','Admin\PostAdminController@destroy');
+	Route::group(['prefix'=>"admin" ,'namespace' =>'Admin'],function (){
+	    Route::get('/','DashboardController@index');
+	    Route::get('/list-post','PostAdminController@index')->name('list-post');
+	    Route::delete('/delete/{id}','PostAdminController@destroy');
 
-	    Route::get('/list-account','Admin\AccountAdminController@index')->name('list-account');
+	    Route::get('/list-account','AccountAdminController@index')->name('list-account');
+            //chart
+        Route::get('/get-post-chart-data', 'ChartDataController@getMonthlyPostData');
 	});
 });
 

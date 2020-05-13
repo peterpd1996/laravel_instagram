@@ -17,9 +17,11 @@ return [
     'Warning'                       => 'Cảnh báo',
     'Information'                   => 'Thông tin',
 
+    'dashboard'            =>'Bảng điều khiển',
+
     'post_settings'                 =>'QUẢN LÝ BÀI VIẾT',
     'post-list'                     =>'Danh sách bài viết',
 
     'account_manager'               =>'QUẢN LÝ TÀI KHOẢN',
-    'account-list'                  =>'Danh sạc tài khoản'
+    'account-list'                  =>'Danh sách tài khoản'
 ];
