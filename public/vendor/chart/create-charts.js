@@ -10,8 +10,7 @@
 		},
 
 		ajaxGetPostMonthlyData: function () {
-			let urlPath =  'http://' + window.location.hostname + '/admin/get-post-chart-data';
-			// let urlPath =  'http://localhost:8888/admin/get-post-chart-data';
+			let urlPath =  '/admin/get-post-chart-data';
 			let request = $.ajax( {
 				method: 'GET',
 				url: urlPath

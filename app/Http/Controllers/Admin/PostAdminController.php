@@ -15,7 +15,7 @@ class PostAdminController extends Controller
      */
     public function index()
     {
-        $posts =Post::with('user')->paginate(5);
+        $posts = Post::with('user')->paginate(5);
         return view('admin.post',compact('posts'));
     }
 
