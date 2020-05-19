@@ -30,7 +30,7 @@ Route::post('/laguage','LanguageController@changeLanguage')->name('changeLang');
 Route::get('/changePassword','HomeController@showChangePasswordForm')->name('changePassword');
 Route::post('/changePassword','HomeController@changePassword');
 
-Route::get('/','PostController@index');
+Route::get('/','PostController@index')->name('home');
 Route::get('/p/create','PostController@create');
 Route::post('/p','PostController@store');
 Route::get('/p/{post}','PostController@show');

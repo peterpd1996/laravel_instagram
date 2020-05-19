@@ -297,7 +297,7 @@
         $(document).on('click', '#sent_message', function () {
             sentMessage();
         });
-        $('.user').click(function () {
+        $('.media').click(function () {
             let unReadMessage = $(this).find('.unread');
             $('.user').removeClass('active');
             $(this).addClass('active');

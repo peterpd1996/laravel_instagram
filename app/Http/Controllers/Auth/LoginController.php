@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -25,15 +28,23 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function login(request $request)
     {
-        $this->middleware('guest')->except('logout');
+       $credentials =  $this->validate($request, [
+            'email'           => 'required|max:255|email',
+            'password'           => 'required',
+        ]); 
+        if (!Auth::attempt($credentials)) {
+             return redirect()->back()
+             ->withInput() // with inpput la no k bi reset truong email da nhap
+             ->withErrors([
+                 'password' => trans('auth.failed'),
+            ]);
+        }
+        $user = User::where('email', $credentials['email'])->first();
+        
+
+
+        
     }
 }

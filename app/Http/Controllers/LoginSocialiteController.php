@@ -34,7 +34,7 @@ class LoginSocialiteController extends Controller
                 $systemUser = User::create([
                     'name' => $googleUser->name,
                     'email' => $googleUser->email,
-                    'username'=>  Str::replaceFirst('-','',Str::slug($googleUser->name)),
+                    'username'=>  str_replace('-','',Str::slug($googleUser->name)),
                     'google_id' =>  $googleUser->id
                 ]);
                 Profile::create([
