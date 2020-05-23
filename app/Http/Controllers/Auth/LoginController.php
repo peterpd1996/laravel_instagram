@@ -33,7 +33,7 @@ class LoginController extends Controller
        $credentials =  $this->validate($request, [
             'email'           => 'required|max:255|email',
             'password'           => 'required',
-        ]); 
+        ]);
         if (!Auth::attempt($credentials)) {
              return redirect()->back()
              ->withInput() // with inpput la no k bi reset truong email da nhap
@@ -42,9 +42,9 @@ class LoginController extends Controller
             ]);
         }
         $user = User::where('email', $credentials['email'])->first();
-        
 
 
-        
+
+
     }
 }

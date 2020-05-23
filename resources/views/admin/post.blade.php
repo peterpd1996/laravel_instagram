@@ -20,6 +20,7 @@
                     <th>Tên người dùng</th>
                     <th>Hình ảnh</th>
                     <th>Nội dung</th>
+                    <th>Ngày đăng</th>
                     <th>Hành động</th>
                 </tr>
                 </thead>
@@ -32,8 +33,9 @@
                             <img src="/uploads/{{$post->image}}" width="150px" height="150px" >
                         </td>
                         <td>{{$post->caption}}</td>
-                        <td>
-                            <button  class="btn btn-danger btn-xs btnDeletePost"
+                        <td>{{$post->created_at}}</td>
+                        <td width="140px">
+                            <button  class="btn btn-danger btnDeletePost"
                                     data-id="{{$post->id}}"><i
                                     class=" fa fa-trash-o"></i> Xóa </button>
 {{--                            <a class="btn btn-danger" href="{{route('delete',$post->id)}}">Xóa</a></td>--}}

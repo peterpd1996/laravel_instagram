@@ -22,6 +22,8 @@
                     <th>Hình ảnh</th>
                     <th>Url</th>
                     <th>Mô tả</th>
+                    <th>Ngày tạo</th>
+                    <th>Khóa</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -36,6 +38,22 @@
                                </td>
                             <td>{{$user->url}}</td>
                             <td>{{$user->description}}</td>
+                            <td>{{$user->created_at}}</td>
+                            <td width="230px">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <a href="{{}}" class="btn btn-danger" > Band</a>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <select class="custom-select">
+                                            <option>3 ngày</option>
+                                            <option>1 tuần</option>
+                                            <option>1 tháng</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </td>
+
                         </tr>
                     @endforeach
                  @endif
