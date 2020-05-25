@@ -59304,9 +59304,6 @@ channelMessage.listen('.newmessage', function (data) {
     // minh la nguoi nhan 
     var fromUser = $('.active').attr('data-user'); // nguoi mk dang chat 
 
-    console.log('from user active' + fromUser);
-    console.log('from user lay ' + data.fromUser);
-
     if (fromUser != data.fromUser) {
       // mình đang không nhắn tin với họ
       var user = $(".chat-scroll-left").find("[data-user='" + data.fromUser + "']");
@@ -59324,6 +59321,11 @@ channelMessage.listen('.newmessage', function (data) {
   var content = "<div class = \"media-body\">\n                            <div class=\"msg-box\">\n                                <div>\n                                        <p>".concat(data.message, "</p>\n                                        <ul class=\"chat-msg-info\">\n                                            <li>\n                                               <div class=\"chat-time\">\n                                                    <span>").concat(current, "</span>\n                                               </div>\n                                            </li>\n                                        </ul>\n                                </div>\n                            </div>\n                     </div>\n                 </li>");
   message += content;
   $('#xinchaocacban').before(message);
+});
+var channelNotification = window.Echo.channel('notification');
+channelNotification.listen('.newNotification', function (data) {
+  var content = "<a href=\"/p/".concat(data.postId, "\" class=\"text-dark\"> \n            <div class=\"alert_default border_ alert\">\n                  <div href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\" style=\"margin-left:23px;cursor: pointer;\">&times;</div>\n                  <div class=\"d-flex\">\n                    <div><img class=\"rounded-circle pr-1 image\" src=\"/profiles/").concat(data.image, "\"></div>\n                    <div>\n                        <div><strong class=\"pr-1\">").concat(data.fromUser, "</strong>").concat(data.type, " your post</div>\n                    </div>\n                  </div>\n             </div>\n        </a>");
+  $('#notification_' + data.toUser).append(content);
 });
 
 /***/ }),

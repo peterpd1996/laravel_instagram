@@ -3,11 +3,9 @@
 @extends('adminlte::page')
 
 @section('title', 'Dashboard')
-
 @section('content_header')
     <h1>Quản lý  bài viết</h1>
 @stop
-
 @section('content')
     <div class="card-body">
         <form method="POST" action="">
@@ -36,7 +34,6 @@
                             <button  class="btn btn-danger btn-xs btnDeletePost"
                                     data-id="{{$post->id}}"><i
                                     class=" fa fa-trash-o"></i> Xóa </button>
-{{--                            <a class="btn btn-danger" href="{{route('delete',$post->id)}}">Xóa</a></td>--}}
                     </tr>
                 @endforeach
                 </tbody>
@@ -48,22 +45,21 @@
         {{ $posts->links() }}
     </div>
 @stop
-
-@section('css')
-{{--    <link rel="stylesheet" href="/css/admin_custom.css">--}}
-@stop
-
 @section('js')
    <script>
        $(function () {
+        $.ajaxSetup({
+              headers: {
+                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              }
+          });
            let body = $('body');
-
            body.on('click', '.btnDeletePost', function (event) {
                event.preventDefault();
                let id = $(this).attr('data-id');
                let url = '/admin/delete/' + id;
                let type = 'delete';
-               destroyResource(url, type, 'Bạn chắc chắn có muốn xóa bài viết này không ?');
+               destroyResource(url, type, 'Bạn có muốn xóa bài viết này không ?');
            });
        });
    </script>

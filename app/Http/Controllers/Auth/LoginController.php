@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class LoginController extends Controller
 {
@@ -42,9 +43,25 @@ class LoginController extends Controller
             ]);
         }
         $user = User::where('email', $credentials['email'])->first();
-        
 
+        if($user->is_block == 1)
+        {
+            if(Carbon::now()->gt($user->time_block))
+            {
+                $user->update(['is_block' => 0]);
+                return redirect('/');
+            }
+            else 
+            {
+                $timeBlock = $user->time_block;
+                return redirect('/block');
+                 
+            }
+        }
 
-        
+        if($user->is_admin == User::ADMIN) {
+           return redirect('/admin');
+        }
+        return redirect('/');          
     }
 }

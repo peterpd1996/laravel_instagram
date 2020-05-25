@@ -52,6 +52,9 @@ body {
 .liked {
     color: red !important;
 }
+.saved{
+    color: #312f2feb !important;
+}
 
 .border-img{
     border-bottom: 1px solid rgb(230, 230, 230);
@@ -107,7 +110,28 @@ body {
     -webkit-backface-visibility: hidden;
     
 }
-
+  #alert_popover
+  {
+   display:block;
+   position:fixed;
+   bottom:50px;
+   left:50px;
+  }
+.wrapper {
+    display: table-cell;
+    vertical-align: bottom;
+    height: auto;
+    width:230px;
+  }
+.alert_default {
+   color: #333333;
+   background-color: white;
+   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) ;
+   padding:7px 2px 7px 2px;
+}
+.alert_default:hover{
+   box-shadow: 0 5px 15px rgba(0,0,0,0.35) !important;
+}
 .main {
     background-color: rgba(var(--b3f, 250, 250, 250), 1);
     position: relative;
@@ -154,6 +178,13 @@ a:hover {
     max-height: 300px;
     overflow-y: auto;
     position: absolute;
+    z-index: 10;
+}
+
+.image {
+    width:40px;
+    height:40px;
+    object-fit:cover;
 }
 
 .padding {
@@ -223,6 +254,10 @@ a:hover {
     width: 40%;
 
 }
+.select{
+    background: white;
+    border: none; 
+}
 
 .username>.logout {
     position: absolute;
@@ -232,6 +267,16 @@ a:hover {
     background: #fff;
     border-radius: 6px;
     left: -44px;
+    width: 143px;
+    max-height: 123px;
+    z-index: 10;
+}
+.username > .logout > ul > li {
+  border-bottom: 1px solid #e6e6e6;
+  padding: 8px;
+}
+.username > .logout > ul > li:hover{
+  background: #e6e6e6;
 }
 
 .uploadNewPost {
@@ -240,21 +285,27 @@ a:hover {
     left: 15px;
     opacity: 0;
     cursor: pointer;
-    padding: 1px;
+    padding: 19px;
     width: 107px;
-    height: 39px;
     font-size: 0px;
 }
 
 .iconUpload {
-    width: 144px;
+    max-width: 166px;
     padding: 10px;
     background: #9d9d9840;
     text-align: center;
     border-radius: 46px;
     cursor: pointer;
 }
-
+.post_{
+    max-width: 108px;
+    padding: 10px;
+    background: #9d9d9840;
+    text-align: center;
+    border-radius: 46px;
+    cursor: pointer;
+}
 .none {
     display: none;
 }
@@ -323,6 +374,22 @@ a:hover {
     font-family: cursive;
     font-style: italic;
 }
+
+
+.h-image{
+  height: 600px;
+  object-fit: cover;
+}
+#img_output{
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+.image_profile{
+  width: 400px;
+  height: 400px;
+  object-fit: cover;
+}
 @media only screen and (max-width: 441px) {
   #brand{
       display: none;
@@ -331,5 +398,20 @@ a:hover {
 @media only screen and (min-width: 955px) {
   .search {
       width:82%;
+  }
+}
+@media only screen and (min-width: 441px) {
+  .h-image {
+    height:auto;
+  }
+}
+@media only screen and (min-width: 700px) {
+  .h-image {
+    height:700px;
+  }
+}
+@media only screen and (min-width: 700px) {
+  .h-image_profile {
+    height:200px;
   }
 }

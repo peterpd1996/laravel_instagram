@@ -55,8 +55,6 @@ var channelMessage = window.Echo.channel('messages');
        //23:28: 22-03-2020
     } else if(id == data.toUser){ // minh la nguoi nhan 
        var fromUser = $('.active').attr('data-user'); // nguoi mk dang chat 
-       console.log('from user active' + fromUser);
-       console.log('from user lay '+ data.fromUser);
        if(fromUser != data.fromUser){ // mình đang không nhắn tin với họ
         var user = $(".chat-scroll-left").find("[data-user='" + data.fromUser + "']");
         var unread = user.find('.unread').html();
@@ -89,6 +87,27 @@ var channelMessage = window.Echo.channel('messages');
      $('#xinchaocacban').before(message);
 
 });
+
+var channelNotification = window.Echo.channel('notification');
+channelNotification.listen('.newNotification',function(data){
+  let content = 
+      `<a href="/p/${data.postId}" class="text-dark"> 
+            <div class="alert_default border_ alert">
+                  <div href="#" class="close" data-dismiss="alert" aria-label="close" style="margin-left:23px;cursor: pointer;">&times;</div>
+                  <div class="d-flex">
+                    <div><img class="rounded-circle pr-1 image" src="/profiles/${data.image}"></div>
+                    <div>
+                        <div><strong class="pr-1">${data.fromUser}</strong>${data.type} your post</div>
+                    </div>
+                  </div>
+             </div>
+        </a>`;
+     $('#notification_'+ data.toUser).append(content);
+
+});
+
+
+
 
 
 

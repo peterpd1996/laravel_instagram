@@ -16,13 +16,14 @@ viceProvider within a group which
 
 // posts
 Auth::routes();
+Route::get('/block','BlockController@index');
 Route::get('/login-google','LoginSocialiteController@LoginGoogle')->name('login.google');
 Route::get('/google-callback', 'LoginSocialiteController@loginGoogleCallback')->name('google.callback');
 Route::get('/login-facebook','LoginSocialiteController@LoginFacebook')->name('login.facebook');
 Route::get('/facebook-callback', 'LoginSocialiteController@loginFacebookCallback')->name('facebook.callback');
 
 Route::group([
-    'middleware' => ['auth','locate'],
+    'middleware' => ['auth','locate', 'block'],
 ], function () {
 
 Route::post('/laguage','LanguageController@changeLanguage')->name('changeLang');
@@ -64,12 +65,18 @@ Route::post('/send-message', 'MessengerController@storeMessage')->name('messages
 // favorite post
 Route::post('/favorite', 'PostFavouriteController@store')->name('favorite.store');
 
+
 //admin
-	Route::group(['prefix'=>"admin" ,'namespace' =>'Admin'],function (){
+	Route::group([
+		'prefix'=>"admin" ,
+		'namespace' =>'Admin',
+		'middleware' => 'admin'
+	],function (){
 	    Route::get('/','DashboardController@index');
 	    Route::get('/list-post','PostAdminController@index')->name('list-post');
 	    Route::delete('/delete/{id}','PostAdminController@destroy');
-
+	    Route::post('/block','AccountAdminController@blockUser');
+	    Route::post('/un-block','AccountAdminController@unBlock');
 	    Route::get('/list-account','AccountAdminController@index')->name('list-account');
             //chart
         Route::get('/get-post-chart-data', 'ChartDataController@getMonthlyPostData');

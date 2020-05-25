@@ -64,7 +64,6 @@ section {
   display: block;
 }
 
-
 body {
   margin: 0;
   font-family: "Nunito", sans-serif;
@@ -512,7 +511,7 @@ mark,
 }
 
 .img-fluid {
-  width: 100%;
+  max-width: 100%;
   height: auto;
 }
 
@@ -586,9 +585,7 @@ pre code {
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
-  z-index: 10;
 }
-
 
 @media (min-width: 576px) {
   .container {
@@ -613,7 +610,6 @@ pre code {
     max-width: 1140px;
   }
 }
-
 
 .container-fluid {
   width: 100%;
@@ -4468,7 +4464,6 @@ input[type=button].btn-block {
   padding-left: 0;
   margin-bottom: 0;
   list-style: none;
-  width: 360px;
 }
 
 .nav-link {
@@ -4487,6 +4482,9 @@ input[type=button].btn-block {
   cursor: default;
 }
 
+.nav-tabs {
+  border-bottom: 1px solid #dee2e6;
+}
 
 .nav-tabs .nav-item {
   margin-bottom: -1px;
@@ -4513,7 +4511,7 @@ input[type=button].btn-block {
 .nav-tabs .nav-item.show .nav-link {
   color: #495057;
   background-color: #f8fafc;
-  border-top: 1px solid #808080ed;
+  border-color: #dee2e6 #dee2e6 #f8fafc;
 }
 
 .nav-tabs .dropdown-menu {
@@ -8546,7 +8544,7 @@ button.bg-dark:focus {
 }
 
 .h-100 {
-  height: 75% !important;
+  height: 100% !important;
 }
 
 .h-auto {
@@ -11142,7 +11140,7 @@ body input[type=text]:focus {
 }
 
 .saved {
-    color: #312f2feb !important;
+  color: #312f2feb !important;
 }
 
 .border-img {
@@ -11205,6 +11203,31 @@ body input[type=text]:focus {
   -webkit-backface-visibility: hidden;
 }
 
+#alert_popover {
+  display: block;
+  position: fixed;
+  bottom: 50px;
+  left: 50px;
+}
+
+.wrapper {
+  display: table-cell;
+  vertical-align: bottom;
+  height: auto;
+  width: 230px;
+}
+
+.alert_default {
+  color: #333333;
+  background-color: white;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  padding: 7px 2px 7px 2px;
+}
+
+.alert_default:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35) !important;
+}
+
 .main {
   background-color: rgba(var(--b3f, 250, 250, 250), 1);
   position: relative;
@@ -11250,6 +11273,13 @@ a:hover {
   overflow-y: auto;
   position: absolute;
   z-index: 10;
+}
+
+.image {
+  width: 40px;
+  height: 40px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .padding {
@@ -11316,30 +11346,34 @@ a:hover {
 .actionLoginLogout {
   width: 40%;
 }
-.select{
-    background: white;
-    border: none;
+
+.select {
+  background: white;
+  border: none;
 }
 
 .username > .logout {
-    position: absolute;
-    top: 24px;
-    padding: 0px;
-    border: 1px solid #e6e6e6;
-    background: #fff;
-    border-radius: 6px;
-    left: -44px;
-    width: 143px;
-    max-height: 123px;
-    z-index: 10;
+  position: absolute;
+  top: 24px;
+  padding: 7px;
+  border: 1px solid #e6e6e6;
+  background: #fff;
+  border-radius: 6px;
+  left: -44px;
+  width: 143px;
+  max-height: 123px;
+  z-index: 10;
 }
+
 .username > .logout > ul > li {
   border-bottom: 1px solid #e6e6e6;
   padding: 8px;
 }
-.username > .logout > ul > li:hover{
+
+.username > .logout > ul > li:hover {
   background: #e6e6e6;
 }
+
 .uploadNewPost {
   position: absolute;
   top: 1px;
@@ -11352,7 +11386,7 @@ a:hover {
 }
 
 .iconUpload {
-  max-width: 150px;
+  max-width: 166px;
   padding: 10px;
   background: #9d9d9840;
   text-align: center;
@@ -11360,13 +11394,13 @@ a:hover {
   cursor: pointer;
 }
 
-.post_{
-    max-width: 108px;
-    padding: 10px;
-    background: #9d9d9840;
-    text-align: center;
-    border-radius: 46px;
-    cursor: pointer;
+.post_ {
+  max-width: 108px;
+  padding: 10px;
+  background: #9d9d9840;
+  text-align: center;
+  border-radius: 46px;
+  cursor: pointer;
 }
 
 .none {
@@ -11440,20 +11474,27 @@ a:hover {
   font-family: cursive;
   font-style: italic;
 }
-.h-image{
+
+.h-image {
   height: 600px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
-#img_output{
+
+#img_output {
   width: 100px;
   height: 100px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
-.image_profile{
+
+.image_profile {
   width: 400px;
   height: 400px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
+
 @media only screen and (max-width: 441px) {
   #brand {
     display: none;
@@ -11468,18 +11509,19 @@ a:hover {
 
 @media only screen and (min-width: 441px) {
   .h-image {
-    height:auto;
-  },
-}
-@media only screen and (min-width: 700px) {
-  .h-image {
-    height:700px;
-  },
-}
-@media only screen and (min-width: 700px) {
-  .h-image_profile {
-    height:200px;
-  },
+    height: auto;
+  }
 }
 
+@media only screen and (min-width: 700px) {
+  .h-image {
+    height: 700px;
+  }
+}
+
+@media only screen and (min-width: 700px) {
+  .h-image_profile {
+    height: 200px;
+  }
+}
 

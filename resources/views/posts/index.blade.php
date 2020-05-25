@@ -25,7 +25,7 @@
                 @csrf
                 <div class="form-group d-flex pt-2">
                     <label for="caption" class=" col-form-label text-md-right"><img
-                            src="/profiles/{{Auth::user()->profile->profileImage()}}" alt="" class="rounded"></label>
+                            src="/profiles/{{Auth::user()->profile->profileImage()}}" alt="" class="rounded image"></label>
                     <div class="col-md-10">
                         <textarea class="form-control w-100" rows="3" id="caption"
                             class="form-control @error('caption') is-invalid @enderror" name="caption"
@@ -61,8 +61,8 @@
             <div>
                 <div class="name d-flex align-items-center pt-2 pb-2 pl-2 " style="background-color: #fff">
                     <div>
-                        <img src="/profiles/{{$post->user->profile->profileImage()}}" width="40px" height="40px" alt=""
-                            class="rounded-circle mr-2">
+                        <img src="/profiles/{{$post->user->profile->profileImage()}}" alt=""
+                            class="rounded-circle mr-2 image">
                     </div>
                     <div class="font-weight-bold">
                         <a href="/profile/{{$post->user->id}}" class="text-dark text-decoration-none">
@@ -159,6 +159,23 @@
         </div>
     </div>
     @endforeach
+    <div id="alert_popover">
+    <div class="wrapper">
+     <div id="notification_{{auth()->user()->id}}">
+{{--         <a href="/p/5" class="text-dark"> 
+            <div class="alert_default border_ alert">
+                  <div href="#" class="close" data-dismiss="alert" aria-label="close" style="margin-left:23px;cursor: pointer;">&times;</div>
+                  <div class="d-flex">
+                    <div><img class="rounded-circle pr-1 image" src="/profiles/image.png"></div>
+                    <div>
+                        <div><strong class="pr-1">DungManh</strong>comment your post</div>
+                    </div>
+                  </div>
+             </div>
+        </a> --}}
+     </div>
+    </div>
+   </div>
 </div>
 @endsection
 @section('js')

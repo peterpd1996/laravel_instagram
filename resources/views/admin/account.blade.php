@@ -9,40 +9,8 @@
 @stop
 
 @section('content')
-    <div class="card-body">
-        <form method="POST" action="">
-            @csrf
-            @method('PUT')
-            <table class="table table-bordered">
-                <thead>
-                <tr>
-                    <th style="width: 10px">#</th>
-                    <th>Họ và tên</th>
-                    <th>Tên người dùng</th>
-                    <th>Hình ảnh</th>
-                    <th>Url</th>
-                    <th>Mô tả</th>
-                </tr>
-                </thead>
-                <tbody>
-                @if(isset($users))
-                    @foreach($users as $index =>$user)
-                        <tr>
-                            <td>{{$index+1}}</td>
-                            <td>{{$user->name}}</td>
-                            <td>{{$user->username}}</td>
-                            <td>
-                                <img src="/profiles/{{$user->profileImage}}" width="100px" height="100px" >
-                               </td>
-                            <td>{{$user->url}}</td>
-                            <td>{{$user->description}}</td>
-                        </tr>
-                    @endforeach
-                 @endif
-                </tbody>
-            </table>
-        </form>
-
+    <div class="card-body" id="tableAcount">
+        @include('admin.tableAcount');
     </div>
     <div class="pagination">
 
@@ -55,6 +23,65 @@
 
 @section('js')
     <script>
+         $.ajaxSetup({
+              headers: {
+                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              }
+          });
+        function notification(notification){
+            return swal({
+                title: notification,
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+        }
+        function alertSuccess(message) {
+             return swal({
+                icon: "success",
+                title: message,
+        });
+        }
+        $('body').on('click', '.block', function () {
+          let timeBlock = $(this).next().children("option:selected").val();
+          let userId =  $(this).attr('data-id');
+          let isBlock = $(this).attr('data-block');
+          if(isBlock == 1) {
+            notification("Tài khoản này đã bị khóa");
+            return;
+          }
+          
+          if(timeBlock == 0 ){
+            notification("Bạn chưa chọn thời gian khóa !")
+            return
+          }
+          notification("Bạn có muốn block user này không?")
+          .then((willBlock) => {
+            if (willBlock) {
+                let data = {userId:userId,timeBlock:timeBlock};
+                callApi(data, "/admin/block", "post", "html")
+                    .done(responve => {
+                        $('#tableAcount').html(responve);                     
+                        alertSuccess("Khóa tài khoản thành công");
+                    });
+            }
+            });
+        });
 
+        $('body').on('click', '.unblock', function(){
+            let userId =  $(this).attr('data-id');
+            notification("Bạn có muốn mở tài khoản này không?")
+             .then((unBlock ) => {
+            if (unBlock) {
+                let data = {userId:userId};
+                callApi(data, "/admin/un-block", "post", "html")
+                    .done(responve => {    
+                         $('#tableAcount').html(responve);
+                          alertSuccess("Mở khóa tài khoản thành công");
+                         
+                    });
+            }
+            });
+        })
     </script>
 @stop

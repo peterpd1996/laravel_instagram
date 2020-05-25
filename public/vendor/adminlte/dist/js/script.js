@@ -113,20 +113,6 @@ function deleteMulti(id, url, table) {
     }
 }
 
-function autoFormatPriceWhenInput(keyup) {
-    let $this = keyup;
-    // Get the value.
-    let input = $this.val();
-    input = input.replace(/[\D]/g, "");
-    if (input === "") {
-        input = 0;
-    } else {
-        input = parseInt(input);
-    }
-    $this.val(function () {
-        return (input === 0) ? "" : input.toLocaleString(); // de-DE thay dau , thanh .
-    });
-}
 
 function readURL(input) {
     if (input.files && input.files[0]) {
@@ -144,7 +130,6 @@ $(document).on('change', '#upload-image', function () {
     readURL(this);
 });
 
-$('.message-success').delay(2500).fadeOut('slow');
 
 
 

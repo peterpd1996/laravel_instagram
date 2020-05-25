@@ -35,7 +35,8 @@
             @if (Auth::check())
                 <div class="search d-flex justify-content-center">
                     <div class="contais">
-                        <input type="text" id="searchText" class="border_" placeholder="{{trans('home.header.search')}}" size="23" style="font-family:Arial, FontAwesome !important;text-align: center;padding: 3px 3px 2px 3px;border-radius: 20px;">
+                        <input type="text" id="searchText" class="border_" placeholder="&#xF002; Search" size="23"
+                               style="font-family:Arial, FontAwesome;text-align: center;">
                         <ul class="result " id="resultSearch" style="text-align: left">
                         </ul>
                     </div>
@@ -66,25 +67,10 @@
                         <i style="cursor: pointer; " class="fa fa-caret-down" aria-hidden="true"
                            style="position: absolute"></i>
                         <div class="logout none">
-                             <ul style="list-style: none;">
-                                <li>    
-                                    <form action="{{ route('changeLang') }}" class="form-lang" method="post">
-                                        <select name="locale" onchange='this.form.submit();' class="select">
-                                            <option
-                                                value="vi" {{ Lang::locale() === 'vi' ? 'selected' : '' }}>{{trans('home.header.lang_vi')}}</option>
-                                            <option
-                                                value="jp" {{ Lang::locale() === 'jp' ? 'selected' : '' }}>{{trans('home.header.lang_en')}}</option>
-                                        </select>
-                                        {{ csrf_field() }}
-                                    </form>
-                                </li>
-                                <li><a  class="text-dark" href="{{route('changePassword')}}">{{trans('home.header.change_pass')}}</a></li>
-                                <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
+                            <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();" class="text-dark">
-                                {{trans('home.header.log_out')}}
-                                    </a>
-                                </li>
-                            </ul>
+                                Logout
+                            </a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
@@ -114,21 +100,21 @@
                             <div class="chat-header">
                                 <img src="/profiles/{{Auth::user()->profile->profileImage()}}" alt="" width="50px"
                                      height="50px" class="rounded-circle">
-                                <span id="mes" data-message="{{ Auth::user()->id}}" class="pl-2">{{ trans('message.chat') }}</span>
+                                <span id="mes" data-message="{{ Auth::user()->id}}" class="pl-2">Chat</span>
                             </div>
                             <form class="chat-search">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <i class="fa fa-search" aria-hidden="true"></i>
                                     </div>
-                                    <input type="text" class="form-control" placeholder="{{trans('home.header.search')}}"
+                                    <input type="text" class="form-control" placeholder="Tìm kiếm"
                                            style="background:rgba(210, 210, 210, 0.51) !important">
                                 </div>
                             </form>
                             <div class="chat-users-list">
                                 <div class="chat-scroll-left">
                                     @if($userText !== null)
-                                        <a href="javascript:void(0);" class="media user active" data-user={{$userText->id}}>
+                                        <a href="javascript:void(0);" class="media active users" data-user={{$userText->id}}>
                                             <div class="media-img-wrap">
                                                 <div class="avatar avatar-online">
                                                     <img src="/profiles/{{$userText->profile->profileImage()}}"
@@ -138,18 +124,17 @@
                                             <div class="media-body">
                                                 <div>
                                                     <div class="user-name">{{ $userText->username }}</div>
-                                                    <div class="user-last-chat">{{ $userText->getLastMessageWithUser(auth()->user()->id,$userText->id) }}</div>
+                                                    <div class="user-last-chat">Hihi anh khỏe không ạ?</div>
                                                 </div>
                                                 <div>
-                                                    {{-- <div class="last-chat-time block">2 min</div> --}}
-                                                    <div
-                                                        class="unread badge badge-success badge-pill ">{{ $userText->countMessageUnread($userText->id,auth()->user()->id) }}</div>
+                                                    <div class="last-chat-time block">2 min</div>
+                                                    <div class="badge badge-success badge-pill">3</div>
                                                 </div>
                                             </div>
                                         </a>
                                     @endif
                                     @foreach($users as $user)
-                                        <a href="javascript:void(0);" class="media user" data-user={{$user->id}}>
+                                        <a href="javascript:void(0);" class="media users" data-user={{$user->id}}>
                                             <div class="media-img-wrap">
                                                 <div class="avatar avatar-online">
                                                     <img src="/profiles/{{$user->profile->profileImage()}}"
@@ -159,11 +144,11 @@
                                             <div class="media-body">
                                                 <div>
                                                     <div class="user-name">{{ $user->username }}</div>
-                                                    <div class="user-last-chat">{{ $user->getLastMessageWithUser(auth()->user()->id,$user->id) }}</div>
+                                                    <div class="user-last-chat">Hihi anh khỏe không ạ?</div>
                                                 </div>
                                                 <div>
-                                                    {{-- <div class="last-chat-time block">2 min</div> --}}
-                                                    <div class="unread badge badge-success badge-pill">{{ $user->countMessageUnread($user->id,auth()->user()->id) }}</div>
+                                                    <div class="last-chat-time block">2 min</div>
+                                                    <div class="badge badge-success badge-pill">3</div>
                                                 </div>
                                             </div>
                                         </a>
@@ -240,8 +225,6 @@
         </div>
     </div>
 </div>
-
-
 </body>
 <!-- doccure/chat.html  30 Nov 2019 04:12:18 GMT -->
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -259,7 +242,6 @@
         $('#input-message').click(function () {
             scrollToBottom();
         });
-
         function loadMessageFromUser(id,unReadFromUser) {
             return $.ajax({
                 url: '/load-message',
@@ -267,7 +249,6 @@
                 data: {toUser: id, unread:unReadFromUser}
             });
         }
-
         function sendMessage(toUser, message) {
             return $.ajax({
                 url: '/send-message',
@@ -276,13 +257,11 @@
                 cache: false
             });
         }
-
         function scrollToBottom() {
             $('body .chat-scroll').animate({
                 scrollTop: $('.chat-scroll').get(0).scrollHeight
             }, 500);
         }
-
         function sentMessage() {
             let message = $("#input_message").val();
             if ($.trim(message) !== '' && toUser !== '' && typeof toUser !== 'undefined') {
@@ -293,13 +272,12 @@
                 alert("You need to select friend to text !!");
             }
         }
-
         $(document).on('click', '#sent_message', function () {
             sentMessage();
         });
-        $('.media').click(function () {
+        $('.users').click(function () {
             let unReadMessage = $(this).find('.unread');
-            $('.user').removeClass('active');
+            $('.users').removeClass('active');
             $(this).addClass('active');
             $(this).find('.bold-unread').removeClass('bold-unread');
             toUser = $(this).attr('data-user');
@@ -320,17 +298,9 @@
         });
         $(".chat-scroll").on('scroll', function () {
             if ($(this).scrollTop() === 0) {
-                // code here
+                alert("ok");
             }
         });
-
     })
 </script>
 </html>
-
-
-
-
-
-
-

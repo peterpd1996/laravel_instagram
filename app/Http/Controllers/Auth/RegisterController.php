@@ -76,7 +76,7 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
         $user->profile()->create([
-            'title' => "Made by Tùng Dương"
+            'title' => "Welcome to D'look"
         ]);
         $user_id = $user->id;
         return $user;
