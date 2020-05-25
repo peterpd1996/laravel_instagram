@@ -31,10 +31,11 @@ class LoginSocialiteController extends Controller
         else{
             $systemUser = User::where('google_id', $googleUser->id)->first();
             if ( ! $systemUser ){
+                $username = explode('@', $googleUser->email);
                 $systemUser = User::create([
                     'name' => $googleUser->name,
                     'email' => $googleUser->email,
-                    'username'=>  str_replace('-','',Str::slug($googleUser->name)),
+                    'username'=>  $username[0],
                     'google_id' =>  $googleUser->id
                 ]);
                 Profile::create([
