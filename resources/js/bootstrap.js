@@ -103,6 +103,14 @@ channelNotification.listen('.newNotification',function(data){
              </div>
         </a>`;
      $('#notification_'+ data.toUser).append(content);
+     let countNofiELement =  $('.notifi_'+data.toUser).find('#countNofi');
+     let count = countNofiELement.html();
+     if(typeof(count) != "undefined") {
+        let newCount = parseInt(count) + 1;
+        countNofiELement.html(newCount);
+     } else {
+        $(".notifi_"+data.toUser).html("<span id='countNofi'>1</span>");
+     }
 
 });
 

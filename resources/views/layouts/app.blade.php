@@ -51,7 +51,7 @@
                     </div>
                     <div class="mr-2" style="cursor: pointer;position: relative">
                         <i class="fa fa-bell-o " aria-hidden="true" title="{{trans('home.header.notification')}}" id="notify"></i>
-                        <div id="count"></div>
+                        <div id="count" class="notifi_{{auth()->user()->id}}"></div>
                         {{-- // count notification --}}
                         {{-- notification --}}
                         <ul class="notifi disable" id="notifShow" style="position: absolute;left: -312px">

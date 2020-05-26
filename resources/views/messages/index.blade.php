@@ -22,7 +22,7 @@
 <!-- Main Wrapper -->
 <div class="main-wrapper">
     <!-- Header -->
-    <header class="padding  shadow-sm" style="background: white">
+    <header class="padding  shadow-sm" style="background: white;padding: 0 !important">
         <div class="container d-flex align-items-center">
             <div class="logo">
                 <a class="navbar-brand d-flex text-dark" href="{{ url('/') }}">
@@ -35,8 +35,8 @@
             @if (Auth::check())
                 <div class="search d-flex justify-content-center">
                     <div class="contais">
-                        <input type="text" id="searchText" class="border_" placeholder="&#xF002; Search" size="23"
-                               style="font-family:Arial, FontAwesome;text-align: center;">
+                        <input type="text" id="searchText" class="border_" placeholder=" Search" size="23"
+                               style="font-family: Arial, FontAwesome !important; text-align: center; padding: 3px 3px 2px; border-radius: 20px;">
                         <ul class="result " id="resultSearch" style="text-align: left">
                         </ul>
                     </div>

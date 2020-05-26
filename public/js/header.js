@@ -47,7 +47,7 @@ $(document).ready(function () {
                     }
 
                     if (data.unseen_total > 0) {
-                        $("#count").html("<span id='countNofi'>" + data.unseen_total + "<span>");
+                        $("#count").html("<span id='countNofi'>" + data.unseen_total + "</span>");
                     }
 
                 }

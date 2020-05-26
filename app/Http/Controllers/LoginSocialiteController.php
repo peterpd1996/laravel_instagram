@@ -40,7 +40,7 @@ class LoginSocialiteController extends Controller
                 ]);
                 Profile::create([
                     'user_id' =>$systemUser->id,
-                    'title'=>'Login google by '.$systemUser->name.'',
+                    'title'=>"Welcome to D'look",
                 ]);
             }
         }

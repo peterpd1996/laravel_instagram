@@ -59326,6 +59326,15 @@ var channelNotification = window.Echo.channel('notification');
 channelNotification.listen('.newNotification', function (data) {
   var content = "<a href=\"/p/".concat(data.postId, "\" class=\"text-dark\"> \n            <div class=\"alert_default border_ alert\">\n                  <div href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\" style=\"margin-left:23px;cursor: pointer;\">&times;</div>\n                  <div class=\"d-flex\">\n                    <div><img class=\"rounded-circle pr-1 image\" src=\"/profiles/").concat(data.image, "\"></div>\n                    <div>\n                        <div><strong class=\"pr-1\">").concat(data.fromUser, "</strong>").concat(data.type, " your post</div>\n                    </div>\n                  </div>\n             </div>\n        </a>");
   $('#notification_' + data.toUser).append(content);
+  var countNofiELement = $('.notifi_' + data.toUser).find('#countNofi');
+  var count = countNofiELement.html();
+
+  if (typeof count != "undefined") {
+    var newCount = parseInt(count) + 1;
+    countNofiELement.html(newCount);
+  } else {
+    $(".notifi_" + data.toUser).html("<span id='countNofi'>1</span>");
+  }
 });
 
 /***/ }),

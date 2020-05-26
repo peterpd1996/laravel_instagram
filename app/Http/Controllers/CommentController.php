@@ -31,7 +31,7 @@ class CommentController extends Controller
 
         event(new NewComment($comment,$postId));
         if($userId != $toUser) { // check khong phai tu minh comment bai biet cua minh thi khong can thong bao
-            event(new NotifiLikeAndComment(auth()->user()->profile->profileImage() ,$username, "comment", $postId, $toUser)); 
+            event(new NotifiLikeAndComment(auth()->user()->profile->profileImage() ,$username, "commented on", $postId, $toUser)); 
         }
        
     }
