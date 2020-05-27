@@ -1,20 +1,40 @@
 @extends('layouts.app')
 @section('content')
 @include('posts.edit')
+{{-- show like modal --}}
+{{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+Launch demo modal
+</button> --}}
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Liked</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="showLike">
+            </div>
+        </div>
+    </div>
+</div>
+{{-- end show like --}}
 <!-- confirm delete  -->
 <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="delete-modal">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title" id="myModalLabel">{{ trans('home.post.delete_message') }}</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" id="modal-btn-yes">{{ trans('home.post.delete_confirm') }}</button>
-        <button type="button" class="btn btn-default" id="modal-btn-no">{{ trans('home.post.close') }}</button>
-      </div>
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">{{ trans('home.post.delete_message') }}</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="modal-btn-yes">{{ trans('home.post.delete_confirm') }}</button>
+                <button type="button" class="btn btn-default" id="modal-btn-no">{{ trans('home.post.close') }}</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 <!-- end confirm delete -->
 <div class="container pt-4">
@@ -25,7 +45,7 @@
                 @csrf
                 <div class="form-group d-flex pt-2">
                     <label for="caption" class=" col-form-label text-md-right"><img
-                            src="/profiles/{{Auth::user()->profile->profileImage()}}" alt="" class="rounded image"></label>
+                        src="/profiles/{{Auth::user()->profile->profileImage()}}" alt="" class="rounded image"></label>
                     <div class="col-md-10">
                         <textarea class="form-control w-100" rows="3" id="caption"
                             class="form-control @error('caption') is-invalid @enderror" name="caption"
@@ -43,10 +63,10 @@
                     <button class=" btn btn-default ml-2 post_">{{trans('home.form_post.post')}}</button>
                 </div>
                 @error('image')
-                        <span class="invalid-error" role="alert">
-                            <strong class="ml-5">{{ $message }}</strong>
-                        </span>
-                        @enderror
+                <span class="invalid-error" role="alert">
+                <strong class="ml-5">{{ $message }}</strong>
+                </span>
+                @enderror
                 <div class="col-md-8 ml-5">
                     <img id="img_output"  src="" alt="" class="none border_" style="margin-bottom: 9px;">
                     <video id="video_output" controls class="none" width="100%"></video>
@@ -66,7 +86,7 @@
                     </div>
                     <div class="font-weight-bold">
                         <a href="/profile/{{$post->user->id}}" class="text-dark text-decoration-none">
-                            {{$post->user->username}}
+                        {{$post->user->username}}
                         </a>
                     </div>
                     <div class="text-right w-100" style="font-size: 10px;position: relative;">
@@ -89,12 +109,12 @@
                 </div>
             </div>
             <!-- image or video -->
-        <a href="/p/{{$post->id}}" id="post-{{$post->id}}">
+            <a href="/p/{{$post->id}}" id="post-{{$post->id}}">
                 @if(pathinfo($post->image, PATHINFO_EXTENSION) != 'mp4')
                 <img src="/uploads/{{$post->image}}" class="img-fluid" id="image-post-{{$post->id}}">
                 @else
                 <video width="100%" height="600" controls style="background: black">
-                  <source src="/videos/{{$post->image}}" type="video/mp4">
+                    <source src="/videos/{{$post->image}}" type="video/mp4">
                 </video>
                 @endif
             </a>
@@ -106,23 +126,23 @@
                         class="fa fa-heart like_heart @if(auth()->user()->like->contains($post->id)) liked @endif"
                         aria-hidden="true"></i>
                     <a href=""><i class="fa fa-comment-o" aria-hidden="true"></i></a>
-                  {{--start favorite--}}
+                    {{--start favorite--}}
                     <span class="favorite fa-pull-right" data-favorite-post="{{$post->id}}" style="cursor: pointer;padding-right:6px"><i id="favorite_{{$post->id}}"  style="color:#949090cf" class="fa fa-bookmark @if(auth()->user()->favorite->contains($post->id)) saved @endif" aria-hidden="true"></i></span>
                     {{--end favorite--}}
                 </div>
                 {{-- show like --}}
                 <b>
-                    <div class="like pl-2" id="many_like_{{$post->id}}">
+                    <div style="cursor: pointer;" class="like pl-2" data-like="{{$post->id}}" id="many_like_{{$post->id}}" data-toggle="modal" data-target="#exampleModalCenter">
                         @php
                         $like = $post->liked->count();
                         if( $like == 0) {
-                            $like ='' ;
+                        $like ='' ;
                         }
                         else if($like == 1){
-                             $like .=' like';
+                        $like .=' like';
                         }
                         else {
-                            $like .= ' likes';
+                        $like .= ' likes';
                         }
                         echo $like;
                         @endphp
@@ -130,22 +150,22 @@
                 </b>
                 {{-- end show like --}}
                 <span class=" pl-2">
-                    <a class="text-dark text-decoration-none" href="/profile/{{$post->user->id}}">
-                        <b> {{$post->user->username}} </b>
-                    </a>
-                    <span id="caption-post-{{$post->id}}">{{$post->caption}}</span>
+                <a class="text-dark text-decoration-none" href="/profile/{{$post->user->id}}">
+                <b> {{$post->user->username}} </b>
+                </a>
+                <span id="caption-post-{{$post->id}}">{{$post->caption}}</span>
                 </span>
                 <div class="comment pl-2">
                     @if($post->comment->count() > 2 )
-                        <a href="/p/{{$post->id}}" class="view-all-comment text-color" style="font-size: 14px">{{trans('home.post.view_comment',['comment' => $post->comment->count()])}}</a>
+                    <a href="/p/{{$post->id}}" class="view-all-comment text-color" style="font-size: 14px">{{trans('home.post.view_comment',['comment' => $post->comment->count()])}}</a>
                     @endif
                     <ul style="list-style: none">
                         @foreach($post->getTowLatestComment() as $comment)
-                            <li><b><a href='/profile/{{$comment->user->id}}'
-                                        class="text-dark">{{$comment->user->username}}</a></b> {{$comment->comment}}
-                            </li>
+                        <li><b><a href='/profile/{{$comment->user->id}}'
+                            class="text-dark">{{$comment->user->username}}</a></b> {{$comment->comment}}
+                        </li>
                         @endforeach
-                         <div id="comment{{$post->id}}"></div>
+                        <div id="comment{{$post->id}}"></div>
                     </ul>
                 </div>
                 <div class="time pl-2 text-color" style="font-size: 11.7px;text-transform: uppercase;">{{ getTimeDistance($post->created_at) }}</div>
@@ -153,29 +173,31 @@
                     <input id="comment_{{$post->id}}" type="text" class="postCmt w-100 comment" style="border: none;"
                         placeholder="{{trans('home.post.comment')}}" height="30px" data-id="{{$post->id}}">
                     <a style="color:#3897f0;font-weight: bold;cursor: pointer" data-post={{$post->id}} class='post_comment'
-                        id="post_{{$post->id}}">{{trans('home.post.post_comment')}}</a>
+                    id="post_{{$post->id}}">{{trans('home.post.post_comment')}}</a>
                 </div>
             </div>
         </div>
     </div>
     @endforeach
     <div id="alert_popover">
-    <div class="wrapper">
-     <div id="notification_{{auth()->user()->id}}">
-{{--         <a href="/p/5" class="text-dark"> 
-            <div class="alert_default border_ alert">
-                  <div href="#" class="close" data-dismiss="alert" aria-label="close" style="margin-left:23px;cursor: pointer;">&times;</div>
-                  <div class="d-flex">
-                    <div><img class="rounded-circle pr-1 image" src="/profiles/image.png"></div>
-                    <div>
-                        <div><strong class="pr-1">DungManh</strong>comment your post</div>
+        <div class="wrapper">
+            <div id="notification_{{auth()->user()->id}}">
+                {{--         
+                <a href="/p/5" class="text-dark">
+                    <div class="alert_default border_ alert">
+                        <div href="#" class="close" data-dismiss="alert" aria-label="close" style="margin-left:23px;cursor: pointer;">&times;</div>
+                        <div class="d-flex">
+                            <div><img class="rounded-circle pr-1 image" src="/profiles/image.png"></div>
+                            <div>
+                                <div><strong class="pr-1">DungManh</strong>comment your post</div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-             </div>
-        </a> --}}
-     </div>
+                </a>
+                --}}
+            </div>
+        </div>
     </div>
-   </div>
 </div>
 @endsection
 @section('js')

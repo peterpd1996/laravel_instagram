@@ -23,4 +23,14 @@ class LikeController extends Controller
         $likes = $post->liked()->count();
         return $likes;
  	}
+    public function showLike(Request $request)
+    {
+       $postId = $request->postId;
+       $id = auth()->user()->id;
+       $users = Post::find($postId)->liked->keyBy('id');
+       //unset($users[$id]);
+       return view('posts.showLike', compact('users'));
+
+      
+    }
 }

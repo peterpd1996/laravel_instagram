@@ -30,8 +30,8 @@ Vue.component('follow-button', require('./components/FollowButton.vue').default)
 
 
     //your script
-    const app = new Vue({
+const app = new Vue({
         el: '#app',
-    });
+ });
 
 

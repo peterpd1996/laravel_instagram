@@ -42,7 +42,7 @@ $(document).ready(function () {
                         $("#notifShow").html(data.notification);
                     } else {
                         $("#notifShow").html(
-                            "<span class='p-3' style='display:block'> you have not receiving notifications !!</span>"
+                            "<span class='p-3' style='display:block'> you have not receiving notifications</span>"
                         );
                     }
 

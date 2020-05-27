@@ -227,4 +227,19 @@ $(document).ready(function(){
         })
     });
 
+    $('.like').click(function(){
+        let postId = $(this).attr('data-like');
+            $.ajax({
+            url: "/like/show",
+            method: "POST",
+            data: {
+                postId: postId,
+            },
+            success: function (response) {
+                $('#showLike').html(response);
+            }
+        })
+        
+    })
+
 });

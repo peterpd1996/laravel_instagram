@@ -86,4 +86,5 @@ class PostController extends Controller
        $this->deleteImage($post->image);
        $post->delete();
     }
+            
 }

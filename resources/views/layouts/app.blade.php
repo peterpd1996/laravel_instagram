@@ -54,7 +54,7 @@
                         <div id="count" class="notifi_{{auth()->user()->id}}"></div>
                         {{-- // count notification --}}
                         {{-- notification --}}
-                        <ul class="notifi disable" id="notifShow" style="position: absolute;left: -312px">
+                        <ul class="notifi disable" id="notifShow" style="position: absolute;left: -312px;max-height: 442px;overflow-y: auto;">
                         </ul>
                         {{-- endnotification --}}
                     </div>

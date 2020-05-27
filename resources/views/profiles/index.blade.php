@@ -45,7 +45,7 @@
     <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4 tab-pane">
-                <ul class="nav nav-tabs" role="tablist">
+                <ul class="nav nav-tabs" style="width: 386px" role="tablist">
                     <li class="nav-item">
                         <a class="nav-link active text-uppercase" data-toggle="tab" href="#tabs-1" role="tab"><i class="fa fa-table pr-2"></i>{{trans('profile.post')}}</a>
                     </li>

@@ -54,7 +54,7 @@
                         <div id="count"></div>
                         {{-- // count notification --}}
                         {{-- notification --}}
-                        <ul class="notifi disable" id="notifShow" style="position: absolute;left: -312px">
+                        <ul class="notifi disable" id="notifShow" style="position: absolute;left: -312px;max-height: 442px;overflow-y: auto;">
                         </ul>
                         {{-- endnotification --}}
                     </div>
@@ -124,11 +124,11 @@
                                             <div class="media-body">
                                                 <div>
                                                     <div class="user-name">{{ $userText->username }}</div>
-                                                    <div class="user-last-chat">Hihi anh khỏe không ạ?</div>
+                                                    <div class="user-last-chat">{{ $userText->getLastMessageWithUser(auth()->user()->id,$userText->id) }}</div>
                                                 </div>
                                                 <div>
                                                     <div class="last-chat-time block">2 min</div>
-                                                    <div class="badge badge-success badge-pill">3</div>
+                                                    <div class="badge badge-success badge-pill unread">{{ $userText->countMessageUnread($userText->id,auth()->user()->id) }}</div>
                                                 </div>
                                             </div>
                                         </a>
@@ -144,11 +144,11 @@
                                             <div class="media-body">
                                                 <div>
                                                     <div class="user-name">{{ $user->username }}</div>
-                                                    <div class="user-last-chat">Hihi anh khỏe không ạ?</div>
+                                                    <div class="user-last-chat">{{ $user->getLastMessageWithUser(auth()->user()->id,$user->id) }}</div>
                                                 </div>
                                                 <div>
                                                     <div class="last-chat-time block">2 min</div>
-                                                    <div class="badge badge-success badge-pill">3</div>
+                                                    <div class="badge badge-success badge-pill unread">{{ $user->countMessageUnread($user->id,auth()->user()->id) }}</div>
                                                 </div>
                                             </div>
                                         </a>

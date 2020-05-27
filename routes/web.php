@@ -52,6 +52,7 @@ Route::get('/follow','FollowController@index')->name('follow');
 Route::post('follow/{user}','FollowController@store');
 //like
 Route::post('/like','LikeController@store');
+Route::post('/like/show', 'LikeController@showLike');
 // profile
 Route::get('/profile/{user}', 'ProfileController@index')->name('profile.show');
 Route::get('/profile/{user}/edit', 'ProfileController@edit')->name('profile.show');
