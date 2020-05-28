@@ -29,12 +29,17 @@ class LoginController extends Controller
      *
      * @var string
      */
+    public function __construct()
+    {
+        $this->middleware('guest');
+    }
+
     public function login(request $request)
     {
        $credentials =  $this->validate($request, [
             'email'           => 'required|max:255|email',
             'password'           => 'required',
-        ]); 
+        ]);
         if (!Auth::attempt($credentials)) {
              return redirect()->back()
              ->withInput() // with inpput la no k bi reset truong email da nhap
@@ -51,17 +56,17 @@ class LoginController extends Controller
                 $user->update(['is_block' => 0]);
                 return redirect('/');
             }
-            else 
+            else
             {
                 $timeBlock = $user->time_block;
                 return redirect('/block');
-                 
+
             }
         }
 
         if($user->is_admin == User::ADMIN) {
            return redirect('/admin');
         }
-        return redirect('/');          
+        return redirect('/');
     }
 }
