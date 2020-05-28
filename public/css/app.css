@@ -6333,8 +6333,9 @@ a.close.disabled {
   background-color: #fff;
   background-clip: padding-box;
   border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 0.3rem;
+  border-radius: 1.3rem;
   outline: 0;
+  overflow: hidden;
 }
 
 .modal-backdrop {
@@ -6381,8 +6382,9 @@ a.close.disabled {
 .modal-body {
   position: relative;
   -webkit-box-flex: 1;
-          flex: 1 1 auto;
-  padding: 1rem;
+  flex: 1 1 auto;
+  max-height: 316px;
+  overflow-y: auto;
 }
 
 .modal-footer {

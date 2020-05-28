@@ -49,7 +49,10 @@ Route::post('/notification','NotificationController@show');
 Route::post('/search','SearchController@searchUser');
 // follow
 Route::get('/follow','FollowController@index')->name('follow');
-Route::post('follow/{user}','FollowController@store');
+Route::post('/follow/{user}','FollowController@store');
+Route::post('/follower','FollowController@showFollower');
+Route::post('/following','FollowController@showFollowing');
+
 //like
 Route::post('/like','LikeController@store');
 Route::post('/like/show', 'LikeController@showLike');

@@ -238,8 +238,21 @@ $(document).ready(function(){
             success: function (response) {
                 $('#showLike').html(response);
             }
-        })
-        
+        }) 
+    });
+
+    $('#follower').click(function(){
+            let profileId = $(this).attr('data-profile');
+            $.ajax({
+            url: "/follower",
+            data: {profileId:profileId},
+            method: "POST",
+            success: function (response) {
+                $('#showFollow').html(response);
+                //$('#exampleModalLabel').html(response.title)
+            }
+        }) 
+
     })
 
 });

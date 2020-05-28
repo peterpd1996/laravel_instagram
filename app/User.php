@@ -12,6 +12,9 @@ class User extends Authenticatable
     const ADMIN = 1;
     const BLOCK = 1;
 
+    const FOLLOW = 3;
+    const FOLLOWING = 4;
+
     /**
      * The attributes that are mass assignable.
      *

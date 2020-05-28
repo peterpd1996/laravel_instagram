@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class FollowController extends Controller
 {
@@ -16,5 +17,23 @@ class FollowController extends Controller
     {
         auth()->user()->following()->toggle($user->profile->id);
         echo $user->profile->followers->count();
+    }
+
+    public function showFollower(Request $request)
+    {
+        $title = "Follower"; 
+        $profileId = $request->profileId;
+        $userIds = Db::table('profile_user')->where('profile_id', $profileId)->pluck('user_id')->toArray();
+        $users = User::whereIn('id',$userIds)->with('profile')->get();
+        return view('follows.show', compact('users','title'));
+    }
+
+    public function showFollowing()
+    {
+        $title = "Following"; 
+        $profileId = $request->profileId;
+        $userIds = Db::table('profile_user')->where('profile_id', $profileId)->pluck('user_id')->toArray();
+        $users = User::whereIn('id',$userIds)->with('profile')->get();
+        return view('follows.show', compact('users','title'));
     }
 }

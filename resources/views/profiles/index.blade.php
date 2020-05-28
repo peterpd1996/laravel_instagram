@@ -1,5 +1,12 @@
 @extends('layouts.app')
 @section('content')
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" id="showFollow">
+     
+    </div>
+  </div>
+</div>
 <div class="container">
     <div class="row border_b">
         <div class="col-md-3 p-5">
@@ -27,9 +34,9 @@
             </div>
             <div class="d-flex pb-4">
                 <div class="pr-5"><strong>{{ $user->posts->count() }}</strong>{{trans('profile.post')}}</div>
-                <div class="pr-5"><strong id="followCount">{{$user->profile->followers->count()}}</strong>
+                <div id="follower" data-profile="{{$user->profile->id}}"  class="pr-5" style="cursor: pointer;" data-toggle="modal" data-target="#exampleModal"><strong id="followCount">{{$user->profile->followers->count()}}</strong>
                     {{trans('profile.follower')}}</div>
-                <div><strong>{{$user->following->count()}}</strong>{{trans('profile.following')}}</div>
+                <div id="following" style="cursor: pointer;" data-toggle="modal" data-target="#exampleModal"><strong>{{$user->following->count()}}</strong>{{trans('profile.following')}}</div>
 
             </div>
             <div class="name">
