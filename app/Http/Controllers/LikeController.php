@@ -8,7 +8,7 @@ use App\Events\NotifiLikeAndComment;
 
 class LikeController extends Controller
 {
-    
+
     public function store(Request $request)
     {
         $postId = $request->input('post_id');
@@ -18,8 +18,8 @@ class LikeController extends Controller
         $userId = auth()->user()->id;
         $like = auth()->user()->like()->toggle($postId);
         if (count($like["attached"]) != 0 && $userId != $toUser) {
-        	event(new NotifiLikeAndComment(auth()->user()->profile->profileImage() ,$username, "liked", $postId, $toUser)); 
-        } 
+        	event(new NotifiLikeAndComment(auth()->user()->profile->profileImage() ,$username, "liked", $postId, $toUser));
+        }
         $likes = $post->liked()->count();
         return $likes;
  	}
@@ -30,7 +30,5 @@ class LikeController extends Controller
        $users = Post::find($postId)->liked->keyBy('id');
        //unset($users[$id]);
        return view('posts.showLike', compact('users'));
-
-      
     }
 }

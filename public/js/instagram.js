@@ -238,7 +238,7 @@ $(document).ready(function(){
             success: function (response) {
                 $('#showLike').html(response);
             }
-        }) 
+        })
     });
 
     $('#follower').click(function(){
@@ -249,10 +249,20 @@ $(document).ready(function(){
             method: "POST",
             success: function (response) {
                 $('#showFollow').html(response);
-                //$('#exampleModalLabel').html(response.title)
             }
-        }) 
+        })
+    })
 
+    $('#following').click(function () {
+        let userId = $(this).attr('data-user');
+        $.ajax({
+            url: "/following",
+            data: {userId:userId},
+            method: "POST",
+            success: function (response) {
+                $('#showFollow').html(response);
+            }
+        })
     })
 
 });

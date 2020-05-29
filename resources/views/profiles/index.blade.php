@@ -3,7 +3,7 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content" id="showFollow">
-     
+
     </div>
   </div>
 </div>
@@ -36,7 +36,7 @@
                 <div class="pr-5"><strong>{{ $user->posts->count() }}</strong>{{trans('profile.post')}}</div>
                 <div id="follower" data-profile="{{$user->profile->id}}"  class="pr-5" style="cursor: pointer;" data-toggle="modal" data-target="#exampleModal"><strong id="followCount">{{$user->profile->followers->count()}}</strong>
                     {{trans('profile.follower')}}</div>
-                <div id="following" style="cursor: pointer;" data-toggle="modal" data-target="#exampleModal"><strong>{{$user->following->count()}}</strong>{{trans('profile.following')}}</div>
+                <div id="following" data-user="{{$user->id}}" style="cursor: pointer;" data-toggle="modal" data-target="#exampleModal"><strong>{{$user->following->count()}}</strong>{{trans('profile.following')}}</div>
 
             </div>
             <div class="name">
@@ -46,7 +46,7 @@
             <div class="description">{{ $user->profile->description ?? ''}}</div>
             <div><a href="{{$user->profile->url}}">{{ $user->profile->url ?? 'N/A' }}</a></div>
         </div>
-       
+
 
     </div>
     <div class="row">
@@ -114,6 +114,6 @@
             </div>
         </div>
     </div>
-     
+
 </div>
 @endsection
