@@ -11333,7 +11333,7 @@ a:hover {
 }
 
 .search {
-  width: 64%;
+  width: 58%;
   flex-shrink: 0;
   height: 50px;
   padding: 13px 14px;
@@ -11341,8 +11341,9 @@ a:hover {
 }
 
 .notification {
-  width: 40%;
+  width: 27%;
   text-align: right;
+  padding-left: 11px;
 }
 
 .actionLoginLogout {
@@ -11355,16 +11356,16 @@ a:hover {
 }
 
 .username > .logout {
-  position: absolute;
-  top: 24px;
-  padding: 7px;
-  border: 1px solid #e6e6e6;
-  background: #fff;
-  border-radius: 6px;
-  left: -44px;
-  width: 143px;
-  max-height: 123px;
-  z-index: 10;
+    position: absolute;
+    top: 24px;
+    padding: 0px;
+    border: 1px solid #e6e6e6;
+    background: #fff;
+    border-radius: 6px;
+    left: -73px;
+    width: 134px;
+    max-height: 118px;
+    z-index: 10;
 }
 
 .username > .logout > ul > li {
@@ -11480,26 +11481,33 @@ a:hover {
 .h-image {
   height: 600px;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 
 #img_output {
   width: 100px;
   height: 100px;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 
 .image_profile {
   width: 400px;
   height: 400px;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 
 @media only screen and (max-width: 441px) {
   #brand {
     display: none;
+  }
+  .username > .logout{
+    left: -115px;
+  }
+  #alert_popover{
+    bottom: -13px;
+    left: 129px;
   }
 }
 
@@ -11512,7 +11520,7 @@ a:hover {
 @media only screen and (min-width: 441px) {
   .h-image {
     height: auto;
-  }
+  },
 }
 
 @media only screen and (min-width: 700px) {
@@ -11525,5 +11533,10 @@ a:hover {
   .h-image_profile {
     height: 200px;
   }
+}
+@media only screen and (min-width: 441px) {
+  .logout {
+    left: : -42px;
+  },
 }
 
