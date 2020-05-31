@@ -26,7 +26,7 @@ class CommentController extends Controller
                         <b>
                             <a href='/profile/{$userId}' class='text-dark'>".auth()->user()->username."</a>
                         </b> ".$comment.
-                        "<div class='text-color'>".getTimeDistance(date("Y-m-d H:i:s"))."</div>".
+                        "<div class='text-color font-time'>".getTimeDistance(date("Y-m-d H:i:s"))."</div>".
                     "</li>";
 
         event(new NewComment($comment,$postId));

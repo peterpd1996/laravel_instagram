@@ -11124,6 +11124,23 @@ body input[type=text]:focus {
   margin: 0px;
 }
 
+#suggest_friend {
+  position: fixed;
+  right: 18px;
+}
+.suggest {
+    background: #f8f9fa00;
+    border-radius: 14px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35) !important;
+    max-width: 387px;
+    padding: 7px 0px 7px 19px;
+}
+.form-post{
+    border-radius: 18px !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35) !important;
+    background: rgb(255, 255, 255);
+}
+
 .invalid-error {
   width: 100%;
   margin-top: 0.25rem;
@@ -11317,7 +11334,9 @@ a:hover {
   top: -9px;
   font-size: 13px;
 }
-
+.font-time{
+  font-size: 13px;
+}
 .w-img {
   width: 40px;
   height: 40px;
@@ -11329,7 +11348,7 @@ a:hover {
 }
 
 .logo {
-  width: 20%;
+  width: 10%;
 }
 
 .search {
@@ -11364,7 +11383,7 @@ a:hover {
     border-radius: 6px;
     left: -73px;
     width: 134px;
-    max-height: 118px;
+    max-height: 123px;
     z-index: 10;
 }
 
@@ -11497,6 +11516,9 @@ a:hover {
   -o-object-fit: cover;
   object-fit: cover;
 }
+div.profile {
+    display: block;
+  }
 
 @media only screen and (max-width: 441px) {
   #brand {
@@ -11520,13 +11542,22 @@ a:hover {
 @media only screen and (min-width: 441px) {
   .h-image {
     height: auto;
-  },
+  }
 }
 
 @media only screen and (min-width: 700px) {
   .h-image {
     height: 700px;
   }
+
+}
+@media only screen and (max-width: 800px) {
+    #suggest_friend {
+    position: relative;
+    right: -1px;
+    padding-bottom: 14px;
+  }
+
 }
 
 @media only screen and (min-width: 700px) {

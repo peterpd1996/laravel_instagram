@@ -28,7 +28,7 @@
                 <div class="logo">
                     <a class="navbar-brand d-flex text-dark" href="{{ url('/') }}">
                         <div>
-                            <i class="fa fa-instagram pr-3" style="border-right: 1px solid black"></i>
+                            <img src="/images/paper-plane.png" width="25px" height="25px" style="object-fit: cover;">
                             <span id="brand">D'Look</span>
                         </div>
                     </a>

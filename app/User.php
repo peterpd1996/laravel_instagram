@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -91,6 +92,17 @@ class User extends Authenticatable
             ['from','=', $toUser]
         ])->latest()->limit(1)->get();
        return $lastMessage[0]->message ?? trans('message.say_hi');
+    }
+
+    public static function getFollower( $profileId) 
+    {
+        $userIds = Db::table('profile_user')->where('profile_id', $profileId)->pluck('user_id')->toArray();
+        return User::whereIn('id',$userIds)->with('profile')->get();
+    }
+    public static function getFollowing ($userId)
+    {
+        $userIds = User::find($userId)->following()->pluck('profiles.user_id')->toArray();
+        return User::whereIn('id',$userIds)->with('profile')->get();
     }
 
 }

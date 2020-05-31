@@ -22,18 +22,14 @@ class FollowController extends Controller
     public function showFollower(Request $request)
     {
         $title = "Follower";
-        $profileId = $request->profileId;
-        $userIds = Db::table('profile_user')->where('profile_id', $profileId)->pluck('user_id')->toArray();
-        $users = User::whereIn('id',$userIds)->with('profile')->get();
+        $users = User::getFollower($request->profileId);
         return view('follows.show', compact('users','title'));
     }
 
     public function showFollowing(Request $request)
     {
         $title = "Following";
-        $userId = $request->userId;
-        $userIds = User::find($userId)->following()->pluck('profiles.user_id')->toArray();;
-        $users = User::whereIn('id',$userIds)->with('profile')->get();
+        $users = User::getFollowing($request->userId);
         return view('follows.show', compact('users','title'));
     }
 }

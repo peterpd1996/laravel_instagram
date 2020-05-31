@@ -40,7 +40,7 @@ Launch demo modal
 <div class="container pt-4">
     {{-- post --}}
     <div class="row post">
-        <div class="col-md-7 offset-md-2  border_ mb-5" style="background: #fff">
+        <div class="col-md-7 border_ mb-5 form-post">
             <form action="/p" enctype="multipart/form-data" method="POST">
                 @csrf
                 <div class="form-group d-flex pt-2">
@@ -73,11 +73,52 @@ Launch demo modal
                 </div>
             </form>
         </div>
+        <div class="col-md-5 " id="suggest_friend">
+            <div class="row profile">
+                <a href="/profile/5" class="text-dark">
+                    <div class="d-flex fix">
+                        <img src="/profiles/{{auth()->user()->profile->profileImage()}}" class="rounded">
+                        <div class="pl-2">
+                            <b>{{ auth()->user()->username}}</b>
+                            <p class="text-dark">{{ auth()->user()->name }}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+         @if(count($inforUsersSuggest) > 0)
+            <div class="suggest">
+                <div class="row pb-2">
+                    <div class="col-md-7" style="color: gray;font-size: 15px;font-weight: bold;">Suggestions For You</div> 
+                </div>
+                @foreach($inforUsersSuggest as $user)
+                 <div class="row pt-1">
+                    <div class="col-md-7">
+                    <div class="follow">
+                         <a href='/profile/{{$user->profile->id}}' class='text-dark'>
+                                    <div class='d-flex'>
+                                        <img src='/profiles/{{$user->profile->profileImage()}}'  class='rounded'>
+                                        <div class='pl-2'>
+                                            <b>{{$user->username}}</b>
+                                            <p class='text-dark'>{{ $user->name }}</p>
+                                        </div>
+                                    </div>
+                         </a>
+                    </div>
+                    </div>
+                    <div class="col-md-2">
+                         <follow-button userid="{{$user->id }}" follows={{ auth()->user()->isFollow($user->id)}}></follow-button>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        @endif
+
+        </div>
     </div>
     {{-- end post --}}
     @foreach($posts as $post)
     <div class="row ">
-        <div class="col-md-7 mb-5 p-0 border_ offset-md-2">
+        <div class="col-md-7 mb-5 p-0 border_ ">
             <div>
                 <div class="name d-flex align-items-center pt-2 pb-2 pl-2 " style="background-color: #fff">
                     <div>
@@ -125,7 +166,7 @@ Launch demo modal
                     <i data-like_post="{{$post->id}}" id="like_{{$post->id}}"
                         class="fa fa-heart like_heart @if(auth()->user()->like->contains($post->id)) liked @endif"
                         aria-hidden="true"></i>
-                    <a href=""><i class="fa fa-comment-o" aria-hidden="true"></i></a>
+                    <a href="/p/{{$post->id}}"><i class="fa fa-comment-o" aria-hidden="true"></i></a>
                     {{--start favorite--}}
                     <span class="favorite fa-pull-right" data-favorite-post="{{$post->id}}" style="cursor: pointer;padding-right:6px"><i id="favorite_{{$post->id}}"  style="color:#949090cf" class="fa fa-bookmark @if(auth()->user()->favorite->contains($post->id)) saved @endif" aria-hidden="true"></i></span>
                     {{--end favorite--}}
@@ -181,7 +222,7 @@ Launch demo modal
     @endforeach
     <div id="alert_popover">
         <div class="wrapper">
-            <div id="notification_{{auth()->user()->id}}">
+            <div id="notification_{{auth()->user()->id}}" class="noti_check">
                 {{--         
                 <a href="/p/5" class="text-dark">
                     <div class="alert_default border_ alert">
@@ -198,7 +239,17 @@ Launch demo modal
             </div>
         </div>
     </div>
+    </div>
 </div>
 @endsection
 @section('js')
+<script type="text/javascript">
+$('.noti_check').bind('DOMSubtreeModified', function(){
+   setTimeout(function(){
+        $('.noti_check').remove();
+   },5000);
+});
+
+</script>
+
 @endsection

@@ -8,28 +8,45 @@ use Intervention\Image\Facades\Image;
 use App\Post;
 use App\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
     use Images;
     public function index()
     {
-        // lấy những user mà user đăng nhập hiện tại đang following
-        $users_id = auth()->user()->following()->pluck('profiles.user_id')->toArray();
-        if($users_id == null)
+        // lấy những user đã follow mình mà mình chưa follow lại 
+        // lấy a follow b, b follow c => gợi ý cho a follow c;
+        $id = auth()->user()->id;
+        $usersFollowing = auth()->user()->following()->pluck('profiles.user_id')->toArray();
+        if($usersFollowing == null)
         {
             return redirect()->route('follow');
         }
-        array_push($users_id,auth()->user()->id);
-
-        // pluck là phương thức mình lấy ra một cột nào đó
-        //vd $name = DB::table('users')->where('name', 'John')->pluck('name'); chỉ lấy ra cột name
-        // select profiles.user_id
-        // from profiles inner join profile_user on profiles.id = profile_user.profile_id
-        // where profile_user.user_id = 1    auth()->user()->id
-        $posts = Post::WhereIn('user_id',$users_id)->latest()->get();
-        // orderBy('created_at','DESC') = latest()
-        return view('posts.index',compact('posts'));
+        $userFollower = User::getFollower(auth()->user()->profile->id);
+        $usersSuggest = array_diff($userFollower->pluck('id')->toArray(), $usersFollowing);
+        if(count($usersSuggest) < 5 )
+        {
+            // get user follow của những người mình đã follow tính chất bắc cầu;
+            $moreUserFollower = DB::table('profile_user')
+                                ->whereIn('user_id', $usersFollowing)
+                                ->where('profile_id', '!=', $id)
+                                ->pluck('profile_id')->toArray();
+            $moreUserFollower = array_diff($moreUserFollower, $usersFollowing);
+            $newSuggest = array_merge($usersSuggest, $moreUserFollower);
+            $usersSuggest = array_unique($newSuggest);            
+        }
+        if(count($usersSuggest) < 5) 
+        {
+            // lay nhung user ngoai user suggest
+            $notInListUserFollowedAndSuggest = array_merge($usersSuggest, $usersFollowing, [$id]);
+            $newSuggest = User::whereNotIn('id', $notInListUserFollowedAndSuggest)->pluck('id')->toArray();
+            $usersSuggest = array_merge($usersSuggest, $newSuggest);
+        }
+        $inforUsersSuggest = User::whereIn('id',$usersSuggest)->with('profile')->get();
+        array_push($usersFollowing, $id);
+        $posts = Post::WhereIn('user_id',$usersFollowing)->latest()->get();
+        return view('posts.index',compact('posts', 'inforUsersSuggest'));
     }
     public function create()
     {
