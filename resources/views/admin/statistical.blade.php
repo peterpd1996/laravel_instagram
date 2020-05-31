@@ -3,7 +3,7 @@
         <!-- small box -->
         <div class="small-box bg-info">
             <div class="inner">
-                <h3>{{$count_post}}</h3>
+                <h3>{{$totalPost}}</h3>
 
                 <p>Bài viết</p>
             </div>
@@ -33,7 +33,7 @@
         <!-- small box -->
         <div class="small-box bg-warning">
             <div class="inner">
-                <h3>{{$count_user}}</h3>
+                <h3>{{$totalUser}}</h3>
 
                 <p>Người dùng</p>
             </div>
