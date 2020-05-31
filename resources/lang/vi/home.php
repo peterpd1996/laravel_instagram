@@ -1,5 +1,6 @@
 <?php 
 	return [
+		'suggest' =>'Gợi ý cho bạn',
 	    'header' => [
 	    	'lang_vi' => 'Tiếng việt',
 		    'lang_en' => 'Tiếng anh',
