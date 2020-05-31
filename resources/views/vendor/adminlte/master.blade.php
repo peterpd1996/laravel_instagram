@@ -59,9 +59,6 @@
 <script src="{{ asset('vendor/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
 <script src="{{ asset('vendor/adminlte/dist/js/sweetalert.min.js') }}"></script>
 <script src="{{ asset('vendor/adminlte/dist/js/script.js') }}"></script>
-<script src="{{url( 'vendor/chart/jquery.min.js' )}}"></script>
-<script src="{{url( 'vendor/chart/Chart.min.js' )}}"></script>
-<script src="{{url( 'vendor/chart/create-charts.js' )}}"></script>
 
 @include('adminlte::plugins', ['type' => 'js'])
 
