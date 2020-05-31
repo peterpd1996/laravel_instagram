@@ -88,7 +88,7 @@ Launch demo modal
          @if(count($inforUsersSuggest) > 0)
             <div class="suggest">
                 <div class="row pb-2">
-                    <div class="col-md-7" style="color: gray;font-size: 15px;font-weight: bold;">Suggestions For You</div> 
+                    <div class="col-md-7" style="color: gray;font-size: 17px;font-weight: bold;">{{ trans('home.suggest') }}</div> 
                 </div>
                 @foreach($inforUsersSuggest as $user)
                  <div class="row pt-1">

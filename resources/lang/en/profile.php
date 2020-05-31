@@ -12,5 +12,7 @@
 	    	'profile_image' => 'Profile Image',
 	    	'button' => 'Save',
 	    ],
+	    'follow' => 'Follow',
+	    'un_follow' => 'Unfollow'
 	   
 ];
