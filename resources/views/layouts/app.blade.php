@@ -93,16 +93,7 @@
                     </div>
                     @endauth
                 </div>
-                @guest
-                <div class="actionLoginLogout d-flex pt-1 justify-content-end" style="font-size: 17px">
-                    <div class="login mr-3">
-                        <a class="text-dark" href="{{ route('login') }}">Login</a>
-                    </div>
-                    <div class="register" style="padding-right: 10px">
-                        <a class="text-dark" href="{{ route('register') }}">Register</a>
-                    </div>
-                </div>
-                @endguest
+             
             </div>
         </header>
         <main class="main">

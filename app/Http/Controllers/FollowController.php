@@ -21,14 +21,14 @@ class FollowController extends Controller
 
     public function showFollower(Request $request)
     {
-        $title = "Follower";
+        $title = trans('profile.follower');
         $users = User::getFollower($request->profileId);
         return view('follows.show', compact('users','title'));
     }
 
     public function showFollowing(Request $request)
     {
-        $title = "Following";
+        $title = trans('profile.following');
         $users = User::getFollowing($request->userId);
         return view('follows.show', compact('users','title'));
     }

@@ -11193,6 +11193,7 @@ body input[type=text]:focus {
 .border_ {
   border-radius: 3px;
   border: 1px solid #e6e6e6;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
 }
 
 .text-color {

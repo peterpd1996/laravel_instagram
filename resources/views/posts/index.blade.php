@@ -244,11 +244,11 @@ Launch demo modal
 @endsection
 @section('js')
 <script type="text/javascript">
-$('.noti_check').bind('DOMSubtreeModified', function(){
-   setTimeout(function(){
-        $('.noti_check').remove();
-   },5000);
-});
+// $('.noti_check').bind('DOMSubtreeModified', function(){
+//    setTimeout(function(){
+//         $('.noti_check').html("");
+//    },10000);
+// });
 
 </script>
 

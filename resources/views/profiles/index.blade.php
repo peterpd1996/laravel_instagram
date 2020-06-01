@@ -37,7 +37,6 @@
                 <div id="follower" data-profile="{{$user->profile->id}}"  class="pr-5" style="cursor: pointer;" data-toggle="modal" data-target="#exampleModal"><strong id="followCount">{{$user->profile->followers->count()}}</strong>
                     {{trans('profile.follower')}}</div>
                 <div id="following" data-user="{{$user->id}}" style="cursor: pointer;" data-toggle="modal" data-target="#exampleModal"><strong>{{$user->following->count()}}</strong>{{trans('profile.following')}}</div>
-
             </div>
             <div class="name">
                 <h4>{{ $user->name ?? ''}}</h4>
@@ -52,7 +51,7 @@
     <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4 tab-pane">
-                <ul class="nav nav-tabs" style="width: 386px" role="tablist">
+                <ul class="nav nav-tabs" style="width: 387px" role="tablist">
                     <li class="nav-item">
                         <a class="nav-link active text-uppercase" data-toggle="tab" href="#tabs-1" role="tab"><i class="fa fa-table pr-2"></i>{{trans('profile.post')}}</a>
                     </li>
@@ -96,7 +95,7 @@
                             <div class="col-4 mb-4" >
                                 <a href="/p/{{$save['id']}}">
                                     @if(pathinfo($save['image'], PATHINFO_EXTENSION) != 'mp4')
-                                        <img src="/uploads/{{$save['image']}}" class="img-fluid img-thumbnail" id="image-post-{{$save['id']}}">
+                                        <img src="/uploads/{{$save['image']}}" class="img-thumbnail image_profile" id="image-post-{{$save['id']}}">
                                     @else
                                         <video width="100%" height="350px" controls style="background: black">
                                             <source src="/videos/{{$save['image']}}" type="video/mp4">
