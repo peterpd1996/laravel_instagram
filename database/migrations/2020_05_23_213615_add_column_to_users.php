@@ -14,7 +14,6 @@ class AddColumnToUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->tinyInteger('is_admin')->default(0);
             $table->tinyInteger('is_block')->default(0);
             $table->timestamp('time_block')->nullable();
 
